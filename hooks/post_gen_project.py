@@ -402,9 +402,6 @@ def main():
     if "{{ cookiecutter.ci_tool }}".lower() != "github":
         remove_dotgithub_folder()
 
-    if "{{ cookiecutter.use_drf }}".lower() == "n":
-        remove_drf_starter_files()
-
     if "{{ cookiecutter.use_async }}".lower() == "n":
         remove_async_files()
 

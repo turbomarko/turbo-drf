@@ -13,7 +13,6 @@ services:
     image: {{ cookiecutter.project_slug }}_production_django
     depends_on:
       - postgres
-      - redis
     env_file:
       - ./.envs/.production/.django
       - ./.envs/.production/.postgres
@@ -45,9 +44,6 @@ services:
       {%- if cookiecutter.use_celery == 'y' %}
       - "0.0.0.0:5555:5555"
       {%- endif %}
-
-  redis:
-    image: redis:6
   {%- if cookiecutter.use_celery == 'y' %}
 
   celeryworker:

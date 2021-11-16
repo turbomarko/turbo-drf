@@ -85,9 +85,6 @@ mail_service:
 use_async:
     Indicates whether the project should use web sockets with Uvicorn + Gunicorn.
 
-use_drf:
-    Indicates whether the project should be configured to use `Django Rest Framework`_.
-
 custom_bootstrap_compilation:
     Indicates whether the project should support Bootstrap recompilation
     via the selected JavaScript task runner's task. This can be useful

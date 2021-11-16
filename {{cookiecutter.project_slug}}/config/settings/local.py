@@ -58,7 +58,7 @@ INSTALLED_APPS += ["debug_toolbar"]  # noqa F405
 MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]  # noqa F405
 # https://django-debug-toolbar.readthedocs.io/en/latest/configuration.html#debug-toolbar-config
 DEBUG_TOOLBAR_CONFIG = {
-    "DISABLE_PANELS": ["debug_toolbar.panels.redirects.RedirectsPanel"],
+    # "DISABLE_PANELS": ["debug_toolbar.panels.redirects.RedirectsPanel"],
     "SHOW_TEMPLATE_CONTEXT": True,
 }
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#internal-ips
@@ -95,5 +95,14 @@ CELERY_TASK_ALWAYS_EAGER = True
 CELERY_TASK_EAGER_PROPAGATES = True
 
 {%- endif %}
-# Your stuff...
+# drf-spectacular
 # ------------------------------------------------------------------------------
+# https://drf-spectacular.readthedocs.io/en/latest/readme.html
+INSTALLED_APPS += ["drf_spectacular"]  # noqa F405
+REST_FRAMEWORK['DEFAULT_SCHEMA_CLASS'] = 'drf_spectacular.openapi.AutoSchema'
+SPECTACULAR_SETTINGS = {
+    'TITLE': '{{cookiecutter.project_name}} API',
+    'DESCRIPTION': '{{cookiecutter.description}}',
+    'VERSION': '{{cookiecutter.version}}',
+    # OTHER SETTINGS
+}
