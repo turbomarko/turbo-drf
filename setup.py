@@ -1,18 +1,15 @@
 #!/usr/bin/env python
-
-import os
-import sys
-
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
 # We use calendar versioning
-version = "2021.11.17"
+version = "2021.11.19"
 
 with open("README.rst") as readme_file:
     long_description = readme_file.read()
+
 setup(
     name="cookiecutter-django",
     version=version,
@@ -27,7 +24,7 @@ setup(
     classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Console",
-        "Framework :: Django :: 3.1",
+        "Framework :: Django :: 3.2",
         "Intended Audience :: Developers",
         "Natural Language :: English",
         "License :: OSI Approved :: BSD License",
