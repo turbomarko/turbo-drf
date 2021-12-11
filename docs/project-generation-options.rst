@@ -1,5 +1,11 @@
+.. _template-options:
+
 Project Generation Options
 ==========================
+
+This page describes all the template options that will be prompted by the `cookiecutter CLI`_ prior to generating your project.
+
+.. _cookiecutter CLI: https://github.com/cookiecutter/cookiecutter
 
 project_name:
     Your project's human-readable name, capitals and spaces allowed.
@@ -85,11 +91,6 @@ mail_service:
 
 use_async:
     Indicates whether the project should use web sockets with Uvicorn + Gunicorn.
-
-custom_bootstrap_compilation:
-    Indicates whether the project should support Bootstrap recompilation
-    via the selected JavaScript task runner's task. This can be useful
-    for real-time Bootstrap variable alteration.
 
 use_compressor:
     Indicates whether the project should be configured to use `Django Compressor`_.

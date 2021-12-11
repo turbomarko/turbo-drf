@@ -391,6 +391,13 @@ Listed in alphabetical order.
     <td></td>
   </tr>
   <tr>
+    <td>Chao Yang Wu</td>
+    <td>
+      <a href="https://github.com/goatwu1993">goatwu1993</a>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
     <td>Charlie Macfarlane Brodie</td>
     <td>
       <a href="https://github.com/tannart">tannart</a>
@@ -1273,6 +1280,13 @@ Listed in alphabetical order.
     <td></td>
   </tr>
   <tr>
+    <td>mpoli</td>
+    <td>
+      <a href="https://github.com/mpoli">mpoli</a>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
     <td>Nico Stefani</td>
     <td>
       <a href="https://github.com/nicolas471">nicolas471</a>
@@ -1525,6 +1539,13 @@ Listed in alphabetical order.
     <td></td>
   </tr>
   <tr>
+    <td>Timm Simpkins</td>
+    <td>
+      <a href="https://github.com/PoDuck">PoDuck</a>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
     <td>Tom Atkins</td>
     <td>
       <a href="https://github.com/knitatoms">knitatoms</a>
@@ -1647,6 +1668,13 @@ Listed in alphabetical order.
     <td>Yuchen Xie</td>
     <td>
       <a href="https://github.com/mapx">mapx</a>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Zach Borboa</td>
+    <td>
+      <a href="https://github.com/zachborboa">zachborboa</a>
     </td>
     <td></td>
   </tr>
