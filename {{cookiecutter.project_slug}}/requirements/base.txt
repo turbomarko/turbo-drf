@@ -2,13 +2,6 @@ psycopg2==2.9.2  # https://github.com/psycopg/psycopg2
 pytz==2021.3  # https://github.com/stub42/pytz
 python-slugify==5.0.2  # https://github.com/un33k/python-slugify
 Pillow==8.4.0  # https://github.com/python-pillow/Pillow
-{%- if cookiecutter.use_compressor == "y" %}
-{%- if cookiecutter.windows == 'y' and cookiecutter.use_docker == 'n' %}
-rcssmin==1.0.6 --install-option="--without-c-extensions"  # https://github.com/ndparker/rcssmin
-{%- else %}
-rcssmin==1.0.6  # https://github.com/ndparker/rcssmin
-{%- endif %}
-{%- endif %}
 argon2-cffi==21.2.0  # https://github.com/hynek/argon2_cffi
 {%- if cookiecutter.use_whitenoise == 'y' %}
 whitenoise==5.3.0  # https://github.com/evansd/whitenoise
@@ -33,9 +26,6 @@ uvicorn[standard]==0.15.0  # https://github.com/encode/uvicorn
 django==3.2.10  # https://www.djangoproject.com/
 django-environ==0.8.1  # https://github.com/joke2k/django-environ
 django-model-utils==4.2.0  # https://github.com/jazzband/django-model-utils
-{%- if cookiecutter.use_compressor == "y" %}
-django-compressor==2.4.1  # https://github.com/django-compressor/django-compressor
-{%- endif %}
 django-redis==5.1.0  # https://github.com/jazzband/django-redis
 # Django REST Framework
 djangorestframework==3.12.4  # https://github.com/encode/django-rest-framework

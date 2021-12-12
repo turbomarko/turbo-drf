@@ -76,23 +76,6 @@ def remove_heroku_files():
             # don't remove the file if we are using travisci but not using heroku
             continue
         os.remove(file_name)
-    remove_heroku_build_hooks()
-
-
-def remove_heroku_build_hooks():
-    shutil.rmtree("bin")
-
-
-def remove_gulp_files():
-    file_names = ["gulpfile.js"]
-    for file_name in file_names:
-        os.remove(file_name)
-
-
-def remove_packagejson_file():
-    file_names = ["package.json"]
-    for file_name in file_names:
-        os.remove(file_name)
 
 
 def remove_celery_files():
@@ -298,10 +281,6 @@ def remove_celery_compose_dirs():
     shutil.rmtree(os.path.join("compose", "production", "django", "celery"))
 
 
-def remove_node_dockerfile():
-    shutil.rmtree(os.path.join("compose", "local", "node"))
-
-
 def remove_aws_dockerfile():
     shutil.rmtree(os.path.join("compose", "production", "aws"))
 
@@ -356,8 +335,6 @@ def main():
 
     if "{{ cookiecutter.use_heroku }}".lower() == "n":
         remove_heroku_files()
-    elif "{{ cookiecutter.use_compressor }}".lower() == "n":
-        remove_heroku_build_hooks()
 
     if (
         "{{ cookiecutter.use_docker }}".lower() == "n"
@@ -375,12 +352,6 @@ def main():
         append_to_gitignore_file(".envs/*")
         if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
             append_to_gitignore_file("!.envs/.local/")
-
-    if "{{ cookiecutter.js_task_runner}}".lower() == "none":
-        remove_gulp_files()
-        remove_packagejson_file()
-        if "{{ cookiecutter.use_docker }}".lower() == "y":
-            remove_node_dockerfile()
 
     if "{{ cookiecutter.cloud_provider}}".lower() == "none":
         print(

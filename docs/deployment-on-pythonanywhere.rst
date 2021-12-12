@@ -15,7 +15,7 @@ Full instructions follow, but here's a high-level view.
 
 2. Set your config variables in the *postactivate* script
 
-3. Run the *manage.py* ``migrate`` and ``collectstatic`` commands. If you've opted for django-compressor, also run ``compress``
+3. Run the *manage.py* ``migrate`` and ``collectstatic`` commands
 
 4. Add an entry to the PythonAnywhere *Web tab*
 

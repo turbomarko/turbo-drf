@@ -36,11 +36,3 @@ pre-commit run --show-diff-on-failure -a
 # run the project's tests
 pytest
 
-if [ -f "package.json" ]
-then
-    npm install
-    if [ -f "gulpfile.js" ]
-    then
-        npm run build
-    fi
-fi

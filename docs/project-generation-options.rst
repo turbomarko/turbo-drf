@@ -61,12 +61,6 @@ postgresql_version:
     4. 11.14
     5. 10.19
 
-js_task_runner:
-    Select a JavaScript task runner. The choices are:
-
-    1. None
-    2. Gulp_
-
 cloud_provider:
     Select a cloud provider for static & media files. The choices are:
 
@@ -91,9 +85,6 @@ mail_service:
 
 use_async:
     Indicates whether the project should use web sockets with Uvicorn + Gunicorn.
-
-use_compressor:
-    Indicates whether the project should be configured to use `Django Compressor`_.
 
 use_celery:
     Indicates whether the project should be configured to use Celery_.
@@ -142,8 +133,6 @@ debug:
 
 .. _PostgreSQL: https://www.postgresql.org/docs/
 
-.. _Gulp: https://github.com/gulpjs/gulp
-
 .. _AWS: https://aws.amazon.com/s3/
 .. _GCP: https://cloud.google.com/storage/
 
@@ -158,8 +147,6 @@ debug:
 .. _Other SMTP: https://anymail.readthedocs.io/en/stable/
 
 .. _Django Rest Framework: https://github.com/encode/django-rest-framework/
-
-.. _Django Compressor: https://github.com/django-compressor/django-compressor
 
 .. _Celery: https://github.com/celery/celery
 
