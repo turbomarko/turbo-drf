@@ -269,13 +269,9 @@ Session.vim
 tags
 
 ### Project template
-{% if cookiecutter.use_mailhog == 'y' and cookiecutter.use_docker == 'n' %}
-MailHog
-{%- endif %}
 {{ cookiecutter.project_slug }}/media/
 
 .pytest_cache/
-
-{% if cookiecutter.use_docker == 'y' %}
 .ipython/
-{%- endif %}
+.env
+.envs/*

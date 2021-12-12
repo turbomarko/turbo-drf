@@ -44,18 +44,6 @@ def remove_gplv3_files():
         os.remove(file_name)
 
 
-def remove_docker_files():
-    shutil.rmtree("compose")
-
-    file_names = ["local.yml", "production.yml", ".dockerignore"]
-    for file_name in file_names:
-        os.remove(file_name)
-
-
-def remove_utility_files():
-    shutil.rmtree("utility")
-
-
 def remove_heroku_files():
     file_names = ["Procfile", "runtime.txt", "requirements.txt"]
     for file_name in file_names:
@@ -261,11 +249,6 @@ def set_flags_in_settings_files():
     set_django_secret_key(os.path.join("config", "settings", "test.py"))
 
 
-def remove_envs_and_associated_files():
-    shutil.rmtree(".envs")
-    os.remove("merge_production_dotenvs_in_dotenv.py")
-
-
 def remove_celery_compose_dirs():
     shutil.rmtree(os.path.join("compose", "local", "django", "celery"))
     shutil.rmtree(os.path.join("compose", "production", "django", "celery"))
@@ -309,36 +292,14 @@ def main():
     if "{{ cookiecutter.open_source_license}}" != "GPLv3":
         remove_gplv3_files()
 
-    if "{{ cookiecutter.use_docker }}".lower() == "y":
-        remove_utility_files()
-    else:
-        remove_docker_files()
-
-    if (
-        "{{ cookiecutter.use_docker }}".lower() == "y"
-        and "{{ cookiecutter.cloud_provider}}".lower() != "aws"
-    ):
+    if "{{ cookiecutter.cloud_provider}}".lower() != "aws":
         remove_aws_dockerfile()
 
     if "{{ cookiecutter.use_heroku }}".lower() == "n":
         remove_heroku_files()
 
-    if (
-        "{{ cookiecutter.use_docker }}".lower() == "n"
-        and "{{ cookiecutter.use_heroku }}".lower() == "n"
-    ):
-        if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
-            print(
-                INFO + ".env(s) are only utilized when Docker Compose and/or "
-                "Heroku support is enabled so keeping them does not "
-                "make sense given your current setup." + TERMINATOR
-            )
-        remove_envs_and_associated_files()
-    else:
-        append_to_gitignore_file(".env")
-        append_to_gitignore_file(".envs/*")
-        if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
-            append_to_gitignore_file("!.envs/.local/")
+    if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
+        append_to_gitignore_file("!.envs/.local/")
 
     if "{{ cookiecutter.cloud_provider}}".lower() == "none":
         print(
@@ -349,8 +310,7 @@ def main():
 
     if "{{ cookiecutter.use_celery }}".lower() == "n":
         remove_celery_files()
-        if "{{ cookiecutter.use_docker }}".lower() == "y":
-            remove_celery_compose_dirs()
+        remove_celery_compose_dirs()
 
     if "{{ cookiecutter.ci_tool }}".lower() != "travis":
         remove_dottravisyml_file()

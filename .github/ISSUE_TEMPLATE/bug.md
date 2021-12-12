@@ -37,9 +37,8 @@ labels: bug
 
       ```
 
-    * Python version, run `python3 -V`:
-    * Docker version (if using Docker), run `docker --version`:
-    * docker-compose version (if using Docker), run `docker-compose --version`:
+    * Docker version, run `docker --version`:
+    * docker-compose version, run `docker-compose --version`:
     * ...
 * Options selected and/or [replay file](https://cookiecutter.readthedocs.io/en/latest/advanced/replay.html):
   On Linux and MacOS: `cat ${HOME}/.cookiecutter_replay/cookiecutter-django.json`

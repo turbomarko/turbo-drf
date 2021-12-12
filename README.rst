@@ -65,7 +65,7 @@ Optional Integrations
 *These features can be enabled during initial project setup.*
 
 * Serve static files from Amazon S3, Google Cloud Storage or Whitenoise_
-* Configuration for Celery_ and Flower_ (the latter in Docker setup only)
+* Configuration for Celery_ and Flower_
 * Integration with MailHog_ for local email testing
 * Integration with Sentry_ for error logging
 
@@ -167,7 +167,6 @@ Answer the prompts with your own desired options_. For example::
     use_mailhog [n]: n
     use_sentry [n]: y
     windows [n]: n
-    use_docker [n]: n
     use_heroku [n]: y
     Select postgresql_version:
     1 - 14.1
@@ -209,11 +208,9 @@ Now take a look at your repo. Don't forget to carefully look at the generated RE
 
 For local development, see the following:
 
-* `Developing locally`_
 * `Developing locally using docker`_
 
 .. _options: http://cookiecutter-django.readthedocs.io/en/latest/project-generation-options.html
-.. _`Developing locally`: http://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html
 .. _`Developing locally using docker`: http://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html
 
 Community
@@ -283,7 +280,6 @@ Articles
 * `Exploring with Cookiecutter`_ - Dec. 3, 2016
 * `Introduction to Cookiecutter-Django`_ - Feb. 19, 2016
 * `Django and GitLab - Running Continuous Integration and tests with your FREE account`_ - May. 11, 2016
-* `Development and Deployment of Cookiecutter-Django on Fedora`_ - Jan. 18, 2016
 * `Development and Deployment of Cookiecutter-Django via Docker`_ - Dec. 29, 2015
 * `How to create a Django Application using Cookiecutter and Django 1.8`_ - Sept. 12, 2015
 
@@ -295,7 +291,6 @@ Have a blog or online publication? Write about your cookiecutter-django tips and
 .. _`Exploring with Cookiecutter`: http://www.snowboardingcoder.com/django/2016/12/03/exploring-with-cookiecutter/
 
 .. _`Development and Deployment of Cookiecutter-Django via Docker`: https://realpython.com/blog/python/development-and-deployment-of-cookiecutter-django-via-docker/
-.. _`Development and Deployment of Cookiecutter-Django on Fedora`: https://realpython.com/blog/python/development-and-deployment-of-cookiecutter-django-on-fedora/
 .. _`How to create a Django Application using Cookiecutter and Django 1.8`: https://www.swapps.io/blog/how-to-create-a-django-application-using-cookiecutter-and-django-1-8/
 .. _`Introduction to Cookiecutter-Django`: http://krzysztofzuraw.com/blog/2016/django-cookiecutter.html
 .. _`Django and GitLab - Running Continuous Integration and tests with your FREE account`: http://dezoito.github.io/2016/05/11/django-gitlab-continuous-integration-phantomjs.html

@@ -15,7 +15,6 @@
   ],
   "timezone": "UTC",
   "windows": "n",
-  "use_docker": "n",
   "postgresql_version": [
     "14.1",
     "13.5",

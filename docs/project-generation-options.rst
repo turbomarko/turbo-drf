@@ -46,9 +46,6 @@ timezone:
 windows:
     Indicates whether the project should be configured for development on Windows.
 
-use_docker:
-    Indicates whether the project should be configured to use Docker_ and `Docker Compose`_.
-
 postgresql_version:
     Select a PostgreSQL_ version to use. The choices are:
 
@@ -111,7 +108,6 @@ keep_local_envs_in_vcs:
     Indicates whether the project's ``.envs/.local/`` should be kept in VCS
     (comes in handy when working in teams where local environment reproducibility
     is strongly encouraged).
-    Note: .env(s) are only utilized when Docker Compose and/or Heroku support is enabled.
 
 debug:
     Indicates whether the project should be configured for debugging.

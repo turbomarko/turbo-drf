@@ -14,7 +14,6 @@ Contents
    :maxdepth: 2
 
    project-generation-options
-   developing-locally
    developing-locally-docker
    settings
    linters

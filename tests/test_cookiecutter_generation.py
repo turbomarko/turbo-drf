@@ -33,8 +33,6 @@ SUPPORTED_COMBINATIONS = [
     {"open_source_license": "Not open source"},
     {"windows": "y"},
     {"windows": "n"},
-    {"use_docker": "y"},
-    {"use_docker": "n"},
     {"postgresql_version": "14.1"},
     {"postgresql_version": "13.5"},
     {"postgresql_version": "12.9"},
@@ -166,14 +164,11 @@ def test_black_passes(cookies, context_override):
 
 
 @pytest.mark.parametrize(
-    ["use_docker", "expected_test_script"],
-    [
-        ("n", "pytest"),
-        ("y", "docker-compose -f local.yml run django pytest"),
-    ],
+    ["expected_test_script"],
+    ["docker-compose -f local.yml run django pytest"],
 )
-def test_travis_invokes_pytest(cookies, context, use_docker, expected_test_script):
-    context.update({"ci_tool": "Travis", "use_docker": use_docker})
+def test_travis_invokes_pytest(cookies, context, expected_test_script):
+    context.update({"ci_tool": "Travis"})
     result = cookies.bake(extra_context=context)
 
     assert result.exit_code == 0
@@ -191,16 +186,13 @@ def test_travis_invokes_pytest(cookies, context, use_docker, expected_test_scrip
 
 
 @pytest.mark.parametrize(
-    ["use_docker", "expected_test_script"],
-    [
-        ("n", "pytest"),
-        ("y", "docker-compose -f local.yml run django pytest"),
-    ],
+    ["expected_test_script"],
+    ["docker-compose -f local.yml run django pytest"],
 )
 def test_gitlab_invokes_flake8_and_pytest(
-    cookies, context, use_docker, expected_test_script
+    cookies, context, expected_test_script
 ):
-    context.update({"ci_tool": "Gitlab", "use_docker": use_docker})
+    context.update({"ci_tool": "Gitlab"})
     result = cookies.bake(extra_context=context)
 
     assert result.exit_code == 0
@@ -218,16 +210,13 @@ def test_gitlab_invokes_flake8_and_pytest(
 
 
 @pytest.mark.parametrize(
-    ["use_docker", "expected_test_script"],
-    [
-        ("n", "pytest"),
-        ("y", "docker-compose -f local.yml run django pytest"),
-    ],
+    ["expected_test_script"],
+    ["docker-compose -f local.yml run django pytest"],
 )
 def test_github_invokes_linter_and_pytest(
-    cookies, context, use_docker, expected_test_script
+    cookies, context, expected_test_script
 ):
-    context.update({"ci_tool": "Github", "use_docker": use_docker})
+    context.update({"ci_tool": "Github"})
     result = cookies.bake(extra_context=context)
 
     assert result.exit_code == 0
