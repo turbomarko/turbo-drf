@@ -166,7 +166,6 @@ Answer the prompts with your own desired options_. For example::
     use_celery [n]: y
     use_mailhog [n]: n
     use_sentry [n]: y
-    use_pycharm [n]: y
     windows [n]: n
     use_docker [n]: n
     use_heroku [n]: y
@@ -281,7 +280,6 @@ Articles
 * `Using cookiecutter-django with Google Cloud Storage`_ - Mar. 12, 2019
 * `cookiecutter-django with Nginx, Route 53 and ELB`_ - Feb. 12, 2018
 * `cookiecutter-django and Amazon RDS`_ - Feb. 7, 2018
-* `Using Cookiecutter to Jumpstart a Django Project on Windows with PyCharm`_ - May 19, 2017
 * `Exploring with Cookiecutter`_ - Dec. 3, 2016
 * `Introduction to Cookiecutter-Django`_ - Feb. 19, 2016
 * `Django and GitLab - Running Continuous Integration and tests with your FREE account`_ - May. 11, 2016
@@ -295,7 +293,6 @@ Have a blog or online publication? Write about your cookiecutter-django tips and
 .. _`cookiecutter-django with Nginx, Route 53 and ELB`: https://msaizar.com/blog/cookiecutter-django-nginx-route-53-and-elb/
 .. _`cookiecutter-django and Amazon RDS`: https://msaizar.com/blog/cookiecutter-django-and-amazon-rds/
 .. _`Exploring with Cookiecutter`: http://www.snowboardingcoder.com/django/2016/12/03/exploring-with-cookiecutter/
-.. _`Using Cookiecutter to Jumpstart a Django Project on Windows with PyCharm`: https://joshuahunter.com/posts/using-cookiecutter-to-jumpstart-a-django-project-on-windows-with-pycharm/
 
 .. _`Development and Deployment of Cookiecutter-Django via Docker`: https://realpython.com/blog/python/development-and-deployment-of-cookiecutter-django-via-docker/
 .. _`Development and Deployment of Cookiecutter-Django on Fedora`: https://realpython.com/blog/python/development-and-deployment-of-cookiecutter-django-on-fedora/

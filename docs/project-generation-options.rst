@@ -46,9 +46,6 @@ timezone:
 windows:
     Indicates whether the project should be configured for development on Windows.
 
-use_pycharm:
-    Indicates whether the project should be configured for development with PyCharm_.
-
 use_docker:
     Indicates whether the project should be configured to use Docker_ and `Docker Compose`_.
 
@@ -125,8 +122,6 @@ debug:
 .. _BSD: https://opensource.org/licenses/BSD-3-Clause
 .. _GPLv3: https://www.gnu.org/licenses/gpl.html
 .. _Apache Software License 2.0: http://www.apache.org/licenses/LICENSE-2.0
-
-.. _PyCharm: https://www.jetbrains.com/pycharm/
 
 .. _Docker: https://github.com/docker/docker
 .. _Docker Compose: https://docs.docker.com/compose/
