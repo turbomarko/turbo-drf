@@ -41,7 +41,7 @@ labels: bug
     * docker-compose version, run `docker-compose --version`:
     * ...
 * Options selected and/or [replay file](https://cookiecutter.readthedocs.io/en/latest/advanced/replay.html):
-  On Linux and MacOS: `cat ${HOME}/.cookiecutter_replay/cookiecutter-django.json`
+  On Linux and MacOS: `cat ${HOME}/.cookiecutter_replay/turbo-drf.json`
   (Please, take care to remove sensitive information)
     ```json
     # Insert here the replay file content
@@ -50,7 +50,7 @@ labels: bug
 Logs:
 <details>
 <pre>
-$ cookiecutter https://github.com/cookiecutter/cookiecutter-django
+$ cookiecutter gh:turbomarko/turbo-drf
 project_name [Project Name]: ...
 </pre>
 </details>

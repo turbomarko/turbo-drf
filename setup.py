@@ -11,16 +11,16 @@ with open("README.rst") as readme_file:
     long_description = readme_file.read()
 
 setup(
-    name="cookiecutter-django",
+    name="turbo-drf",
     version=version,
     description=(
         "A Cookiecutter template for creating production-ready "
-        "Django projects quickly."
+        "Django Rest Framework projects quickly."
     ),
     long_description=long_description,
-    author="Daniel Roy Greenfeld",
-    author_email="pydanny@gmail.com",
-    url="https://github.com/cookiecutter/cookiecutter-django",
+    author="Mark Hoffman",
+    author_email="7urbo.marko@gmail.com",
+    url="https://github.com/turbomarko/turbo-drf",
     packages=[],
     license="BSD",
     zip_safe=False,
@@ -39,6 +39,6 @@ setup(
     ],
     keywords=(
         "cookiecutter, Python, projects, project templates, django, "
-        "skeleton, scaffolding, project directory, setup.py"
+        "drf, rest, skeleton, scaffolding, project directory, setup.py"
     ),
 )

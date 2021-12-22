@@ -1,4 +1,4 @@
-# cookiecutter-django documentation build configuration file.
+# turbo-drf documentation build configuration file.
 #
 # This file is execfile()d with the current directory set to its containing dir.
 #
@@ -38,8 +38,8 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = "Cookiecutter Django"
-copyright = "2013-{}, Daniel Roy Greenfeld".format(now.year)
+project = "Turbo DRF"
+copyright = "2021-{}, Mark Hoffman".format(now.year)
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -162,7 +162,7 @@ html_static_path = ["_static"]
 # html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "cookiecutter-djangodoc"
+htmlhelp_basename = "turbo-drfdoc"
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -181,9 +181,9 @@ latex_elements = {
 latex_documents = [
     (
         "index",
-        "cookiecutter-django.tex",
-        "cookiecutter-django Documentation",
-        "cookiecutter-django",
+        "turbo-drf.tex",
+        "turbo-drf Documentation",
+        "turbo-drf",
         "manual",
     )
 ]
@@ -216,9 +216,9 @@ latex_documents = [
 man_pages = [
     (
         "index",
-        "Cookiecutter Django",
-        "Cookiecutter Django documentation",
-        ["Daniel Roy Greenfeld"],
+        "Turbo DRF",
+        "Turbo DRF documentation",
+        ["Mark Hoffman"],
         1,
     )
 ]
@@ -235,12 +235,12 @@ man_pages = [
 texinfo_documents = [
     (
         "index",
-        "Cookiecutter Django",
-        "Cookiecutter Django documentation",
-        "Daniel Roy Greenfeld",
-        "Cookiecutter Django",
+        "Turbo DRF",
+        "Turbo DRF documentation",
+        "Mark Hoffman",
+        "Turbo DRF",
         "A Cookiecutter template for creating production-ready "
-        "Django projects quickly.",
+        "Django REST framework projects quickly.",
         "Miscellaneous",
     )
 ]

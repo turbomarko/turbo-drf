@@ -22,7 +22,7 @@ Assuming your project's database is named ``my_project`` here is what you will s
     Backing up the 'my_project' database...
     SUCCESS: 'my_project' database backup 'backup_2018_03_13T09_05_07.sql.gz' has been created and placed in '/backups'.
 
-Keep in mind that ``/backups`` is the ``postgres`` container directory.
+Keep in mind that ``/backups`` is in the ``postgres`` container directory.
 
 
 Viewing the Existing Backups

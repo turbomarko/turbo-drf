@@ -1,9 +1,9 @@
-.. cookiecutter-django documentation master file.
+.. turbo-drf documentation master file.
 
-Welcome to Cookiecutter Django's documentation!
+Welcome to Turbo DRF's documentation!
 ===============================================
 
-Powered by Cookiecutter_, Cookiecutter Django is a project template for jumpstarting production-ready Django projects. The template offers a number of generation options, we invite you to check the :ref:`dedicated page <template-options>` to learn more about each of them.
+Powered by Cookiecutter_, Turbo DRF is a project template for jumpstarting production-ready Django Rest Framework projects. The template offers a number of generation options, we invite you to check the :ref:`dedicated page <template-options>` to learn more about each of them.
 
 .. _cookiecutter: https://github.com/cookiecutter/cookiecutter
 
@@ -24,7 +24,6 @@ Contents
    deployment-with-docker
    docker-postgres-backups
    websocket
-   faq
    troubleshooting
 
 Indices and tables

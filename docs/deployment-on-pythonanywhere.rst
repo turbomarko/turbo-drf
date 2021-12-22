@@ -117,7 +117,7 @@ Now run the migration, and collectstatic:
 Redis
 -----
 
-PythonAnywhere does NOT `offer a built-in solution <https://www.pythonanywhere.com/forums/topic/1666/>`_ for Redis, however the production setup from Cookiecutter Django uses Redis as cache and requires one.
+PythonAnywhere does NOT `offer a built-in solution <https://www.pythonanywhere.com/forums/topic/1666/>`_ for Redis, however the production setup from Turbo DRF uses Redis as cache and requires one.
 
 We recommend to signup to a separate service offering hosted Redis (e.g. `Redislab <https://redis.com/>`_) and use the URL they provide.
 

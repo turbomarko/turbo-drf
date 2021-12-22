@@ -31,8 +31,6 @@ SUPPORTED_COMBINATIONS = [
     {"open_source_license": "GPLv3"},
     {"open_source_license": "Apache Software License 2.0"},
     {"open_source_license": "Not open source"},
-    {"windows": "y"},
-    {"windows": "n"},
     {"postgresql_version": "14.1"},
     {"postgresql_version": "13.5"},
     {"postgresql_version": "12.9"},

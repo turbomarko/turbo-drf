@@ -43,9 +43,6 @@ open_source_license:
 timezone:
     The value to be used for the ``TIME_ZONE`` setting of the project.
 
-windows:
-    Indicates whether the project should be configured for development on Windows.
-
 postgresql_version:
     Select a PostgreSQL_ version to use. The choices are:
 
@@ -111,7 +108,7 @@ keep_local_envs_in_vcs:
 
 debug:
     Indicates whether the project should be configured for debugging.
-    This option is relevant for Cookiecutter Django developers only.
+    This option is relevant for Turbo DRF developers only.
 
 
 .. _MIT: https://opensource.org/licenses/MIT
