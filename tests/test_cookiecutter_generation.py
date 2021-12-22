@@ -2,13 +2,22 @@ import os
 import re
 
 import pytest
-import sh
+
+try:
+    import sh
+except (ImportError, ModuleNotFoundError):
+    sh = None  # sh doesn't support Windows
 import yaml
 from binaryornot.check import is_binary
 from cookiecutter.exceptions import FailedHookException
 
 PATTERN = r"{{(\s?cookiecutter)[.](.*?)}}"
 RE_OBJ = re.compile(PATTERN)
+
+if sys.platform.startswith("win"):
+    pytest.skip("sh doesn't support windows", allow_module_level=True)
+elif sys.platform.startswith("darwin") and os.getenv("CI"):
+    pytest.skip("skipping slow macOS tests on CI", allow_module_level=True)
 
 
 @pytest.fixture
@@ -97,7 +106,7 @@ UNSUPPORTED_COMBINATIONS = [
 
 
 def _fixture_id(ctx):
-    """Helper to get a user friendly test name from the parametrized context."""
+    """Helper to get a user-friendly test name from the parametrized context."""
     return "-".join(f"{key}:{value}" for key, value in ctx.items())
 
 
@@ -242,7 +251,7 @@ def test_github_invokes_linter_and_pytest(
 
 @pytest.mark.parametrize("slug", ["project slug", "Project_Slug"])
 def test_invalid_slug(cookies, context, slug):
-    """Invalid slug should failed pre-generation hook."""
+    """Invalid slug should fail pre-generation hook."""
     context.update({"project_slug": slug})
 
     result = cookies.bake(extra_context=context)
