@@ -24,6 +24,21 @@ Moved to settings_.
 Basic Commands
 --------------
 
+Creating apps
+^^^^^^^^^^^^^
+
+* To create a **simple app** using the recommended directory structure, create a folder with the desired app name inside the {{cookiecutter.project_slug}} folder and run the following command from inside the project root::
+
+    $ docker-compose -f local.yml run --rm django python manage.py startapp --template=../app_templates/simple myappname ./{{cookiecutter.project_slug}}/myappname
+
+* To create a **composite app** with an additional service layer, use the following command::
+
+    $ docker-compose -f local.yml run --rm django python manage.py startapp --template=../app_templates/composite myappname ./{{cookiecutter.project_slug}}/myappname
+
+These templates can be customized to suit the project needs. (see `startapp`_)
+
+.. _startapp: https://docs.djangoproject.com/en/dev/ref/django-admin/#startapp
+
 Setting Up Your Users
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -31,7 +46,7 @@ Setting Up Your Users
 
 * To create an **superuser account**, use this command::
 
-    $ python manage.py createsuperuser
+    $ docker-compose -f local.yml run --rm django python manage.py createsuperuser
 
 For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
 
@@ -42,23 +57,23 @@ Running type checks with mypy:
 
 ::
 
-  $ mypy {{cookiecutter.project_slug}}
+  $ docker-compose -f local.yml run --rm django mypy {{cookiecutter.project_slug}}
 
 Test coverage
 ^^^^^^^^^^^^^
 
 To run the tests, check your test coverage, and generate an HTML coverage report::
 
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
+    $ docker-compose -f local.yml run --rm django coverage run -m pytest
+    $ docker-compose -f local.yml run --rm django coverage html
+    $ docker-compose -f local.yml run --rm django open htmlcov/index.html
 
 Running tests with py.test
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
-  $ pytest
+  $ docker-compose -f local.yml run --rm django pytest
 {%- if cookiecutter.use_celery == "y" %}
 
 Celery

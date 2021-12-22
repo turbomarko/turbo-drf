@@ -44,5 +44,3 @@ Others
 #. ``project_slug`` must be a valid Python module name or you will have issues on imports.
 
 #. ``jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'now'.``: please upgrade your cookiecutter version to >= 1.4
-
-#. New apps not getting created in project root: This is the expected behavior, because turbo-drf does not change the way that django startapp works, you'll have to fix this manually
