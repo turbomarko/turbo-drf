@@ -27,13 +27,16 @@ Basic Commands
 Creating apps
 ^^^^^^^^^^^^^
 
-* To create a **simple app** using the recommended directory structure, create a folder with the desired app name inside the {{cookiecutter.project_slug}} folder and run the following command from inside the project root::
+* To create a **simple app**, run the following command from inside the project root::
 
-    $ docker-compose -f local.yml run --rm django python manage.py startapp --template=../app_templates/simple myappname ./{{cookiecutter.project_slug}}/myappname
+    $ docker-compose -f local.yml run --rm django python manage.py startapp --template=../template_apps/simple myappname
 
 * To create a **composite app** with an additional service layer, use the following command::
 
-    $ docker-compose -f local.yml run --rm django python manage.py startapp --template=../app_templates/composite myappname ./{{cookiecutter.project_slug}}/myappname
+    $ docker-compose -f local.yml run --rm django python manage.py startapp --template=../template_apps/composite myappname
+
+After creating the app, move it to the {{ cookiecutter.project_slug }} folder.
+You can add the new app to the project by extending the LOCAL_APPS list in the base settings file with the value {{ cookiecutter.project_slug }}.myappname.
 
 These templates can be customized to suit the project needs. (see `startapp`_)
 

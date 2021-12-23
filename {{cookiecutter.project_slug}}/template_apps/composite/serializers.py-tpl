@@ -1,2 +1,0 @@
-"""Define serializers for the {{ '{{' }} app_name {{ '}}' }} api."""
-from rest_framework import serializers
