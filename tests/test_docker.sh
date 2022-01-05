@@ -11,7 +11,7 @@ mkdir -p .cache/docker
 cd .cache/docker
 
 # create the project using the default settings in cookiecutter.json
-cookiecutter ../../ --no-input --overwrite-if-exists $@
+cookiecutter ../../ --no-input --overwrite-if-exists "$@"
 cd my_awesome_project
 
 # Lint by running pre-commit on all files
