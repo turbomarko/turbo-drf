@@ -51,7 +51,9 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 
 ### PyUp
 
-[![pyup](https://pyup.io/static/images/logo.png){#pyup .align-center}](https://pyup.io/)
+<p align="center">
+  <a href="https://pyup.io/"><img src="https://pyup.io/static/images/logo.png"></a>
+</p>
 
 PyUp brings you automated security and dependency updates used by Google and other organizations. Free for open source projects!
 
