@@ -74,8 +74,8 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 # ------------------------------------------------------------------------------
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#task-eager-propagates
 CELERY_TASK_EAGER_PROPAGATES = True
-
 {%- endif %}
+
 # drf-spectacular
 # ------------------------------------------------------------------------------
 # https://drf-spectacular.readthedocs.io/en/latest/readme.html

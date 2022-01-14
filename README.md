@@ -9,7 +9,7 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 
 * Documentation: <https://turbo-drf.readthedocs.io/en/latest/>
 * See [Troubleshooting](https://turbo-drf.readthedocs.io/en/latest/troubleshooting.html) for common errors and obstacles
-* If you have problems with Turbo DRF, please open [issues](https://github.com/turbomarko/turbo-drf/issues/new) don't send emails to the maintainers.
+* If you have problems with Turbo DRF, please open [issues](https://github.com/turbomarko/turbo-drf/issues/new), don't send emails to the maintainers.
 
 ## Features
 
@@ -22,12 +22,10 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 -   Registration via [django-allauth](https://github.com/pennersr/django-allauth)
 -   Comes with custom user model ready to go
 -   Optional basic ASGI setup for Websockets
--   Optional custom static build using Gulp and livereload
 -   Send emails via [Anymail](https://github.com/anymail/django-anymail) (using [Mailgun](http://www.mailgun.com/) by default or Amazon SES if AWS is selected cloud provider, but switchable)
 -   Media storage using Amazon S3 or Google Cloud Storage
 -   Docker support using [docker-compose](https://github.com/docker/compose) for development and production (using [Traefik](https://traefik.io/) with [LetsEncrypt](https://letsencrypt.org/) support)
 -   [Procfile](https://devcenter.heroku.com/articles/procfile) for deploying to Heroku
--   Instructions for deploying to [PythonAnywhere](https://www.pythonanywhere.com/)
 -   Run tests with unittest or pytest
 -   Customizable PostgreSQL version
 -   Default integration with [pre-commit](https://github.com/pre-commit/pre-commit) for identifying simple issues before submission to code review
@@ -125,7 +123,7 @@ Create a git repo and push it there::
     $ git remote add origin git@github.com:turbomarko/redditclone.git
     $ git push -u origin master
 
-Now take a look at your repo. Don't forget to carefully look at the generated README. Awesome, right?
+Now take a look at your repo. Don't forget to carefully look at the generated README.
 
 For local development, see the following:
 
@@ -142,10 +140,6 @@ If you are using [PyUp](https://pyup.io) to keep your dependencies updated and s
 ## "Your Stuff"
 
 Scattered throughout the Python and HTML of this project are places marked with "your stuff". This is where third-party libraries are to be integrated with your project.
-
-## Releases
-
-Need a stable release? You can find them at https://github.com/turbomarko/turbo-drf/releases
 
 ### Submit a Pull Request
 

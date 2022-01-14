@@ -11,7 +11,7 @@ on:
 jobs:
   auto-update:
     # Disables this workflow from running in a repository that is not part of the indicated organization/user
-    if: github.repository_owner == 'cookiecutter'
+    if: github.repository_owner == 'turbomarko'
 
     runs-on: ubuntu-latest
     steps:

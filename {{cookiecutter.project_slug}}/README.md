@@ -31,47 +31,34 @@ You can add the new app to the project by extending the LOCAL_APPS list in the b
 
 These templates can be customized to suit the project needs. (see [startapp](https://docs.djangoproject.com/en/dev/ref/django-admin/#startapp))
 
-### Setting Up Your Users
+### Setting Up Your Superuser
 
--   To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+To create an **superuser account**, use this command:
 
--   To create an **superuser account**, use this command:
-
-        $ python manage.py createsuperuser
-
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
+    $ docker-compose -f local.yml run --rm django python manage.py createsuperuser
 
 ### Type checks
 
 Running type checks with mypy:
 
-    $ mypy {{cookiecutter.project_slug}}
+    $ docker-compose -f local.yml run --rm django mypy {{cookiecutter.project_slug}}
 
 ### Test coverage
 
 To run the tests, check your test coverage, and generate an HTML coverage report:
 
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
+    $ docker-compose -f local.yml run --rm django coverage run -m pytest
+    $ docker-compose -f local.yml run --rm django coverage html
+    $ docker-compose -f local.yml run --rm django open htmlcov/index.html
 
 #### Running tests with pytest
 
-    $ pytest
+    $ docker-compose -f local.yml run --rm django pytest
 {%- if cookiecutter.use_celery == "y" %}
 
 ### Celery
 
-This app comes with Celery.
-
-To run a celery worker:
-
-``` bash
-cd {{cookiecutter.project_slug}}
-celery -A config.celery_app worker -l info
-```
-
-Please note: For Celery's import magic to work, it is important *where* the celery commands are run. If you are in the same folder with *manage.py*, you should be right.
+This app comes with Celery. The docker-compose command will automatically run a celery worker for you.
 
 {%- endif %}
 {%- if cookiecutter.use_mailhog == "y" %}
@@ -81,7 +68,7 @@ Please note: For Celery's import magic to work, it is important *where* the cele
 In development, it is often nice to be able to see emails that are being sent from your application. For that reason local SMTP server [MailHog](https://github.com/mailhog/MailHog) with a web interface is available as docker container.
 
 Container mailhog will start automatically when you will run all docker containers.
-Please check [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html) for more details how to start all containers.
+Please check [turbo-drf Docker documentation](http://turbo-drf.readthedocs.io/en/latest/deployment-with-docker.html) for more details how to start all containers.
 
 With MailHog running, to view messages that are sent by your application, open your browser and go to `http://127.0.0.1:8025`
 {%- endif %}

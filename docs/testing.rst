@@ -39,7 +39,7 @@ Once the tests are complete, in order to see the code coverage, run the followin
 
    For unit tests, run: ::
 
-      $ python manage.py test
+      $ docker-compose -f local.yml run --rm django python manage.py test
 
    Since this is a fresh install, and there are no tests built using the Python `unittest`_ library yet, you should get feedback that says there were no tests carried out.
 
