@@ -12,6 +12,7 @@ User = get_user_model()
 
 class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericViewSet):
     """User viewset"""
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
     lookup_field = "username"
