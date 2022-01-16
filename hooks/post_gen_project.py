@@ -63,8 +63,8 @@ def remove_celery_files():
         os.path.join(
             "{{ cookiecutter.project_slug }}", "users", "tests", "test_tasks.py"
         ),
-        os.path.join("app_templates", "simple", "tasks.py-tpl"),
-        os.path.join("app_templates", "composite", "tasks.py-tpl"),
+        os.path.join("template_apps", "simple", "tasks.py-tpl"),
+        # os.path.join("template_apps", "composite", "tasks.py-tpl"),
     ]
     for file_name in file_names:
         os.remove(file_name)
