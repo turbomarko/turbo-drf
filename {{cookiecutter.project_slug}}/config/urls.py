@@ -27,22 +27,16 @@ if settings.DEBUG:
     if "drf_spectacular" in settings.INSTALLED_APPS:
         from drf_spectacular.views import (
             SpectacularAPIView,
-            SpectacularRedocView,
-            SpectacularSwaggerView
+            SpectacularSwaggerView,
         )
 
         urlpatterns = [
             # Schema
-            path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+            path("api/api-schema", SpectacularAPIView.as_view(), name="api-schema"),
             # Optional UI:
             path(
-                "api/schema/swagger-ui/",
-                SpectacularSwaggerView.as_view(url_name="schema"),
-                name="swagger-ui"
-            ),
-            path(
-                "api/schema/redoc/",
-                SpectacularRedocView.as_view(url_name="schema"),
-                name="redoc"
+                "api/api-doc",
+                SpectacularSwaggerView.as_view(url_name="api-schema"),
+                name="api-doc",
             ),
         ] + urlpatterns
