@@ -80,9 +80,7 @@ CELERY_TASK_EAGER_PROPAGATES = True
 # ------------------------------------------------------------------------------
 # https://drf-spectacular.readthedocs.io/en/latest/readme.html
 INSTALLED_APPS += ["drf_spectacular"]  # noqa F405
-REST_FRAMEWORK[  # noqa F405
-    "DEFAULT_SCHEMA_CLASS"
-] = "drf_spectacular.openapi.AutoSchema"
+REST_FRAMEWORK["DEFAULT_SCHEMA_CLASS"] = "drf_spectacular.openapi.AutoSchema"  # noqa F405
 SPECTACULAR_SETTINGS = {
     "TITLE": "{{cookiecutter.project_name}} API",
     "DESCRIPTION": "{{cookiecutter.description}}",

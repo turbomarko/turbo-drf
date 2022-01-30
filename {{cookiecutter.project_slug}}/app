@@ -35,7 +35,7 @@ help() {
   echo "* pytest"
   echo "* coverage"
   echo "* unittest"
-  echo "* run_all_checks_and_tests"
+  echo "* check_all"
 }
 
 
@@ -123,7 +123,7 @@ download_backup_db_s3() {
 
 # Code check commands
 pycodestyle() {
-  echo "PYCODESTYLE" && docker-compose -f "$c1".yml run --rm django pycodestyle ./{{cookiecutter.project_slug}}
+  echo "PYCODESTYLE" && docker-compose -f "$c1".yml run --rm django pycodestyle .
 }
 
 flake8() {
@@ -131,11 +131,11 @@ flake8() {
 }
 
 black() {
-  echo "BLACK" && docker-compose -f "$c1".yml run --rm django black ./{{cookiecutter.project_slug}} --diff --color --line-length 120 --exclude "^docs/|/migrations/"
+  echo "BLACK" && docker-compose -f "$c1".yml run --rm django black . --diff --color --line-length 120 --exclude "^docs/|/migrations/"
 }
 
 format() {
-  echo "BLACK" && docker-compose -f "$c1".yml run --rm django black ./{{cookiecutter.project_slug}} --line-length 120 --exclude "^docs/|/migrations/"
+  echo "BLACK" && docker-compose -f "$c1".yml run --rm django black . --line-length 120 --exclude "^docs/|/migrations/"
 }
 
 pylint() {
@@ -155,7 +155,7 @@ unittest() {
   docker-compose -f "$c1".yml run --rm django python manage.py test
 }
 
-run_all_checks_and_tests() {
+check_all() {
   pycodestyle && echo "pycodestyle - No issue found"
   flake8 && echo "flake8 - No issue found"
   pylint && echo "pylint - No issue found"
