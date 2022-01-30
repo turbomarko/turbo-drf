@@ -1,17 +1,16 @@
 import pytest
 from django.urls import resolve, reverse
 
-from {{ cookiecutter.project_slug }}.users.models import User
+from ..models import User
 
 pytestmark = pytest.mark.django_db
 
 
 def test_user_detail(user: User):
     assert (
-        reverse("api:user-detail", kwargs={"username": user.username})
-        == f"/api/users/{user.username}/"
+        reverse("api:user-detail", kwargs={"id": user.id}) == f"/api/users/{user.id}/"
     )
-    assert resolve(f"/api/users/{user.username}/").view_name == "api:user-detail"
+    assert resolve(f"/api/users/{user.id}/").view_name == "api:user-detail"
 
 
 def test_user_list():

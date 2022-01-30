@@ -1,8 +1,8 @@
 import pytest
 from django.test import RequestFactory
 
-from {{ cookiecutter.project_slug }}.users.models import User
-from {{ cookiecutter.project_slug }}.users.views import UserViewSet
+from ..models import User
+from ..views import UserViewSet
 
 pytestmark = pytest.mark.django_db
 
@@ -27,7 +27,7 @@ class TestUserViewSet:
         response = view.me(request)
 
         assert response.data == {
-            "username": user.username,
-            "name": user.name,
-            "url": f"http://testserver/api/users/{user.username}/",
+            "id": str(user.id),
+            "email": user.email,
+            "url": f"http://testserver/api/users/{user.id}/",
         }

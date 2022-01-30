@@ -1,7 +1,8 @@
 import pytest
 from django.urls import reverse
 
-from {{ cookiecutter.project_slug }}.users.models import User
+from ..models import User
+from .factories import UserFactory
 
 pytestmark = pytest.mark.django_db
 
@@ -25,16 +26,17 @@ class TestUserAdmin:
         response = admin_client.post(
             url,
             data={
-                "username": "test",
+                "email": "test@test.com",
                 "password1": "My_R@ndom-P@ssw0rd",
                 "password2": "My_R@ndom-P@ssw0rd",
             },
         )
         assert response.status_code == 302
-        assert User.objects.filter(username="test").exists()
+        assert User.objects.filter(email="test@test.com").exists()
 
     def test_view_user(self, admin_client):
-        user = User.objects.get(username="admin")
+        user = UserFactory()
+        user.save()
         url = reverse("admin:users_user_change", kwargs={"object_id": user.pk})
         response = admin_client.get(url)
         assert response.status_code == 200

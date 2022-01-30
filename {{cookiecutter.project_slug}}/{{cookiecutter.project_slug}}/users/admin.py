@@ -1,34 +1,47 @@
 from django.contrib import admin
-from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
-from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from {{ cookiecutter.project_slug }}.users.forms import UserAdminChangeForm, UserAdminCreationForm
+from .forms import UserChangeForm, UserCreationForm
 
 User = get_user_model()
 
 
 @admin.register(User)
-class UserAdmin(auth_admin.UserAdmin):
+class UserAdmin(BaseUserAdmin):
+    # The forms to add and change user instances
+    form = UserChangeForm
+    add_form = UserCreationForm
 
-    form = UserAdminChangeForm
-    add_form = UserAdminCreationForm
+    readonly_fields = ("date_joined", "last_login")
+
     fieldsets = (
-        (None, {"fields": ("username", "password")}),
-        (_("Personal info"), {"fields": ("name", "email")}),
+        (None, {"fields": ("email", "password")}),
+        ("Account info", {"fields": ("last_login", "date_joined")}),
         (
-            _("Permissions"),
+            "Permissions",
             {
                 "fields": (
                     "is_active",
-                    "is_staff",
+                    "is_admin",
                     "is_superuser",
                     "groups",
                     "user_permissions",
                 ),
             },
         ),
-        (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
-    list_display = ["username", "name", "is_superuser"]
-    search_fields = ["name"]
+    add_fieldsets = (
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": ("email", "password1", "password2"),
+            },
+        ),
+    )
+
+    list_display = ("email", "date_joined", "is_admin")
+    list_filter = ("is_admin",)
+    search_fields = ("email",)
+    ordering = ("date_joined",)
