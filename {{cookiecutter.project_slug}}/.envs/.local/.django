@@ -3,6 +3,11 @@
 USE_DOCKER=yes
 IPYTHONDIR=/app/.ipython
 
+# HTTPS
+# ------------------------------------------------------------------------------
+VIRTUAL_HOST=my-dev-env.local
+VIRTUAL_PORT=8000
+
 {%- if cookiecutter.use_celery == 'y' %}
 # Redis
 # ------------------------------------------------------------------------------

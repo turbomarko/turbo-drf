@@ -43,7 +43,7 @@ help() {
 generate_certificates() {
   if [ "$c1" = "local" ]
   then
-    mkdir certs && docker-compose -f "$c1".yml run django openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 -nodes -out certs/ngo.support.local.crt -keyout certs/ngo.support.local.key -subj "/C=IN/ST=Uttar Pradesh/L=Noida/O=Infroid/OU=IT/CN=ngo.support.local" && echo "Certificates generated successfully."
+    mkdir certs && docker-compose -f "$c1".yml run django openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 -nodes -out certs/my-dev-env.local.crt -keyout certs/my-dev-env.local.key -subj "/CN=my-dev-env.local" && echo "Certificates generated successfully."
   else
     echo "Operation aborted. Certificates can only be generated for 'local' environment."
   fi
@@ -123,15 +123,23 @@ download_backup_db_s3() {
 
 # Code check commands
 pycodestyle() {
-  echo "PYCODESTYLE" && docker-compose -f "$c1".yml run --rm django pycodestyle ./ngo_support_core
+  echo "PYCODESTYLE" && docker-compose -f "$c1".yml run --rm django pycodestyle ./{{cookiecutter.project_slug}}
 }
 
 flake8() {
   echo "FLAKE8" && docker-compose -f "$c1".yml run --rm django flake8
 }
 
+black() {
+  echo "BLACK" && docker-compose -f "$c1".yml run --rm django black ./{{cookiecutter.project_slug}} --diff --color --line-length 120 --exclude "^docs/|/migrations/"
+}
+
+format() {
+  echo "BLACK" && docker-compose -f "$c1".yml run --rm django black ./{{cookiecutter.project_slug}} --line-length 120 --exclude "^docs/|/migrations/"
+}
+
 pylint() {
-  echo "PYLINT" && docker-compose -f "$c1".yml run --rm django pylint ./ngo_support_core
+  echo "PYLINT" && docker-compose -f "$c1".yml run --rm django pylint --load-plugins pylint_django --django-settings-module=config.settings.local ./{{cookiecutter.project_slug}}
 }
 
 pytest() {

@@ -107,3 +107,15 @@ services:
     command: /start-flower
 
   {%- endif %}
+  nginx-proxy:
+    image: jwilder/nginx-proxy:alpine
+    container_name: trendi_local_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs
+    restart: always
+    depends_on:
+      - django
