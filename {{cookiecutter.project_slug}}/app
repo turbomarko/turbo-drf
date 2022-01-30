@@ -158,7 +158,7 @@ unittest() {
 check_all() {
   pycodestyle && echo "pycodestyle - No issue found"
   flake8 && echo "flake8 - No issue found"
-  pylint && echo "pylint - No issue found"
+  black && echo "black - No issue found"
   coverage && echo "coverage - No issue found"
   unittest && echo "unittest - No issue found"
 }
