@@ -24,6 +24,7 @@ help() {
   echo "* makemigrations"
   echo "* migrate"
   echo "* createsuperuser"
+  echo "* start_simple_app"
   echo "* backup_db"
   echo "* list_backup_db"
   echo "* restore_db"
@@ -95,6 +96,11 @@ migrate() {
 
 createsuperuser() {
   docker-compose -f "$c1".yml run --rm django python manage.py createsuperuser
+}
+
+start_simple_app() {
+  docker-compose -f local.yml run --rm django python manage.py startapp --template=./template_apps/simple "$c3"
+  mv ./"$c3" ./trendi/"$c3"
 }
 
 

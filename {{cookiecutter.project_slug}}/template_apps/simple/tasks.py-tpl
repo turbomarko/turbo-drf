@@ -1,2 +1,1 @@
-"""Define {{ '{{' }} app_name {{ '}}' }} app Celery tasks."""
 from config import celery_app

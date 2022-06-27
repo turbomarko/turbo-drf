@@ -38,6 +38,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         unique=True,
         verbose_name="ID",
     )
+
+    # Modifiable fields
     email = models.EmailField(max_length=255, unique=True)
     is_active = models.BooleanField(
         default=True, help_text="Only active users can authenticate."
@@ -45,12 +47,20 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_admin = models.BooleanField(
         default=False, help_text="Users with admin rights can access the admin page."
     )
+    
+    # Automatic fields
     date_joined = models.DateTimeField(auto_now_add=True)
 
+    # Read-only properties
     @property
     def is_staff(self):
         # All admins are staff
         return self.is_admin
 
+    # Dunder methods
+    def __str__(self):
+        return self.email
+
+    # Extra variables
     USERNAME_FIELD = "email"
     objects = UserManager()
