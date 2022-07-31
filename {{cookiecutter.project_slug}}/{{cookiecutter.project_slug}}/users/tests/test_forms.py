@@ -1,13 +1,9 @@
 """
 Module for all Form Tests.
 """
-import pytest
-
 from ..forms import UserCreationForm
 from ..models import User
 from .factories import UserFactory
-
-pytestmark = pytest.mark.django_db
 
 
 class TestUserAdminCreationForm:

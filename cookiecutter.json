@@ -15,11 +15,11 @@
   ],
   "timezone": "UTC",
   "postgresql_version": [
-    "14.1",
-    "13.5",
-    "12.9",
-    "11.14",
-    "10.19"
+    "14",
+    "13",
+    "12",
+    "11",
+    "10"
   ],
   "cloud_provider": [
     "AWS",
@@ -42,10 +42,8 @@
   "use_mailhog": "n",
   "use_sentry": "n",
   "use_whitenoise": "n",
-  "use_heroku": "n",
   "ci_tool": [
     "None",
-    "Travis",
     "Gitlab",
     "Github"
   ],

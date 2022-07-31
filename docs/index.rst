@@ -14,13 +14,12 @@ Contents
    :maxdepth: 2
 
    project-generation-options
-   developing-locally-docker
+   developing-locally
    settings
    linters
    testing
    document
-   deployment-on-heroku
-   deployment-with-docker
+   deployment
    docker-postgres-backups
    websocket
    troubleshooting

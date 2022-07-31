@@ -1,10 +1,7 @@
-import pytest
 from django.test import RequestFactory
 
 from ..models import User
 from ..views import UserViewSet
-
-pytestmark = pytest.mark.django_db
 
 
 class TestUserViewSet:

@@ -1,10 +1,7 @@
-import pytest
 from django.urls import reverse
 
 from ..models import User
 from .factories import UserFactory
-
-pytestmark = pytest.mark.django_db
 
 
 class TestUserAdmin:

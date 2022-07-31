@@ -39,7 +39,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "Turbo DRF"
-copyright = "2021-{}, Mark Hoffman".format(now.year)
+copyright = f"2021-{now.year}, Mark Hoffman"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

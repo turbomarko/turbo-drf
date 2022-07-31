@@ -25,7 +25,6 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 -   Send emails via [Anymail](https://github.com/anymail/django-anymail) (using [Mailgun](http://www.mailgun.com/) by default or Amazon SES if AWS is selected cloud provider, but switchable)
 -   Media storage using Amazon S3 or Google Cloud Storage
 -   Docker support using [docker-compose](https://github.com/docker/compose) for development and production (using [Traefik](https://traefik.io/) with [LetsEncrypt](https://letsencrypt.org/) support)
--   [Procfile](https://devcenter.heroku.com/articles/procfile) for deploying to Heroku
 -   Run tests with unittest or pytest
 -   Customizable PostgreSQL version
 -   Default integration with [pre-commit](https://github.com/pre-commit/pre-commit) for identifying simple issues before submission to code review
@@ -86,15 +85,13 @@ Answer the prompts with your own desired [options](http://turbo-drf.readthedocs.
     use_celery [n]: y
     use_mailhog [n]: n
     use_sentry [n]: y
-    use_heroku [n]: y
     Select postgresql_version:
-    1 - 14.1
-    2 - 13.5
-    3 - 12.9
-    4 - 11.14
-    5 - 10.19
+    1 - 14
+    2 - 13
+    3 - 12
+    4 - 11
+    5 - 10
     Choose from 1, 2, 3, 4, 5 [1]: 1
-    Choose from 1, 2 [1]: 1
     Select cloud_provider:
     1 - AWS
     2 - GCP
@@ -127,7 +124,7 @@ Now take a look at your repo. Don't forget to carefully look at the generated RE
 
 For local development, see the following:
 
--   [Developing locally using docker](http://turbo-drf.readthedocs.io/en/latest/developing-locally-docker.html)
+-   [Developing locally](http://turbo-drf.readthedocs.io/en/latest/developing-locally.html)
 
 ## Community
 

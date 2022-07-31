@@ -46,11 +46,11 @@ timezone:
 postgresql_version:
     Select a PostgreSQL_ version to use. The choices are:
 
-    1. 14.1
-    2. 13.5
-    3. 12.9
-    4. 11.14
-    5. 10.19
+    1. 14
+    2. 13
+    3. 12
+    4. 11
+    5. 10
 
 cloud_provider:
     Select a cloud provider for static & media files. The choices are:
@@ -89,15 +89,10 @@ use_sentry:
 use_whitenoise:
     Indicates whether the project should be configured to use WhiteNoise_.
 
-use_heroku:
-    Indicates whether the project should be configured so as to be deployable
-    to Heroku_.
-
 ci_tool:
     Select a CI tool for running tests. The choices are:
 
     1. None
-    2. `Travis CI`_
     3. `Gitlab CI`_
     4. `Github Actions`_
 
@@ -143,10 +138,6 @@ debug:
 .. _Sentry: https://github.com/getsentry/sentry
 
 .. _WhiteNoise: https://github.com/evansd/whitenoise
-
-.. _Heroku: https://github.com/heroku/heroku-buildpack-python
-
-.. _Travis CI: https://travis-ci.org/
 
 .. _GitLab CI: https://docs.gitlab.com/ee/ci/
 

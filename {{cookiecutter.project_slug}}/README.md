@@ -33,7 +33,7 @@ These templates can be customized to suit the project needs. (see [startapp](htt
 
 ### Setting Up Your Superuser
 
-To create an **superuser account**, use this command:
+To create a **superuser account**, use this command:
 
     $ docker-compose -f local.yml run --rm django python manage.py createsuperuser
 
@@ -68,7 +68,7 @@ This app comes with Celery. The docker-compose command will automatically run a 
 In development, it is often nice to be able to see emails that are being sent from your application. For that reason local SMTP server [MailHog](https://github.com/mailhog/MailHog) with a web interface is available as docker container.
 
 Container mailhog will start automatically when you will run all docker containers.
-Please check [turbo-drf Docker documentation](http://turbo-drf.readthedocs.io/en/latest/deployment-with-docker.html) for more details how to start all containers.
+Please check [turbo-drf Docker documentation](http://turbo-drf.readthedocs.io/en/latest/deployment.html) for more details how to start all containers.
 
 With MailHog running, to view messages that are sent by your application, open your browser and go to `http://127.0.0.1:8025`
 {%- endif %}
@@ -85,13 +85,7 @@ You must set the DSN url in production.
 ## Deployment
 
 The following details how to deploy this application.
-{%- if cookiecutter.use_heroku.lower() == "y" %}
-
-### Heroku
-
-See detailed [turbo-drf Heroku documentation](http://turbo-drf.readthedocs.io/en/latest/deployment-on-heroku.html).
-{%- endif %}
 
 ### Docker
 
-See detailed [turbo-drf Docker documentation](http://turbo-drf.readthedocs.io/en/latest/deployment-with-docker.html).
+See detailed [turbo-drf Docker documentation](http://turbo-drf.readthedocs.io/en/latest/deployment.html).

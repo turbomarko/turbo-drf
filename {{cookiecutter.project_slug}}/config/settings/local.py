@@ -72,18 +72,6 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 
 # Celery
 # ------------------------------------------------------------------------------
-# http://docs.celeryproject.org/en/latest/userguide/configuration.html#task-eager-propagates
+# https://docs.celeryq.dev/en/stable/userguide/configuration.html#task-eager-propagates
 CELERY_TASK_EAGER_PROPAGATES = True
 {%- endif %}
-
-# drf-spectacular
-# ------------------------------------------------------------------------------
-# https://drf-spectacular.readthedocs.io/en/latest/readme.html
-INSTALLED_APPS += ["drf_spectacular"]  # noqa F405
-REST_FRAMEWORK["DEFAULT_SCHEMA_CLASS"] = "drf_spectacular.openapi.AutoSchema"  # noqa F405
-SPECTACULAR_SETTINGS = {
-    "TITLE": "{{cookiecutter.project_name}} API",
-    "DESCRIPTION": "{{cookiecutter.description}}",
-    "VERSION": "{{cookiecutter.version}}",
-    # OTHER SETTINGS
-}

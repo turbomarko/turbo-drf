@@ -1,8 +1,4 @@
-import pytest
-
 from ..models import UserManager
-
-pytestmark = pytest.mark.django_db
 
 
 def test_missing_email_error_msg():

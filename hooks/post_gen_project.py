@@ -44,18 +44,6 @@ def remove_gplv3_files():
         os.remove(file_name)
 
 
-def remove_heroku_files():
-    file_names = ["Procfile", "runtime.txt", "requirements.txt"]
-    for file_name in file_names:
-        if (
-            file_name == "requirements.txt"
-            and "{{ cookiecutter.ci_tool }}".lower() == "travis"
-        ):
-            # don't remove the file if we are using travisci but not using heroku
-            continue
-        os.remove(file_name)
-
-
 def remove_celery_files():
     file_names = [
         os.path.join("config", "celery_app.py"),
@@ -77,10 +65,6 @@ def remove_async_files():
     ]
     for file_name in file_names:
         os.remove(file_name)
-
-
-def remove_dottravisyml_file():
-    os.remove(".travis.yml")
 
 
 def remove_dotgitlabciyml_file():
@@ -287,16 +271,13 @@ def main():
     if "{{ cookiecutter.open_source_license}}" != "GPLv3":
         remove_gplv3_files()
 
-    if "{{ cookiecutter.cloud_provider}}".lower() != "aws":
+    if "{{ cookiecutter.cloud_provider}}" != "AWS":
         remove_aws_dockerfile()
-
-    if "{{ cookiecutter.use_heroku }}".lower() == "n":
-        remove_heroku_files()
 
     if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
         append_to_gitignore_file("!.envs/.local/")
 
-    if "{{ cookiecutter.cloud_provider}}".lower() == "none":
+    if "{{ cookiecutter.cloud_provider}}" == "None":
         print(
             WARNING + "You chose not to use a cloud provider, "
             "media files won't be served in production." + TERMINATOR
@@ -307,13 +288,10 @@ def main():
         remove_celery_files()
         remove_celery_compose_dirs()
 
-    if "{{ cookiecutter.ci_tool }}".lower() != "travis":
-        remove_dottravisyml_file()
-
-    if "{{ cookiecutter.ci_tool }}".lower() != "gitlab":
+    if "{{ cookiecutter.ci_tool }}" != "Gitlab":
         remove_dotgitlabciyml_file()
 
-    if "{{ cookiecutter.ci_tool }}".lower() != "github":
+    if "{{ cookiecutter.ci_tool }}" != "Github":
         remove_dotgithub_folder()
 
     if "{{ cookiecutter.use_async }}".lower() == "n":
