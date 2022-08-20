@@ -228,6 +228,14 @@ ANYMAIL = {}
 {%- endif %}
 
 {%- if cookiecutter.use_whitenoise == 'n' -%}
+
+
+
+
+
+
+
+
 # Collectfast
 # ------------------------------------------------------------------------------
 # https://github.com/antonagestam/collectfast#installation
