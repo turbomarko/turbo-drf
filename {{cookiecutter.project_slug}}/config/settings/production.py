@@ -157,12 +157,10 @@ ANYMAIL = {
     "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
     "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
 }
-
 {%- elif cookiecutter.mail_service == 'Amazon SES' %}
 # https://anymail.readthedocs.io/en/stable/esps/amazon_ses/
 EMAIL_BACKEND = "anymail.backends.amazon_ses.EmailBackend"
 ANYMAIL = {}
-
 {%- elif cookiecutter.mail_service == 'Mailjet' %}
 # https://anymail.readthedocs.io/en/stable/esps/mailjet/
 EMAIL_BACKEND = "anymail.backends.mailjet.EmailBackend"
@@ -171,7 +169,6 @@ ANYMAIL = {
     "MAILJET_SECRET_KEY": env("MAILJET_SECRET_KEY"),
     "MAILJET_API_URL": env("MAILJET_API_URL", default="https://api.mailjet.com/v3"),
 }
-
 {%- elif cookiecutter.mail_service == 'Mandrill' %}
 # https://anymail.readthedocs.io/en/stable/esps/mandrill/
 EMAIL_BACKEND = "anymail.backends.mandrill.EmailBackend"
@@ -181,7 +178,6 @@ ANYMAIL = {
         "MANDRILL_API_URL", default="https://mandrillapp.com/api/1.0"
     ),
 }
-
 {%- elif cookiecutter.mail_service == 'Postmark' %}
 # https://anymail.readthedocs.io/en/stable/esps/postmark/
 EMAIL_BACKEND = "anymail.backends.postmark.EmailBackend"
@@ -189,7 +185,6 @@ ANYMAIL = {
     "POSTMARK_SERVER_TOKEN": env("POSTMARK_SERVER_TOKEN"),
     "POSTMARK_API_URL": env("POSTMARK_API_URL", default="https://api.postmarkapp.com/"),
 }
-
 {%- elif cookiecutter.mail_service == 'Sendgrid' %}
 # https://anymail.readthedocs.io/en/stable/esps/sendgrid/
 EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
@@ -199,7 +194,6 @@ ANYMAIL = {
     "SENDGRID_MERGE_FIELD_FORMAT": env("SENDGRID_MERGE_FIELD_FORMAT"),
     "SENDGRID_API_URL": env("SENDGRID_API_URL", default="https://api.sendgrid.com/v3/"),
 }
-
 {%- elif cookiecutter.mail_service == 'SendinBlue' %}
 # https://anymail.readthedocs.io/en/stable/esps/sendinblue/
 EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
@@ -209,7 +203,6 @@ ANYMAIL = {
         "SENDINBLUE_API_URL", default="https://api.sendinblue.com/v3/"
     ),
 }
-
 {%- elif cookiecutter.mail_service == 'SparkPost' %}
 # https://anymail.readthedocs.io/en/stable/esps/sparkpost/
 EMAIL_BACKEND = "anymail.backends.sparkpost.EmailBackend"
@@ -219,23 +212,14 @@ ANYMAIL = {
         "SPARKPOST_API_URL", default="https://api.sparkpost.com/api/v1"
     ),
 }
-
 {%- elif cookiecutter.mail_service == 'Other SMTP' %}
 # https://anymail.readthedocs.io/en/stable/esps
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 ANYMAIL = {}
-
 {%- endif %}
 
+
 {%- if cookiecutter.use_whitenoise == 'n' -%}
-
-
-
-
-
-
-
-
 # Collectfast
 # ------------------------------------------------------------------------------
 # https://github.com/antonagestam/collectfast#installation
