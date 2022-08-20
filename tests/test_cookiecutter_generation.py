@@ -186,7 +186,9 @@ def test_gitlab_invokes_flake8_and_pytest(cookies, context):
         try:
             gitlab_config = yaml.safe_load(gitlab_yml)
             assert gitlab_config["flake8"]["script"] == ["flake8"]
-            assert gitlab_config["pytest"]["script"] == ["docker-compose -f local.yml run django pytest"]
+            assert gitlab_config["pytest"]["script"] == [
+                "docker-compose -f local.yml run django pytest"
+            ]
         except yaml.YAMLError as e:
             pytest.fail(e)
 
@@ -211,7 +213,10 @@ def test_github_invokes_linter_and_pytest(cookies, context):
 
             expected_test_script_present = False
             for action_step in github_config["jobs"]["pytest"]["steps"]:
-                if action_step.get("run") == "docker-compose -f local.yml run django pytest":
+                if (
+                    action_step.get("run")
+                    == "docker-compose -f local.yml run django pytest"
+                ):
                     expected_test_script_present = True
             assert expected_test_script_present
         except yaml.YAMLError as e:
