@@ -30,8 +30,7 @@ if settings.DEBUG:
         import debug_toolbar
 
         urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
-
-{%- if cookiecutter.use_async == 'y' %}
+{% if cookiecutter.use_async == 'y' %}
     # Static file serving when using Gunicorn + Uvicorn for local web socket development
     urlpatterns += staticfiles_urlpatterns()
-{%- endif %}
+{% endif %}

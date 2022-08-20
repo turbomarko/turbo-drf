@@ -19,7 +19,7 @@ class TestUserViewSet:
         request = rf.get("/fake-url/")
         request.user = user
 
-        response = view.me(request) # type:ignore
+        response = view.me(request)  # type:ignore
 
         assert response.data == {
             "id": str(user.id),
