@@ -100,7 +100,7 @@ createsuperuser() {
 
 start_simple_app() {
   docker-compose -f local.yml run --rm django python manage.py startapp --template=./template_apps/simple "$c3"
-  mv ./"$c3" ./trendi/"$c3"
+  mv ./"$c3" ./{{cookiecutter.project_slug}}/"$c3"
 }
 
 

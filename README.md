@@ -2,7 +2,6 @@
 
 [![Build Status](https://img.shields.io/github/workflow/status/turbomarko/turbo-drf/CI/master)](https://github.com/turbomarko/turbo-drf/actions?query=workflow%3ACI)
 [![Documentation Status](https://readthedocs.org/projects/turbo-drf/badge/?version=latest)](https://turbo-drf.readthedocs.io/en/latest/?badge=latest)
-[![Updates](https://pyup.io/repos/github/turbomarko/turbo-drf/shield.svg)](https://pyup.io/repos/github/turbomarko/turbo-drf/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo DRF is a framework for jumpstarting production-ready Django Rest Framework projects quickly.
@@ -35,7 +34,7 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 *These features can be enabled during initial project setup.*
 
 -   Serve static files from Amazon S3, Google Cloud Storage or [Whitenoise](https://whitenoise.readthedocs.io/)
--   Configuration for [Celery](http://www.celeryproject.org/) and [Flower](https://github.com/mher/flower) (the latter in Docker setup only)
+-   Configuration for [Celery](http://www.celeryproject.org/) and [Flower](https://github.com/mher/flower)
 -   Integration with [MailHog](https://github.com/mailhog/MailHog) for local email testing
 -   Integration with [Sentry](https://sentry.io/welcome/) for error logging
 
@@ -45,14 +44,6 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 -   Uses PostgreSQL everywhere (10.19 - 14.1)
 -   Environment variables for configuration (This won't work with Apache/mod_wsgi).
 
-
-### PyUp
-
-<p align="center">
-  <a href="https://pyup.io/"><img src="https://pyup.io/static/images/logo.png"></a>
-</p>
-
-PyUp brings you automated security and dependency updates used by Google and other organizations. Free for open source projects!
 
 ## Usage
 
@@ -130,20 +121,6 @@ For local development, see the following:
 
 If you think you found a bug or want to request a feature, please open an [issue](https://github.com/turbomarko/turbo-drf/issues).
 
-## For PyUp Users
-
-If you are using [PyUp](https://pyup.io) to keep your dependencies updated and secure, use the code *cookiecutter* during checkout to get 15% off every month.
-
 ## "Your Stuff"
 
 Scattered throughout the Python and HTML of this project are places marked with "your stuff". This is where third-party libraries are to be integrated with your project.
-
-### Submit a Pull Request
-
-We accept pull requests if they're small, atomic, and make our own project development
-experience better.
-
-## Code of Conduct
-
-Everyone interacting in the Cookiecutter project's codebases, issue trackers, chat
-rooms, and mailing lists is expected to follow the [PyPA Code of Conduct](https://www.pypa.io/en/latest/code-of-conduct/).

@@ -10,10 +10,6 @@
 License: {{cookiecutter.open_source_license}}
 {%- endif %}
 
-## Settings
-
-Moved to [settings](http://turbo-drf.readthedocs.io/en/latest/settings.html).
-
 ## Basic Commands
 
 ### Creating apps
@@ -68,7 +64,6 @@ This app comes with Celery. The docker-compose command will automatically run a 
 In development, it is often nice to be able to see emails that are being sent from your application. For that reason local SMTP server [MailHog](https://github.com/mailhog/MailHog) with a web interface is available as docker container.
 
 Container mailhog will start automatically when you will run all docker containers.
-Please check [turbo-drf Docker documentation](http://turbo-drf.readthedocs.io/en/latest/deployment.html) for more details how to start all containers.
 
 With MailHog running, to view messages that are sent by your application, open your browser and go to `http://127.0.0.1:8025`
 {%- endif %}
@@ -88,4 +83,4 @@ The following details how to deploy this application.
 
 ### Docker
 
-See detailed [turbo-drf Docker documentation](http://turbo-drf.readthedocs.io/en/latest/deployment.html).
+See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
