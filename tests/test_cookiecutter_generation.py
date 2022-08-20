@@ -175,7 +175,7 @@ def test_black_passes(cookies, context_override):
 
 @pytest.mark.parametrize(
     ["expected_test_script"],
-    ["docker-compose -f local.yml run django pytest"],
+    ["docker-compose -f local.yml run django pytest"]
 )
 def test_gitlab_invokes_flake8_and_pytest(cookies, context, expected_test_script):
     context.update({"ci_tool": "Gitlab"})
@@ -197,7 +197,7 @@ def test_gitlab_invokes_flake8_and_pytest(cookies, context, expected_test_script
 
 @pytest.mark.parametrize(
     ["expected_test_script"],
-    ["docker-compose -f local.yml run django pytest"],
+    ["docker-compose -f local.yml run django pytest"]
 )
 def test_github_invokes_linter_and_pytest(cookies, context, expected_test_script):
     context.update({"ci_tool": "Github"})
