@@ -45,7 +45,6 @@ To run the tests, check your test coverage, and generate an HTML coverage report
 
     $ docker-compose -f local.yml run --rm django coverage run -m pytest
     $ docker-compose -f local.yml run --rm django coverage html
-    $ docker-compose -f local.yml run --rm django open htmlcov/index.html
 
 #### Running tests with pytest
 
