@@ -218,9 +218,6 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 ANYMAIL = {}
 {%- endif %}
 {%- if cookiecutter.use_whitenoise == 'n' -%}
-# Collectfast
-# ------------------------------------------------------------------------------
-# https://github.com/antonagestam/collectfast#installation
 INSTALLED_APPS = ["collectfast"] + INSTALLED_APPS  # noqa F405
 {% endif %}
 # LOGGING
