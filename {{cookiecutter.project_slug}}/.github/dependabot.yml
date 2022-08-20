@@ -36,7 +36,7 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: "daily"
-  
+
   # Enable version updates for Docker
   - package-ecosystem: "docker"
     # Look for a `Dockerfile` in the `compose/production/aws` directory

@@ -47,7 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_admin = models.BooleanField(
         default=False, help_text="Users with admin rights can access the admin page."
     )
-    
+
     # Automatic fields
     date_joined = models.DateTimeField(auto_now_add=True)
 

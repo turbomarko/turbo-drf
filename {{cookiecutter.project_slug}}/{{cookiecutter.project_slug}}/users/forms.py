@@ -15,7 +15,6 @@ class UserCreationForm(forms.ModelForm):
         label="Password confirmation", widget=forms.PasswordInput
     )
 
-
     class Meta:
         model = User
         fields = ("email",)
