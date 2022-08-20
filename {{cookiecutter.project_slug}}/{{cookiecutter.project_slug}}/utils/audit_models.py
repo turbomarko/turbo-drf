@@ -9,6 +9,7 @@ class CreationBase(models.Model):
     class Meta:
         abstract = True
 
+
 class AuditBase(CreationBase):
     """Abstract model to store the time of creation and last update"""
 

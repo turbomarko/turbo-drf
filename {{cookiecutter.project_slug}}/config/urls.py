@@ -25,10 +25,7 @@ if settings.DEBUG:
         urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
 
     if "drf_spectacular" in settings.INSTALLED_APPS:
-        from drf_spectacular.views import (
-            SpectacularAPIView,
-            SpectacularSwaggerView,
-        )
+        from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
         urlpatterns = [
             # Schema

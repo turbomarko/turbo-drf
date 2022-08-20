@@ -111,7 +111,7 @@ services:
   {%- endif %}
   nginx-proxy:
     image: jwilder/nginx-proxy:alpine
-    container_name: trendi_local_nginx
+    container_name: {{ cookiecutter.project_slug }}_local_nginx
     ports:
       - "80:80"
       - "443:443"
