@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 
 import pytest
 
@@ -176,9 +177,7 @@ def test_black_passes(cookies, context_override):
     ["expected_test_script"],
     ["docker-compose -f local.yml run django pytest"],
 )
-def test_gitlab_invokes_flake8_and_pytest(
-    cookies, context, expected_test_script
-):
+def test_gitlab_invokes_flake8_and_pytest(cookies, context, expected_test_script):
     context.update({"ci_tool": "Gitlab"})
     result = cookies.bake(extra_context=context)
 
@@ -187,7 +186,7 @@ def test_gitlab_invokes_flake8_and_pytest(
     assert result.project_path.name == context["project_slug"]
     assert result.project_path.is_dir()
 
-    with open(f"{result.project_path}/.gitlab-ci.yml", "r") as gitlab_yml:
+    with open(f"{result.project_path}/.gitlab-ci.yml") as gitlab_yml:
         try:
             gitlab_config = yaml.safe_load(gitlab_yml)
             assert gitlab_config["flake8"]["script"] == ["flake8"]
@@ -200,9 +199,7 @@ def test_gitlab_invokes_flake8_and_pytest(
     ["expected_test_script"],
     ["docker-compose -f local.yml run django pytest"],
 )
-def test_github_invokes_linter_and_pytest(
-    cookies, context, expected_test_script
-):
+def test_github_invokes_linter_and_pytest(cookies, context, expected_test_script):
     context.update({"ci_tool": "Github"})
     result = cookies.bake(extra_context=context)
 
@@ -211,7 +208,7 @@ def test_github_invokes_linter_and_pytest(
     assert result.project_path.name == context["project_slug"]
     assert result.project_path.is_dir()
 
-    with open(f"{result.project_path}/.github/workflows/ci.yml", "r") as github_yml:
+    with open(f"{result.project_path}/.github/workflows/ci.yml") as github_yml:
         try:
             github_config = yaml.safe_load(github_yml)
             linter_present = False
