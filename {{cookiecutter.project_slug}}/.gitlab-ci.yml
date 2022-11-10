@@ -13,7 +13,7 @@ variables:
 
 flake8:
   stage: lint
-  image: python:3.9-alpine
+  image: python:3.10-alpine
   before_script:
     - pip install -q flake8
   script:
