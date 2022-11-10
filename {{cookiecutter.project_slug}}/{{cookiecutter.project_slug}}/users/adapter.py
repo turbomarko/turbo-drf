@@ -1,8 +1,7 @@
-from django.conf import settings
-
-from allauth.account.adapter import DefaultAccountAdapter
 from allauth.account import app_settings
+from allauth.account.adapter import DefaultAccountAdapter
 from allauth.utils import import_attribute
+from django.conf import settings
 
 
 class CustomAccountAdapter(DefaultAccountAdapter):

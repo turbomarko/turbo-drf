@@ -1,8 +1,8 @@
 """
 Base settings to build other settings files upon.
 """
-from pathlib import Path
 from datetime import timedelta
+from pathlib import Path
 
 import environ
 

@@ -1,8 +1,9 @@
 from allauth.account import app_settings as allauth_settings
+from allauth.account.models import EmailAddress
 from allauth.account.utils import complete_signup
 from allauth.account.views import ConfirmEmailView
-from allauth.account.models import EmailAddress
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.utils.decorators import method_decorator
 from django.views.decorators.debug import sensitive_post_parameters
 from rest_framework import status
@@ -15,19 +16,18 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from django.contrib.auth import get_user_model
 
-from .jwt import jwt_encode, set_jwt_cookies, unset_jwt_cookies, extract_refresh_token
+from .jwt import extract_refresh_token, jwt_encode, set_jwt_cookies, unset_jwt_cookies
 
 from .serializers import (
-    UserSerializer,
-    RegisterSerializer,
-    VerifyEmailSerializer,
-    ResendEmailVerificationSerializer,
     LoginSerializer,
     PasswordChangeSerializer,
-    PasswordResetSerializer,
     PasswordResetConfirmSerializer,
+    PasswordResetSerializer,
+    RegisterSerializer,
+    ResendEmailVerificationSerializer,
+    UserSerializer,
+    VerifyEmailSerializer,
 )
 
 User = get_user_model()

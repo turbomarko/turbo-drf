@@ -1,12 +1,11 @@
+from allauth.account.adapter import get_adapter
+from allauth.account.utils import setup_user_email
 from django.conf import settings
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.forms import SetPasswordForm
 from django.urls import exceptions as url_exceptions
 from django.utils.encoding import force_str
-
 from rest_framework import exceptions, serializers
-from allauth.account.adapter import get_adapter
-from allauth.account.utils import setup_user_email
 
 from .forms import AllAuthPasswordResetForm
 

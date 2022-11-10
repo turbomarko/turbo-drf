@@ -5,13 +5,13 @@ from rest_framework_simplejwt.views import TokenVerifyView
 from .views import (
     LoginView,
     LogoutView,
-    RegisterView,
-    VerifyEmailView,
-    ResendEmailVerificationView,
     PasswordChangeView,
     PasswordResetConfirmView,
     PasswordResetView,
+    RegisterView,
+    ResendEmailVerificationView,
     UserDetailsView,
+    VerifyEmailView,
 )
 from .jwt import get_refresh_view
 

@@ -1,20 +1,15 @@
+from allauth.account.adapter import get_adapter
+from allauth.account.forms import ResetPasswordForm as DefaultPasswordResetForm
+from allauth.account.forms import default_token_generator
+from allauth.account.utils import filter_users_by_email, user_pk_to_url_str
+from allauth.utils import build_absolute_uri
 from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from django.core.exceptions import ValidationError
-
 from django.contrib.sites.shortcuts import get_current_site
+from django.core.exceptions import ValidationError
 from django.urls import reverse
-
-from allauth.account.adapter import get_adapter
-from allauth.account.forms import (
-    ResetPasswordForm as DefaultPasswordResetForm,
-    default_token_generator,
-)
-from allauth.account.utils import filter_users_by_email, user_pk_to_url_str
-from allauth.utils import build_absolute_uri
-
 
 User = get_user_model()
 
