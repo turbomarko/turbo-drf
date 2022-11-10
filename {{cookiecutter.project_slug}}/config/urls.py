@@ -5,7 +5,7 @@ from django.urls import include, path, re_path
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    # Django Admin, use {% url "admin:index" %}
+    # Django Admin, use {% raw %}{% url 'admin:index' %}{% endraw %}
     path(settings.ADMIN_URL, admin.site.urls),
     # API base url
     path("", include("config.api_router")),
