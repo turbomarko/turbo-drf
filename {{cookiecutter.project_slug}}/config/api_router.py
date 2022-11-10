@@ -1,15 +1,30 @@
 from django.conf import settings
-from rest_framework.routers import DefaultRouter, SimpleRouter
+from django.urls import path, include
 
-from {{ cookiecutter.project_slug }}.users.views import UserViewSet
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from rest_framework.routers import DefaultRouter, SimpleRouter
 
 if settings.DEBUG:
     router = DefaultRouter()
 else:
     router = SimpleRouter()
 
-router.register("users", UserViewSet)
-
-
 app_name = "api"
 urlpatterns = router.urls
+
+urlpatterns = [
+    # Schema
+    path("api-schema", SpectacularAPIView.as_view(), name="schema"),
+    # Swagger UI
+    path(
+        "api-docs",
+        SpectacularSwaggerView.as_view(url_name="api:schema"),
+        name="api-docs",
+    ),
+    # Authentication urls
+    path("auth/", include("{{cookiecutter.project_slug}}.users.urls")),
+] + urlpatterns
+
+# App urls
+# ------------------------------------------------------------------------------
+urlpatterns = [] + urlpatterns

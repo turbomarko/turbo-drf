@@ -1,5 +1,3 @@
-import uuid
-
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
@@ -14,14 +12,14 @@ class UserManager(BaseUserManager):
         if not email:
             raise ValueError("Users must have an email address")
 
-        user = self.model(email=self.normalize_email(email), **extra_fields)
+        user = self.model(email=email.lower(), **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
     def create_superuser(self, email, password):
         """Create and saves a superuser"""
-        user = self.create_user(email, password)
+        user = self.create_user(email.lower(), password)
         user.is_admin = True
         user.is_superuser = True
         user.save(using=self._db)
@@ -29,15 +27,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    """Custom UserModel that supports using email instead of username"""
-
-    id = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        editable=False,
-        unique=True,
-        verbose_name="ID",
-    )
+    """Custom User model that supports using email for login instead of username"""
 
     # Modifiable fields
     email = models.EmailField(max_length=255, unique=True)
@@ -50,6 +40,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     # Automatic fields
     date_joined = models.DateTimeField(auto_now_add=True)
+
+    # Data cleanup
+    def clean(self):
+        super().clean()
+        self.email = self.email.lower()
 
     # Read-only properties
     @property

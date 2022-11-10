@@ -31,6 +31,7 @@ help() {
   echo "* upload_backup_db_s3"
   echo "* download_backup_db_s3"
   echo "* flake8"
+  echo "* black"
   echo "* pylint"
   echo "* mypy"
   echo "* pytest"
@@ -145,11 +146,11 @@ pylint() {
 }
 
 mypy() {
-  docker-compose -f local.yml run --rm django mypy {{cookiecutter.project_slug}}
+  echo "MYPY" && docker-compose -f local.yml run --rm django mypy {{cookiecutter.project_slug}}
 }
 
 pytest() {
-  docker-compose -f "$c1".yml run --rm django pytest
+  echo "PYTEST" && docker-compose -f "$c1".yml run --rm django pytest
 }
 
 coverage() {
@@ -167,7 +168,7 @@ check_all() {
   black && echo "black - No issue found"
   mypy && echo "mypy - No issue found"
   coverage && echo "coverage - No issue found"
-  unittest && echo "unittest - No issue found"
+  # unittest && echo "unittest - No issue found"
 }
 
 case "$c1" in

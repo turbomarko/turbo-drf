@@ -1,36 +1,34 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-{%- if cookiecutter.use_async == 'y' %}
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-{%- endif %}
-from django.urls import include, path
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from django.urls import include, path, re_path
+from django.views.generic import TemplateView
 
 urlpatterns = [
-    # Django Admin, use {% raw %}{% url 'admin:index' %}{% endraw %}
+    # Django Admin, use {% url "admin:index" %}
     path(settings.ADMIN_URL, admin.site.urls),
     # API base url
-    path("api/", include("config.api_router")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-urlpatterns = [
-    # Schema
-    path("api/api-schema", SpectacularAPIView.as_view(), name="api-schema"),
-    # Optional UI:
-    path(
-        "api/api-doc",
-        SpectacularSwaggerView.as_view(url_name="api-schema"),
-        name="api-docs",
+    path("", include("config.api_router")),
+    # Django allauth dummy endpoints to avoid exception
+    re_path(
+        r"^account-confirm-email/(?P<key>[-:\w]+)/$",
+        TemplateView.as_view(),
+        name="account_confirm_email",
     ),
-] + urlpatterns
+    path(
+        "account-email-verification-sent/",
+        TemplateView.as_view(),
+        name="account_email_verification_sent",
+    ),
+    re_path(
+        r"^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/$",
+        TemplateView.as_view(template_name="password_reset_confirm.html"),
+        name="password_reset_confirm",
+    ),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     if "debug_toolbar" in settings.INSTALLED_APPS:
         import debug_toolbar
 
         urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
-{% if cookiecutter.use_async == 'y' %}
-    # Static file serving when using Gunicorn + Uvicorn for local web socket development
-    urlpatterns += staticfiles_urlpatterns()
-{% endif %}
