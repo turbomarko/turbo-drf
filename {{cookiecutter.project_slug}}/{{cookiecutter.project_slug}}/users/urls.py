@@ -1,7 +1,7 @@
 from django.urls import path
-
 from rest_framework_simplejwt.views import TokenVerifyView
 
+from .jwt import get_refresh_view
 from .views import (
     LoginView,
     LogoutView,
@@ -13,8 +13,6 @@ from .views import (
     UserDetailsView,
     VerifyEmailView,
 )
-from .jwt import get_refresh_view
-
 
 # Authentication urls
 urlpatterns = [

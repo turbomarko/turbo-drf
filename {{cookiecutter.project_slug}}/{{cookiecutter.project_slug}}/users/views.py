@@ -12,13 +12,10 @@ from rest_framework.generics import CreateAPIView, GenericAPIView, RetrieveUpdat
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.tokens import RefreshToken
 
-
 from .jwt import extract_refresh_token, jwt_encode, set_jwt_cookies, unset_jwt_cookies
-
 from .serializers import (
     LoginSerializer,
     PasswordChangeSerializer,
