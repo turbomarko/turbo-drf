@@ -21,7 +21,7 @@ urlpatterns = [
         name="api-docs",
     ),
     # Authentication urls
-    path("auth/", include("{{cookiecutter.project_slug}}.users.urls")),
+    path("auth/", include("api.users.urls")),
 ] + urlpatterns
 
 # App urls

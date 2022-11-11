@@ -9,7 +9,7 @@ from rest_framework import status
 from .mixins import TestsMixin
 
 
-@override_settings(ROOT_URLCONF="{{cookiecutter.project_slug}}.users.tests.urls")
+@override_settings(ROOT_URLCONF="api.users.tests.urls")
 class APIBasicTests(TestsMixin):
     """
     Class for running tests

@@ -23,9 +23,8 @@ if __name__ == "__main__":
 
         raise
 
-    # This allows easy placement of apps within the interior
-    # {{ cookiecutter.project_slug }} directory.
+    # This allows easy placement of apps within the interior api directory.
     current_path = Path(__file__).parent.resolve()
-    sys.path.append(str(current_path / "{{ cookiecutter.project_slug }}"))
+    sys.path.append(str(current_path / "api"))
 
     execute_from_command_line(sys.argv)

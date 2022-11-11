@@ -2,11 +2,11 @@ from django.apps import AppConfig
 
 
 class UsersConfig(AppConfig):
-    name = "{{ cookiecutter.project_slug }}.users"
+    name = "api.users"
     verbose_name = "Users"
 
     def ready(self):
         try:
-            import {{ cookiecutter.project_slug }}.users.signals  # noqa F401
+            import api.users.signals  # noqa F401
         except ImportError:
             pass

@@ -22,8 +22,8 @@ License: {{cookiecutter.open_source_license}}
 
         $ docker-compose -f local.yml run --rm django python manage.py startapp --template=./template_apps/composite myappname
 
-After creating the app, move it to the {{ cookiecutter.project_slug }} folder.
-You can add the new app to the project by extending the LOCAL_APPS list in the base settings file with the value {{ cookiecutter.project_slug }}.myappname.
+After creating the app, move it to the **api** folder.
+You can add the new app to the project by extending the LOCAL_APPS list in the base settings file with the value **api.myappname**.
 
 These templates can be customized to suit the project needs. (see [startapp](https://docs.djangoproject.com/en/dev/ref/django-admin/#startapp))
 
@@ -37,7 +37,7 @@ To create a **superuser account**, use this command:
 
 Running type checks with mypy:
 
-    $ docker-compose -f local.yml run --rm django mypy {{cookiecutter.project_slug}}
+    $ docker-compose -f local.yml run --rm django mypy api
 
 ### Test coverage
 

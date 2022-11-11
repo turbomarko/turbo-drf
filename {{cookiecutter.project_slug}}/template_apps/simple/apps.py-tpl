@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class {{ '{{' }} camel_case_app_name {{ '}}' }}Config(AppConfig):
-    name = "{{ cookiecutter.project_slug }}.{{ '{{' }} app_name {{ '}}' }}"
+    name = "api.{{ '{{' }} app_name {{ '}}' }}"

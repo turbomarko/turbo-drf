@@ -101,7 +101,7 @@ createsuperuser() {
 
 start_simple_app() {
   docker-compose -f local.yml run --rm django python manage.py startapp --template=./template_apps/simple "$c3"
-  mv ./"$c3" ./{{cookiecutter.project_slug}}/"$c3"
+  mv ./"$c3" ./api/"$c3"
 }
 
 
@@ -142,11 +142,11 @@ format() {
 }
 
 pylint() {
-  echo "PYLINT" && docker-compose -f "$c1".yml run --rm django pylint --load-plugins pylint_django --django-settings-module=config.settings.local ./{{cookiecutter.project_slug}}
+  echo "PYLINT" && docker-compose -f "$c1".yml run --rm django pylint --load-plugins pylint_django --django-settings-module=config.settings.local ./api
 }
 
 mypy() {
-  echo "MYPY" && docker-compose -f local.yml run --rm django mypy {{cookiecutter.project_slug}}
+  echo "MYPY" && docker-compose -f local.yml run --rm django mypy api
 }
 
 pytest() {
