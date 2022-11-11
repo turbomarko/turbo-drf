@@ -25,7 +25,7 @@ pre-commit run --show-diff-on-failure -a
 docker-compose -f local.yml build
 
 # run the project's type checks
-docker-compose -f local.yml run django mypy my_awesome_project
+docker-compose -f local.yml run django mypy api
 
 # run the project's tests
 docker-compose -f local.yml run django pytest
