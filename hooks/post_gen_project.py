@@ -49,7 +49,7 @@ def remove_celery_files():
         os.path.join("config", "celery_app.py"),
         os.path.join("api", "users", "tasks.py"),
         os.path.join("api", "users", "tests", "test_tasks.py"),
-        os.path.join("template_apps", "simple", "tasks.py-tpl"),
+        os.path.join("template_app", "tasks.py-tpl"),
         # os.path.join("template_apps", "composite", "tasks.py-tpl"),
     ]
     for file_name in file_names:
