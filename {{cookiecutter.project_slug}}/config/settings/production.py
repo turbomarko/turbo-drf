@@ -332,3 +332,10 @@ sentry_sdk.init(
 # Your stuff...
 # ------------------------------------------------------------------------------
 FRONTEND_URL = "https://{{cookiecutter.domain_name}}/"
+
+REST_FRAMEWORK["DEFAULT_THROTTLE_CLASSES"] = [  # noqa F405
+    "rest_framework.throttling.ScopedRateThrottle",
+]
+REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"] = {  # noqa F405
+    "auth": "5/minute",
+}

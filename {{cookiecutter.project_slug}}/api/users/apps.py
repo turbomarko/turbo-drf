@@ -7,6 +7,6 @@ class UsersConfig(AppConfig):
 
     def ready(self):
         try:
-            import api.users.signals  # noqa F401
+            from . import signals  # type: ignore # noqa F401
         except ImportError:
             pass

@@ -12,6 +12,7 @@ SECRET_KEY = env(
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "my-dev-env.local"]
+CORS_ORIGIN_WHITELIST = ["http://localhost:3000"]
 
 # CACHES
 # ------------------------------------------------------------------------------

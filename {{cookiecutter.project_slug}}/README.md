@@ -14,13 +14,9 @@ License: {{cookiecutter.open_source_license}}
 
 ### Creating apps
 
--   To create a **simple app**, run the following command from inside the project root::
+To create a **new app**, run the following command from inside the project root::
 
-        $ docker-compose -f local.yml run --rm django python manage.py startapp --template=./template_apps/simple myappname
-
--   To create a **composite app** with an additional service layer, use the following command::
-
-        $ docker-compose -f local.yml run --rm django python manage.py startapp --template=./template_apps/composite myappname
+    $ docker-compose -f local.yml run --rm django python manage.py startapp --template=./template_app myappname
 
 After creating the app, move it to the **api** folder.
 You can add the new app to the project by extending the LOCAL_APPS list in the base settings file with the value **api.myappname**.

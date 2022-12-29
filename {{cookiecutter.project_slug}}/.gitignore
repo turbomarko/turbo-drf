@@ -228,6 +228,7 @@ Session.vim
 
 # Auto-generated tag files
 tags
+!api/tags
 
 ### Project template
 api/media/

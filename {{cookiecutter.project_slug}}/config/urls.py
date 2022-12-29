@@ -27,6 +27,9 @@ urlpatterns = [
     ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+handler500 = "api.utils.error_views.server_error"
+handler400 = "api.utils.error_views.bad_request"
+
 if settings.DEBUG:
     if "debug_toolbar" in settings.INSTALLED_APPS:
         import debug_toolbar

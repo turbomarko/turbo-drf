@@ -14,30 +14,30 @@ help() {
   echo "* production"
   echo ""
   echo "command:"
-  echo "* generate_certificates"
-  echo "* build"
-  echo "* init"
-  echo "* up"
-  echo "* down"
-  echo "* logs"
-  echo "* showmigrations"
-  echo "* makemigrations"
-  echo "* migrate"
-  echo "* createsuperuser"
-  echo "* start_simple_app"
-  echo "* backup_db"
-  echo "* list_backup_db"
-  echo "* restore_db"
-  echo "* upload_backup_db_s3"
-  echo "* download_backup_db_s3"
-  echo "* flake8"
-  echo "* black"
-  echo "* pylint"
-  echo "* mypy"
-  echo "* pytest"
-  echo "* coverage"
-  echo "* unittest"
-  echo "* check_all"
+  echo "* generate_certificates -- generate local https certificate to test functionality that requires it"
+  echo "* build -- build the docker image"
+  echo "* init -- build, generate_certificates, git init, pre-commit install"
+  echo "* up -- start the docker container"
+  echo "* down -- stop the docker container"
+  echo "* shell -- open Django shell"
+  echo "* showmigrations -- show all migrations of the project"
+  echo "* makemigrations -- create migration files based on model changes"
+  echo "* migrate -- migrate the migration file changes into the database"
+  echo "* createsuperuser -- create superadmin user"
+  echo "* startapp [APP_NAME] -- create a new app"
+  echo "* backup_db -- create a database backup locally"
+  echo "* list_backup_db -- list the local database backups"
+  echo "* restore_db [BACKUP_FILE] -- restore the local database from a backup"
+  echo "* upload_backup_db_s3 -- upload a database backup file to S3"
+  echo "* download_backup_db_s3 [BACKUP_FILE] -- download a specific database backup from S3"
+  echo "* flake8 -- test flake8 formatting"
+  echo "* black -- test black formatting"
+  echo "* pylint -- test pylint formatting"
+  echo "* pytest -- run all tests"
+  echo "* coverage -- run all tests and print coverage information"
+  echo "* unittest -- run unit tests"
+  echo "* mypy -- check python typings"
+  echo "* check_all -- check tests, types and formatting"
 }
 
 
@@ -77,12 +77,12 @@ down() {
   docker-compose -f "$c1".yml down
 }
 
-logs() {
-  docker-compose -f "$c1".yml logs -t
-}
-
 
 # Django commands
+shell() {
+  docker-compose -f "$c1".yml run --rm django python manage.py shell
+}
+
 showmigrations() {
   docker-compose -f "$c1".yml run --rm django python manage.py showmigrations
 }
@@ -99,8 +99,8 @@ createsuperuser() {
   docker-compose -f "$c1".yml run --rm django python manage.py createsuperuser
 }
 
-start_simple_app() {
-  docker-compose -f local.yml run --rm django python manage.py startapp --template=./template_apps/simple "$c3"
+startapp() {
+  docker-compose -f local.yml run --rm django python manage.py startapp --template=./template_app "$c3"
   mv ./"$c3" ./api/"$c3"
 }
 

@@ -1,0 +1,11 @@
+from rest_framework.generics import ListAPIView
+
+from .models import MyModel
+from .serializers import MySerializer
+
+
+class MyListView(ListAPIView):
+    """Returns the list of my objects"""
+
+    serializer_class = MySerializer
+    queryset = MyModel.objects.all()

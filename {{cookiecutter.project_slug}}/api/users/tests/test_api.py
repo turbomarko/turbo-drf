@@ -38,7 +38,7 @@ class APIBasicTests(TestsMixin):
         }
 
         resp = self.post(self.login_url, data=payload, status_code=400)
-        self.assertEqual(resp.json["email"], ["This field may not be blank."])
+        self.assertEqual(resp.json["errors"]["email"], ["This field may not be blank."])
 
     @override_settings(
         ACCOUNT_AUTHENTICATION_METHOD=account_app_settings.AuthenticationMethod.EMAIL
@@ -241,7 +241,7 @@ class APIBasicTests(TestsMixin):
         resp = self.get(
             self.verify_email_url, status_code=status.HTTP_405_METHOD_NOT_ALLOWED
         )
-        self.assertEqual(resp.json["detail"], 'Method "GET" not allowed.')
+        self.assertEqual(resp.json["error"], 'Method "GET" not allowed.')
 
         # email is not verified yet
         payload = {
