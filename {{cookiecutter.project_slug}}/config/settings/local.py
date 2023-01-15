@@ -76,3 +76,8 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#task-eager-propagates
 CELERY_TASK_EAGER_PROPAGATES = True
 {% endif %}
+
+# Custom config
+# ------------------------------------------------------------------------------
+ENVIRONMENT_NAME = env("ENVIRONMENT_NAME", default="Development server")
+ENVIRONMENT_COLOR = env("ENVIRONMENT_COLOR", default="#808080")

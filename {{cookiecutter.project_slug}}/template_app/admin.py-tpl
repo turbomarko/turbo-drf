@@ -4,7 +4,9 @@ from .models import MyModel
 
 
 class MyModelAdmin(admin.ModelAdmin):
-    pass
-
+    list_display = ("id", "field1", "field2",)
+    list_filter = ("field1",)
+    search_fields = ("field2",)
+    ordering = ("-created_at",)
 
 admin.site.register(MyModel, MyModelAdmin)

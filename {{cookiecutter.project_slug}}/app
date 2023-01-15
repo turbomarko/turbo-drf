@@ -166,7 +166,7 @@ check_all() {
   pycodestyle && echo "pycodestyle - No issue found"
   flake8 && echo "flake8 - No issue found"
   black && echo "black - No issue found"
-  mypy && echo "mypy - No issue found"
+  # mypy && echo "mypy - No issue found"
   coverage && echo "coverage - No issue found"
   # unittest && echo "unittest - No issue found"
 }

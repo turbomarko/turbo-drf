@@ -329,7 +329,7 @@ sentry_sdk.init(
     traces_sample_rate=env.float("SENTRY_TRACES_SAMPLE_RATE", default=0.0),
 )
 {% endif %}
-# Your stuff...
+# Custom config
 # ------------------------------------------------------------------------------
 FRONTEND_URL = "https://{{cookiecutter.domain_name}}/"
 
@@ -339,3 +339,6 @@ REST_FRAMEWORK["DEFAULT_THROTTLE_CLASSES"] = [  # noqa F405
 REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"] = {  # noqa F405
     "auth": "5/minute",
 }
+
+ENVIRONMENT_NAME = env("ENVIRONMENT_NAME", default="Production server")
+ENVIRONMENT_COLOR = env("ENVIRONMENT_COLOR", default="#FF2222")
