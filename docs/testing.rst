@@ -47,4 +47,4 @@ Once the tests are complete, in order to see the code coverage, run the followin
 .. _develop locally with docker: ./developing-locally.html
 .. _customize: https://docs.pytest.org/en/latest/customize.html
 .. _unittest: https://docs.python.org/3/library/unittest.html#module-unittest
-.. _configuring: https://coverage.readthedocs.io/en/v4.5.x/config.html
+.. _configuring: https://coverage.readthedocs.io/en/latest/config.html

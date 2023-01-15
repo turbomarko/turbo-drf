@@ -1,6 +1,6 @@
 # Turbo DRF
 
-[![Build Status](https://img.shields.io/github/workflow/status/turbomarko/turbo-drf/CI/master)](https://github.com/turbomarko/turbo-drf/actions?query=workflow%3ACI)
+[![Build Status](https://img.shields.io/actions/github/workflow/status/turbomarko/turbo-drf/ci.yml?branch=master)](https://github.com/turbomarko/turbo-drf/actions/workflows/ci.yml?query=branch%3Amaster)
 [![Documentation Status](https://readthedocs.org/projects/turbo-drf/badge/?version=latest)](https://turbo-drf.readthedocs.io/en/latest/?badge=latest)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
