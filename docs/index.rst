@@ -20,7 +20,7 @@ Contents
    testing
    document
    deployment
-   docker-postgres-backups
+   postgres-backups
    websocket
    troubleshooting
 

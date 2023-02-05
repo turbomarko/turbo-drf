@@ -70,9 +70,7 @@ If you are deploying to AWS, you can use the IAM role to substitute AWS credenti
 HTTPS is On by Default
 ----------------------
 
-SSL (Secure Sockets Layer) is a standard security technology for establishing an encrypted link between a server and a client, typically in this case, a web server (website) and a browser. Not having HTTPS means that malicious network users can sniff authentication credentials between your website and end users' browser.
-
-It is always better to deploy a site behind HTTPS and will become crucial as the web services extend to the IoT (Internet of Things). For this reason, we have set up a number of security defaults to help make your website secure:
+SSL (Secure Sockets Layer) is a standard security technology for establishing an encrypted link between a server and a client.
 
 * If you are not using a subdomain of the domain name set in the project, then remember to put your staging/production IP address in the ``DJANGO_ALLOWED_HOSTS`` environment variable (see :ref:`settings`) before you deploy your website. Failure to do this will mean you will not have access to your website through the HTTP protocol.
 
@@ -88,7 +86,7 @@ You can read more about this feature and how to configure it, at `Automatic HTTP
 (Optional) Postgres Data Volume Modifications
 ---------------------------------------------
 
-Postgres is saving its database files to the ``production_postgres_data`` volume by default. Change that if you want something else and make sure to make backups since this is not done automatically.
+Postgres is saving its database files to the ``{{ cookiecutter.project_slug }}_production_postgres_data`` volume by default. Change that if you want something else and make sure to make backups since this is not done automatically.
 
 
 Building & Running Production Stack

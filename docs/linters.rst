@@ -9,7 +9,7 @@ flake8
 
 To run flake8: ::
 
-    $ flake8
+    $ ./app local flake8
 
 The config for flake8 is located in setup.cfg. It specifies:
 
@@ -21,7 +21,7 @@ pylint
 
 To run pylint: ::
 
-    $ pylint <python files that you wish to lint>
+    $ ./app local pylint
 
 The config for pylint is located in .pylintrc. It specifies:
 
@@ -35,9 +35,16 @@ pycodestyle
 
 This is included in flake8's checks, but you can also run it separately to see a more detailed report: ::
 
-    $ pycodestyle <python files that you wish to lint>
+    $ ./app local pycodestyle
 
 The config for pycodestyle is located in setup.cfg. It specifies:
 
 * Set max line length to 88 chars
 * Exclude ``.tox,.git,*/migrations/*,*/static/CACHE/*,docs,node_modules``
+
+black
+-----
+
+To run black: ::
+
+    $ ./app local black

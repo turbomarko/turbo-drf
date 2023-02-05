@@ -9,7 +9,7 @@ Pytest
 ------
 
 This project uses the Pytest_, a framework for easily building simple and scalable tests.
-After you set up your project to `develop locally with docker`_, run the following command: ::
+After you set up your project to `develop locally`_, run the following command: ::
 
    $ docker-compose -f local.yml run --rm django pytest
 

@@ -1,4 +1,4 @@
-Getting Up and Running Locally With Docker
+Setting Up and Running Locally With Docker
 ==========================================
 
 .. index:: Docker
@@ -97,8 +97,8 @@ This is the excerpt from your project's ``local.yml``: ::
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
     volumes:
-      - local_postgres_data:/var/lib/postgresql/data
-      - local_postgres_data_backups:/backups
+      - {{ cookiecutter.project_slug }}_local_postgres_data:/var/lib/postgresql/data
+      - {{ cookiecutter.project_slug }}_local_postgres_data_backups:/backups
     env_file:
       - ./.envs/.local/.postgres
 
@@ -255,7 +255,7 @@ local.yml
 
     nginx-proxy:
       image: jwilder/nginx-proxy:alpine
-      container_name: nginx-proxy
+      container_name: {{ cookiecutter.project_slug }}_nginx
       ports:
         - "80:80"
         - "443:443"
