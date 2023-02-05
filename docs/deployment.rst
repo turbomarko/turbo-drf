@@ -158,4 +158,3 @@ Move it to ``/etc/supervisor/conf.d/{{cookiecutter.project_slug}}.conf`` and run
 For status check, run::
 
     supervisorctl status
-

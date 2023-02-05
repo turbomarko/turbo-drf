@@ -31,7 +31,6 @@ class AllAuthPasswordResetForm(DefaultPasswordResetForm):
         token_generator = kwargs.get("token_generator", default_token_generator)
 
         for user in self.users:
-
             temp_key = token_generator.make_token(user)
 
             # send the password reset email

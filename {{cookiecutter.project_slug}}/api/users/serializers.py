@@ -214,7 +214,6 @@ class PasswordChangeSerializer(serializers.Serializer):
         self.user = getattr(self.request, "user", None)
 
     def validate_old_password(self, value):
-
         if self.user and not self.user.check_password(value):
             err_msg = (
                 "Your old password was entered incorrectly. Please enter it again."
