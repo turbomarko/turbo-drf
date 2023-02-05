@@ -230,6 +230,9 @@ Session.vim
 tags
 !api/tags
 
+# Redis dump file
+dump.rdb
+
 ### Project template
 api/media/
 certs/
