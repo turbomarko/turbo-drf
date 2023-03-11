@@ -38,7 +38,7 @@ class APIBasicTests(TestsMixin):
         }
 
         resp = self.post(self.login_url, data=payload, status_code=400)
-        self.assertEqual(resp.json["errors"]["email"], ["This field may not be blank."])
+        self.assertEqual(resp.json["fieldErrors"]["email"], ["This field may not be blank."])
 
     @override_settings(
         ACCOUNT_AUTHENTICATION_METHOD=account_app_settings.AuthenticationMethod.EMAIL
