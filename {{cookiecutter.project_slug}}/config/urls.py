@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     # Django Admin, use {% raw %}{% url 'admin:index' %}{% endraw %}
-    path('grappelli/', include('grappelli.urls')),
+    path("grappelli/", include("grappelli.urls")),
     path(settings.ADMIN_URL, admin.site.urls),
     # API base url
     path("", include("config.api_router")),
