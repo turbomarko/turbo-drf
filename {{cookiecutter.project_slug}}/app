@@ -35,7 +35,6 @@ help() {
   echo "* pylint -- test pylint formatting"
   echo "* pytest -- run all tests"
   echo "* coverage -- run all tests and print coverage information"
-  echo "* unittest -- run unit tests"
   echo "* mypy -- check python typings"
   echo "* check_all -- check tests, types and formatting"
 }
@@ -156,10 +155,6 @@ pytest() {
 coverage() {
   docker-compose -f local.yml run --rm django coverage run -m pytest
   docker-compose -f local.yml run --rm django coverage report
-}
-
-unittest() {
-  docker-compose -f "$c1".yml run --rm django python manage.py test
 }
 
 check_all() {

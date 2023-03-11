@@ -95,7 +95,7 @@ class TestsMixin(TestCase):
         self.password_change_url = reverse("rest_password_change")
         self.register_url = reverse("register")
         self.password_reset_url = reverse("password_reset")
-        self.user_url = reverse("user-detail")
+        self.user_url = reverse("detail")
         self.verify_email_url = reverse("verify_email")
         self.resend_email_url = reverse("resend_email")
 

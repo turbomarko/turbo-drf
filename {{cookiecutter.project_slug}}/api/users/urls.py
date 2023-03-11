@@ -14,6 +14,8 @@ from .views import (
     VerifyEmailView,
 )
 
+app_name = "users"
+
 # Authentication urls
 urlpatterns = [
     # URLs that do not require a session or valid token
@@ -26,7 +28,7 @@ urlpatterns = [
     path("login/", LoginView.as_view(), name="login"),
     # URLs that require a user to be logged in with a valid token.
     path("token/logout/", LogoutView.as_view(), name="logout"),
-    path("user/", UserDetailsView.as_view(), name="user-detail"),
+    path("user/", UserDetailsView.as_view(), name="detail"),
     path("password/change/", PasswordChangeView.as_view(), name="rest_password_change"),
     path("token/verify/", TokenVerifyView.as_view(), name="token_verify"),
     path("token/refresh/", get_refresh_view().as_view(), name="token_refresh"),

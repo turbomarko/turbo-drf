@@ -20,7 +20,7 @@ class UserManager(BaseUserManager):
     def create_superuser(self, email, password):
         """Create and saves a superuser"""
         user = self.create_user(email.lower(), password)
-        user.is_admin = True
+        user.is_staff = True
         user.is_superuser = True
         user.save(using=self._db)
         return user
@@ -34,8 +34,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(
         default=True, help_text="Only active users can authenticate."
     )
-    is_admin = models.BooleanField(
-        default=False, help_text="Users with admin rights can access the admin page."
+    is_staff = models.BooleanField(
+        default=False, help_text="Users with staff rights can access the admin page."
     )
 
     # Automatic fields
@@ -48,9 +48,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     # Read-only properties
     @property
-    def is_staff(self):
-        # All admins are staff
-        return self.is_admin
+    def is_admin(self):
+        # All staffs are admin
+        return self.is_staff
 
     # Dunder methods
     def __str__(self):

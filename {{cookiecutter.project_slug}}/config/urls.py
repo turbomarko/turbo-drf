@@ -1,13 +1,13 @@
-from baton.autodiscover import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.urls import include, path, re_path
 from django.views.generic import TemplateView
 
 urlpatterns = [
     # Django Admin, use {% raw %}{% url 'admin:index' %}{% endraw %}
+    path('grappelli/', include('grappelli.urls')),
     path(settings.ADMIN_URL, admin.site.urls),
-    path("baton/", include("baton.urls")),
     # API base url
     path("", include("config.api_router")),
     # Django allauth dummy endpoints to avoid exception
@@ -30,9 +30,6 @@ urlpatterns = [
 
 handler500 = "api.utils.error_views.server_error"
 handler400 = "api.utils.error_views.bad_request"
-
-admin.site.site_header = "{{ cookiecutter.project_name }} Administration"
-admin.site.site_title = "{{ cookiecutter.project_name }} Administration"
 
 if settings.DEBUG:
     if "debug_toolbar" in settings.INSTALLED_APPS:

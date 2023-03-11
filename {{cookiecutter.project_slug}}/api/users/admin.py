@@ -22,7 +22,7 @@ class UserAdmin(BaseUserAdmin):
             {
                 "fields": (
                     "is_active",
-                    "is_admin",
+                    "is_staff",
                     "is_superuser",
                     "groups",
                     "user_permissions",
@@ -40,7 +40,7 @@ class UserAdmin(BaseUserAdmin):
         ),
     )
 
-    list_display = ("email", "date_joined", "is_admin")
-    list_filter = ("is_admin",)
+    list_display = ("email", "date_joined", "is_staff")
+    list_filter = ("is_staff",)
     search_fields = ("email",)
     ordering = ("date_joined",)

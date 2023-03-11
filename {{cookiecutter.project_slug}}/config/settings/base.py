@@ -59,7 +59,7 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_admin_env_notice",
-    "baton",
+    "grappelli",
     "django.contrib.admin",
     "django.forms",
 ]
@@ -81,12 +81,8 @@ LOCAL_APPS = [
     "api.users",
 ]
 
-FINAL_APPS = [
-    "baton.autodiscover",
-]
-
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + FINAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # MIGRATIONS
 # ------------------------------------------------------------------------------
@@ -312,6 +308,7 @@ REST_FRAMEWORK = {
         "djangorestframework_camel_case.parser.CamelCaseMultiPartParser",
         "djangorestframework_camel_case.parser.CamelCaseJSONParser",
     ),
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
@@ -359,3 +356,6 @@ JWT_AUTH_COOKIE = "access-token"
 JWT_AUTH_REFRESH_COOKIE = "refresh-token"
 
 ENVIRONMENT_FLOAT = True
+
+GRAPPELLI_ADMIN_TITLE = "{{ cookiecutter.project_name }} admin"
+GRAPPELLI_SWITCH_USER = True

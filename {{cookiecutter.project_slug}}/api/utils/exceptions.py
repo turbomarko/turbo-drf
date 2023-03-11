@@ -1,5 +1,5 @@
 from rest_framework.exceptions import APIException
-from rest_framework.status import HTTP_400_BAD_REQUEST
+from rest_framework.status import HTTP_400_BAD_REQUEST, is_success
 from rest_framework.views import exception_handler
 
 
@@ -11,9 +11,9 @@ def custom_exception_handler(exc, context):
     if response is not None:
         # Return a dictionary of errors if there are serializer errors
         if response.status_code == HTTP_400_BAD_REQUEST:
-            response.data = {"errors": response.data}
+            response.data = {"field_errors": response.data}
         # Rename "detail" key to "error" for consistency
-        if "detail" in response.data:
+        if not is_success(response.status_code) and "detail" in response.data:
             response.data["error"] = response.data.pop("detail")
 
     return response
