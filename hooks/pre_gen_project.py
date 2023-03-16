@@ -32,16 +32,6 @@ assert (
 ), "Don't include backslashes in author name."
 
 if (
-    "{{ cookiecutter.use_whitenoise }}".lower() == "n"
-    and "{{ cookiecutter.cloud_provider }}" == "None"
-):
-    print(
-        "You should either use Whitenoise or select a "
-        "Cloud Provider to serve static files"
-    )
-    sys.exit(1)
-
-if (
     "{{ cookiecutter.mail_service }}" == "Amazon SES"
     and "{{ cookiecutter.cloud_provider }}" != "AWS"
 ):

@@ -59,7 +59,7 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_admin_env_notice",
-    "grappelli",
+    "baton",
     "django.contrib.admin",
     "django.forms",
 ]
@@ -81,8 +81,10 @@ LOCAL_APPS = [
     "api.users",
 ]
 
+FINAL_APPS = ["baton.autodiscover"]
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + FINAL_APPS
 
 # MIGRATIONS
 # ------------------------------------------------------------------------------
@@ -125,10 +127,9 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "corsheaders.middleware.CorsMiddleware",
-{%- if cookiecutter.use_whitenoise == 'y' %}
     "whitenoise.middleware.WhiteNoiseMiddleware",
-{%- endif %}
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -359,3 +360,24 @@ ENVIRONMENT_FLOAT = True
 
 GRAPPELLI_ADMIN_TITLE = "{{ cookiecutter.project_name }} admin"
 GRAPPELLI_SWITCH_USER = True
+
+BATON = {
+    "SITE_HEADER": "{{ cookiecutter.project_name }} admin",
+    "SITE_TITLE": "{{ cookiecutter.project_name }} admin",
+    "INDEX_TITLE": "Site administration",
+    "SUPPORT_HREF": "{{ cookiecutter.domain_name }}",
+    "COPYRIGHT": 'copyright © 2023 <a href="{{ cookiecutter.domain_name }}">{{ cookiecutter.domain_name }}</a>',
+    "POWERED_BY": '<a href="{{ cookiecutter.domain_name }}">{{ cookiecutter.domain_name }}</a>',
+    "CONFIRM_UNSAVED_CHANGES": True,
+    "SHOW_MULTIPART_UPLOADING": True,
+    "ENABLE_IMAGES_PREVIEW": True,
+    "CHANGELIST_FILTERS_IN_MODAL": False,
+    "CHANGELIST_FILTERS_ALWAYS_OPEN": True,
+    "CHANGELIST_FILTERS_FORM": True,
+    "COLLAPSABLE_USER_AREA": False,
+    "MENU_ALWAYS_COLLAPSED": False,
+    "MENU_TITLE": "Menu",
+    "MESSAGES_TOASTS": False,
+    "GRAVATAR_DEFAULT_IMG": "retro",
+    "LOGIN_SPLASH": "/static/core/img/login-splash.png",
+}

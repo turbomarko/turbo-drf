@@ -27,13 +27,13 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 -   Run tests with unittest or pytest
 -   Customizable PostgreSQL version
 -   Default integration with [pre-commit](https://github.com/pre-commit/pre-commit) for identifying simple issues before submission to code review
+-   Serve static files from [Whitenoise](https://whitenoise.readthedocs.io/)
 
 
 ## Optional Integrations
 
 *These features can be enabled during initial project setup.*
 
--   Serve static files from Amazon S3, Google Cloud Storage or [Whitenoise](https://whitenoise.readthedocs.io/)
 -   Configuration for [Celery](http://www.celeryproject.org/) and [Flower](https://github.com/mher/flower)
 -   Integration with [MailHog](https://github.com/mailhog/MailHog) for local email testing
 -   Integration with [Sentry](https://sentry.io/welcome/) for error logging
@@ -72,7 +72,6 @@ Answer the prompts with your own desired [options](http://turbo-drf.readthedocs.
     domain_name [example.com]: myreddit.com
     version [0.1.0]: 0.0.1
     timezone [UTC]: America/Los_Angeles
-    use_whitenoise [n]: n
     use_celery [n]: y
     use_mailhog [n]: n
     use_sentry [n]: y

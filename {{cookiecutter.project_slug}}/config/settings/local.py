@@ -38,13 +38,10 @@ EMAIL_BACKEND = env(
 )
 {%- endif %}
 
-{%- if cookiecutter.use_whitenoise == 'y' %}
-
 # WhiteNoise
 # ------------------------------------------------------------------------------
 # http://whitenoise.evans.io/en/latest/django.html#using-whitenoise-in-development
 INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + INSTALLED_APPS  # noqa F405
-{% endif %}
 
 # django-debug-toolbar
 # ------------------------------------------------------------------------------

@@ -86,9 +86,6 @@ use_mailhog:
 use_sentry:
     Indicates whether the project should be configured to use Sentry_.
 
-use_whitenoise:
-    Indicates whether the project should be configured to use WhiteNoise_.
-
 ci_tool:
     Select a CI tool for running tests. The choices are:
 
@@ -136,8 +133,6 @@ debug:
 .. _MailHog: https://github.com/mailhog/MailHog
 
 .. _Sentry: https://github.com/getsentry/sentry
-
-.. _WhiteNoise: https://github.com/evansd/whitenoise
 
 .. _GitLab CI: https://docs.gitlab.com/ee/ci/
 

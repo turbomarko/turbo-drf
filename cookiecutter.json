@@ -41,7 +41,6 @@
   "use_celery": "n",
   "use_mailhog": "n",
   "use_sentry": "n",
-  "use_whitenoise": "n",
   "ci_tool": [
     "None",
     "Gitlab",

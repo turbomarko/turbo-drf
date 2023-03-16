@@ -46,19 +46,6 @@ SUPPORTED_COMBINATIONS = [
     {"postgresql_version": "12"},
     {"postgresql_version": "11"},
     {"postgresql_version": "10"},
-    {"cloud_provider": "AWS", "use_whitenoise": "y"},
-    {"cloud_provider": "AWS", "use_whitenoise": "n"},
-    {"cloud_provider": "GCP", "use_whitenoise": "y"},
-    {"cloud_provider": "GCP", "use_whitenoise": "n"},
-    {"cloud_provider": "None", "use_whitenoise": "y", "mail_service": "Mailgun"},
-    {"cloud_provider": "None", "use_whitenoise": "y", "mail_service": "Mailjet"},
-    {"cloud_provider": "None", "use_whitenoise": "y", "mail_service": "Mandrill"},
-    {"cloud_provider": "None", "use_whitenoise": "y", "mail_service": "Postmark"},
-    {"cloud_provider": "None", "use_whitenoise": "y", "mail_service": "Sendgrid"},
-    {"cloud_provider": "None", "use_whitenoise": "y", "mail_service": "SendinBlue"},
-    {"cloud_provider": "None", "use_whitenoise": "y", "mail_service": "SparkPost"},
-    {"cloud_provider": "None", "use_whitenoise": "y", "mail_service": "Other SMTP"},
-    # Note: cloud_provider=None AND use_whitenoise=n is not supported
     {"cloud_provider": "AWS", "mail_service": "Mailgun"},
     {"cloud_provider": "AWS", "mail_service": "Amazon SES"},
     {"cloud_provider": "AWS", "mail_service": "Mailjet"},
@@ -85,8 +72,6 @@ SUPPORTED_COMBINATIONS = [
     {"use_mailhog": "n"},
     {"use_sentry": "y"},
     {"use_sentry": "n"},
-    {"use_whitenoise": "y"},
-    {"use_whitenoise": "n"},
     {"ci_tool": "None"},
     {"ci_tool": "Gitlab"},
     {"ci_tool": "Github"},
@@ -97,7 +82,6 @@ SUPPORTED_COMBINATIONS = [
 ]
 
 UNSUPPORTED_COMBINATIONS = [
-    {"cloud_provider": "None", "use_whitenoise": "n"},
     {"cloud_provider": "GCP", "mail_service": "Amazon SES"},
     {"cloud_provider": "None", "mail_service": "Amazon SES"},
 ]
