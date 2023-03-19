@@ -158,3 +158,8 @@ Move it to ``/etc/supervisor/conf.d/{{cookiecutter.project_slug}}.conf`` and run
 For status check, run::
 
     supervisorctl status
+
+Media files without cloud provider
+----------------------------------
+
+If you chose no cloud provider and Docker, the media files will be served by an nginx service, from a ``production_django_media`` volume. Make sure to keep this around to avoid losing any media files.

@@ -20,6 +20,10 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: "daily"
+    # Ignore minor version updates (3.10 -> 3.11) but update patch versions
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
 
   # Enable version updates for Docker
   - package-ecosystem: "docker"
@@ -28,6 +32,10 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: "daily"
+    # Ignore minor version updates (3.10 -> 3.11) but update patch versions
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
 
   # Enable version updates for Docker
   - package-ecosystem: "docker"
@@ -52,6 +60,10 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: "daily"
+    # Ignore minor version updates (3.10 -> 3.11) but update patch versions
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
 
   # Enable version updates for Docker
   - package-ecosystem: "docker"

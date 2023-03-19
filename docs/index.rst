@@ -23,6 +23,7 @@ Contents
    postgres-backups
    websocket
    troubleshooting
+   contributing
 
 Indices and tables
 ------------------

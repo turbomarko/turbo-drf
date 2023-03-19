@@ -157,7 +157,7 @@ def test_black_passes(cookies, context_override):
         pytest.fail(e.stdout.decode())
 
 
-def test_gitlab_invokes_flake8_and_pytest(cookies, context):
+def test_gitlab_invokes_precommit_and_pytest(cookies, context):
     context.update({"ci_tool": "Gitlab"})
     result = cookies.bake(extra_context=context)
 
@@ -169,7 +169,9 @@ def test_gitlab_invokes_flake8_and_pytest(cookies, context):
     with open(f"{result.project_path}/.gitlab-ci.yml") as gitlab_yml:
         try:
             gitlab_config = yaml.safe_load(gitlab_yml)
-            assert gitlab_config["flake8"]["script"] == ["flake8"]
+            assert gitlab_config["precommit"]["script"] == [
+                "pre-commit run --show-diff-on-failure --color=always --all-files"
+            ]
             assert gitlab_config["pytest"]["script"] == [
                 "docker-compose -f local.yml run django pytest"
             ]
@@ -226,3 +228,22 @@ def test_error_if_incompatible(cookies, context, invalid_context):
 
     assert result.exit_code != 0
     assert isinstance(result.exception, FailedHookException)
+
+def test_trim_domain_email(cookies, context):
+    """Check that leading and trailing spaces are trimmed in domain and email."""
+    context.update(
+        {
+            "use_docker": "y",
+            "domain_name": "   example.com   ",
+            "email": "  me@example.com  ",
+        }
+    )
+    result = cookies.bake(extra_context=context)
+
+    assert result.exit_code == 0
+
+    prod_django_env = result.project_path / ".envs" / ".production" / ".django"
+    assert "DJANGO_ALLOWED_HOSTS=.example.com" in prod_django_env.read_text()
+
+    base_settings = result.project_path / "config" / "settings" / "base.py"
+    assert '"me@example.com"' in base_settings.read_text()

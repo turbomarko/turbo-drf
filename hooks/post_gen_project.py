@@ -260,13 +260,6 @@ def main():
     if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
         append_to_gitignore_file("!.envs/.local/")
 
-    if "{{ cookiecutter.cloud_provider}}" == "None":
-        print(
-            WARNING + "You chose not to use a cloud provider, "
-            "media files won't be served in production." + TERMINATOR
-        )
-        remove_storages_module()
-
     if "{{ cookiecutter.use_celery }}".lower() == "n":
         remove_celery_files()
         remove_celery_compose_dirs()

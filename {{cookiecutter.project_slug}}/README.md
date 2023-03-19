@@ -51,6 +51,20 @@ To run the tests, check your test coverage, and generate an HTML coverage report
 
 This app comes with Celery. The docker-compose command will automatically run a celery worker for you.
 
+To run [periodic tasks](https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html), you'll need to start the celery beat scheduler service. You can start it as a standalone process:
+
+``` bash
+cd {{cookiecutter.project_slug}}
+celery -A config.celery_app beat
+```
+
+or you can embed the beat service inside a worker with the `-B` option (not recommended for production use):
+
+``` bash
+cd {{cookiecutter.project_slug}}
+celery -A config.celery_app worker -B -l info
+```
+
 {%- endif %}
 {%- if cookiecutter.use_mailhog == "y" %}
 

@@ -2,6 +2,7 @@
 
 [![Build Status](https://img.shields.io/actions/github/workflow/status/turbomarko/turbo-drf/ci.yml?branch=master)](https://github.com/turbomarko/turbo-drf/actions/workflows/ci.yml?query=branch%3Amaster)
 [![Documentation Status](https://readthedocs.org/projects/turbo-drf/badge/?version=latest)](https://turbo-drf.readthedocs.io/en/latest/?badge=latest)
+[[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/turbomarko/turbo-drf/master.svg)](https://results.pre-commit.ci/latest/github/turbomarko/turbo-drf/master)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo DRF is a framework for jumpstarting production-ready Django Rest Framework projects quickly.
@@ -22,7 +23,7 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 -   Comes with custom user model ready to go
 -   Optional basic ASGI setup for Websockets
 -   Send emails via [Anymail](https://github.com/anymail/django-anymail) (using [Mailgun](http://www.mailgun.com/) by default or Amazon SES if AWS is selected cloud provider, but switchable)
--   Media storage using Amazon S3 or Google Cloud Storage
+-   Media storage using Amazon S3, Google Cloud Storage or nginx
 -   Docker support using [docker-compose](https://github.com/docker/compose) for development and production (using [Traefik](https://traefik.io/) with [LetsEncrypt](https://letsencrypt.org/) support)
 -   Run tests with unittest or pytest
 -   Customizable PostgreSQL version
@@ -123,3 +124,12 @@ If you think you found a bug or want to request a feature, please open an [issue
 ## "Your Stuff"
 
 Scattered throughout the Python and HTML of this project are places marked with "your stuff". This is where third-party libraries are to be integrated with your project.
+
+## Useful articles
+
+-   [Cookiecutter Django With Amazon RDS](https://haseeburrehman.com/posts/cookiecutter-django-with-amazon-rds/) - Apr, 2, 2021
+-   [Complete Walkthrough: Blue/Green Deployment to AWS ECS using GitHub actions](https://github.com/Andrew-Chen-Wang/cookiecutter-django-ecs-github) - June 10, 2020
+-   [Using cookiecutter-django with Google Cloud Storage](https://ahhda.github.io/cloud/gce/django/2019/03/12/using-django-cookiecutter-cloud-storage.html) - Mar. 12, 2019
+-   [cookiecutter-django with Nginx, Route 53 and ELB](https://msaizar.com/blog/cookiecutter-django-nginx-route-53-and-elb/) - Feb. 12, 2018
+-   [Introduction to Cookiecutter-Django](http://krzysztofzuraw.com/blog/2016/django-cookiecutter.html) - Feb. 19, 2016
+-   [Django and GitLab - Running Continuous Integration and tests with your FREE account](http://dezoito.github.io/2016/05/11/django-gitlab-continuous-integration-phantomjs.html) - May. 11, 2016
