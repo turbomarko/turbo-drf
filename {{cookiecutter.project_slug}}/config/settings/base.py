@@ -68,10 +68,12 @@ THIRD_PARTY_APPS = [
     "django_celery_beat",
 {%- endif %}
     "rest_framework",
-    "rest_framework.authtoken",
-    "corsheaders",
+    "dj_rest_auth",
     "allauth",
     "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth.registration",
+    "corsheaders",
     "rest_framework_simplejwt.token_blacklist",
     "drf_spectacular",
     "drf_spectacular_sidecar",
@@ -291,7 +293,7 @@ CELERY_TASK_SEND_SENT_EVENT = True
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "api.users.jwt.JWTCookieAuthentication",
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "EXCEPTION_HANDLER": "api.utils.exceptions.custom_exception_handler",
@@ -309,6 +311,9 @@ REST_FRAMEWORK = {
         "djangorestframework_camel_case.parser.CamelCaseMultiPartParser",
         "djangorestframework_camel_case.parser.CamelCaseJSONParser",
     ),
+    "JSON_UNDERSCOREIZE": {
+        "no_underscore_before_number": True,
+    },
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
 
@@ -316,7 +321,6 @@ REST_FRAMEWORK = {
 CORS_URLS_REGEX = r"^/.*$"
 
 # django-allauth - https://django-allauth.readthedocs.io/en/latest/advanced.html
-ACCOUNT_ADAPTER = "api.users.adapter.CustomAccountAdapter"
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
@@ -353,13 +357,22 @@ SPECTACULAR_SETTINGS = {
 # ------------------------------------------------------------------------------
 FRONTEND_URL = "http://localhost:3000/"
 
-JWT_AUTH_COOKIE = "access-token"
-JWT_AUTH_REFRESH_COOKIE = "refresh-token"
+# Authentication
+REST_AUTH = {
+    "OLD_PASSWORD_FIELD_ENABLED": True,
+    "SESSION_LOGIN": False,
+    "TOKEN_MODEL": None,
+    "USE_JWT": True,
+    "JWT_AUTH_COOKIE": "access-token",
+    "JWT_AUTH_REFRESH_COOKIE": "refresh-token",
+    "JWT_AUTH_REFRESH_COOKIE_PATH": "/",
+    "LOGIN_SERIALIZER": "api.users.serializers.LoginSerializer",
+    "REGISTER_SERIALIZER": "api.users.serializers.RegisterSerializer",
+    "USER_DETAILS_SERIALIZER": "api.users.serializers.UserSerializer",
+}
 
+# Admin
 ENVIRONMENT_FLOAT = True
-
-GRAPPELLI_ADMIN_TITLE = "{{ cookiecutter.project_name }} admin"
-GRAPPELLI_SWITCH_USER = True
 
 BATON = {
     "SITE_HEADER": "{{ cookiecutter.project_name }} admin",
