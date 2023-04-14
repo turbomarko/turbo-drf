@@ -13,7 +13,7 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 
 ## Features
 
--   For Django 4.0
+-   For Django 4.1
 -   Works with Python 3.10
 -   Renders Django Rest Framework projects with 100% starting test coverage
 -   [12-Factor](http://12factor.net/) based settings via [django-environ](https://github.com/joke2k/django-environ)

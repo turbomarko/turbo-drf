@@ -2,11 +2,12 @@
 import logging
 
 import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-from sentry_sdk.integrations.logging import LoggingIntegration
+
 {%- if cookiecutter.use_celery == 'y' %}
 from sentry_sdk.integrations.celery import CeleryIntegration
-{% endif %}
+{%- endif %}
+from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import LoggingIntegration
 from sentry_sdk.integrations.redis import RedisIntegration
 
 {% endif -%}
@@ -22,7 +23,7 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["{{ cookiecutter.domai
 
 # DATABASES
 # ------------------------------------------------------------------------------
-DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # noqa F405
+DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # noqa: F405
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -68,7 +69,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 # STORAGES
 # ------------------------------------------------------------------------------
 # https://django-storages.readthedocs.io/en/latest/#installation
-INSTALLED_APPS += ["storages"]  # noqa F405
+INSTALLED_APPS += ["storages"]  # noqa: F405
 {%- endif -%}
 {% if cookiecutter.cloud_provider == 'AWS' %}
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
@@ -117,7 +118,7 @@ MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
-SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)  # noqa F405
+SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
 EMAIL_SUBJECT_PREFIX = env(
     "DJANGO_EMAIL_SUBJECT_PREFIX",
@@ -132,7 +133,7 @@ ADMIN_URL = env("DJANGO_ADMIN_URL")
 # Anymail
 # ------------------------------------------------------------------------------
 # https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
-INSTALLED_APPS += ["anymail"]  # noqa F405
+INSTALLED_APPS += ["anymail"]  # noqa: F405
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 # https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
 {%- if cookiecutter.mail_service == 'Mailgun' %}
@@ -312,7 +313,7 @@ sentry_sdk.init(
 # django-rest-framework
 # -------------------------------------------------------------------------------
 # Tools that generate code samples can use SERVERS to point to the correct domain
-SPECTACULAR_SETTINGS["SERVERS"] = [  # noqa F405
+SPECTACULAR_SETTINGS["SERVERS"] = [  # noqa: F405
     {"url": "https://{{ cookiecutter.domain_name }}", "description": "Production server"}
 ]
 
@@ -320,10 +321,10 @@ SPECTACULAR_SETTINGS["SERVERS"] = [  # noqa F405
 # ------------------------------------------------------------------------------
 FRONTEND_URL = "https://{{cookiecutter.domain_name}}/"
 
-REST_FRAMEWORK["DEFAULT_THROTTLE_CLASSES"] = [  # noqa F405
+REST_FRAMEWORK["DEFAULT_THROTTLE_CLASSES"] = [  # noqa: F405
     "rest_framework.throttling.ScopedRateThrottle",
 ]
-REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"] = {  # noqa F405
+REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"] = {  # noqa: F405
     "auth": "5/minute",
 }
 

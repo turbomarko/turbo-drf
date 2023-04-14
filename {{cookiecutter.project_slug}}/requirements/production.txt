@@ -4,7 +4,7 @@
 
 gunicorn==20.1.0  # https://github.com/benoitc/gunicorn
 {%- if cookiecutter.use_sentry == "y" %}
-sentry-sdk==1.17.0  # https://github.com/getsentry/sentry-python
+sentry-sdk==1.19.0  # https://github.com/getsentry/sentry-python
 {%- endif %}
 
 # Django
