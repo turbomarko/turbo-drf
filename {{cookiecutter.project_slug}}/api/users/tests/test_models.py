@@ -1,6 +1,6 @@
 import pytest
 
-from ..models import UserManager
+from ..managers import UserManager
 
 
 def test_missing_email_error_msg():
