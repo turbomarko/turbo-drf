@@ -40,10 +40,10 @@ class TestUserAdminCreationForm:
         assert len(form.errors) == 1
         {%- if cookiecutter.username_type == "email" %}
         assert "email" in form.errors
-        assert form.errors["email"][0] == _("This email has already been taken.")
+        assert form.errors["email"][0] == "This email has already been taken."
         {%- else %}
         assert "username" in form.errors
-        assert form.errors["username"][0] == _("This username has already been taken.")
+        assert form.errors["username"][0] == "This username has already been taken."
         {%- endif %}
 
     def test_password_validation_error_msg(self):
