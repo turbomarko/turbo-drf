@@ -1,7 +1,5 @@
-from django import forms
 from django.contrib.auth import forms as admin_forms
 from django.contrib.auth import get_user_model
-from django.core.exceptions import ValidationError
 {%- if cookiecutter.username_type == "email" %}
 from django.forms import EmailField
 {%- endif %}
@@ -9,7 +7,7 @@ from django.forms import EmailField
 User = get_user_model()
 
 
-class UserCreationForm(forms.ModelForm):
+class UserCreationForm(admin_forms.ModelForm):
     """
     Form for User Creation in the Admin Area.
     To change user signup, see UserSignupForm and UserSocialSignupForm.
@@ -30,7 +28,7 @@ class UserCreationForm(forms.ModelForm):
         {%- endif %}
 
 
-class UserChangeForm(forms.ModelForm):
+class UserChangeForm(admin_forms.ModelForm):
     class Meta(admin_forms.UserChangeForm.Meta):
         model = User
         {%- if cookiecutter.username_type == "email" %}
