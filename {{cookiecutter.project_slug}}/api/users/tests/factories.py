@@ -7,6 +7,9 @@ from factory.django import DjangoModelFactory
 
 
 class UserFactory(DjangoModelFactory):
+    {%- if cookiecutter.username_type == "username" %}
+    username = Faker("user_name")
+    {%- endif %}
     email = Faker("email")
 
     @post_generation
@@ -27,4 +30,4 @@ class UserFactory(DjangoModelFactory):
 
     class Meta:
         model = get_user_model()
-        django_get_or_create = ["email"]
+        django_get_or_create = ["{{cookiecutter.username_type}}"]

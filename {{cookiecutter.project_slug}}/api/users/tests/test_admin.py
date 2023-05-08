@@ -36,13 +36,21 @@ class TestUserAdmin:
         response = admin_client.post(
             url,
             data={
+                {%- if cookiecutter.username_type == "email" %}
                 "email": user.email,
+                {%- else %}
+                "username": user.username,
+                {%- endif %}
                 "password1": user.password,
                 "password2": user.password,
             },
         )
         assert response.status_code == 302
+        {%- if cookiecutter.username_type == "email" %}
         assert User.objects.filter(email=user.email).exists()
+        {%- else %}
+        assert User.objects.filter(username=user.username).exists()
+        {%- endif %}
 
     def test_view_user(self, admin_client):
         """

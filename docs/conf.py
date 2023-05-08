@@ -239,8 +239,7 @@ texinfo_documents = [
         "Turbo DRF documentation",
         "Mark Hoffman",
         "Turbo DRF",
-        "A Cookiecutter template for creating production-ready "
-        "Django REST framework projects quickly.",
+        "A Cookiecutter template for creating production-ready Django REST framework projects quickly.",
         "Miscellaneous",
     )
 ]

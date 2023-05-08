@@ -5,7 +5,7 @@ except ImportError:
     from distutils.core import setup
 
 # We use calendar versioning
-version = "2023.04.14"
+version = "2023.05.08"
 
 with open("README.rst") as readme_file:
     long_description = readme_file.read()
@@ -13,10 +13,7 @@ with open("README.rst") as readme_file:
 setup(
     name="turbo-drf",
     version=version,
-    description=(
-        "A Cookiecutter template for creating production-ready "
-        "Django Rest Framework projects quickly."
-    ),
+    description=("A Cookiecutter template for creating production-ready Django Rest Framework projects quickly."),
     long_description=long_description,
     author="Mark Hoffman",
     author_email="7urbo.marko@gmail.com",
@@ -33,7 +30,7 @@ setup(
         "License :: OSI Approved :: BSD License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: Implementation :: CPython",
         "Topic :: Software Development",
     ],

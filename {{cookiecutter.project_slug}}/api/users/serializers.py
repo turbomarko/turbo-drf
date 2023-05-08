@@ -11,7 +11,11 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
+        {%- if cookiecutter.username_type == "email" %}
         fields = ["id", "email", "is_staff"]
+        {%- else %}
+        fields = ["id", "username", "is_staff"]
+        {%- endif %}
         read_only_fields = ("is_staff",)
 
     def validate_email(self, value):
@@ -20,8 +24,16 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(BaseLoginSerializer):
+    {%- if cookiecutter.username_type == "email" %}
     username = None
+    {%- else %}
+    email = None
+    {%- endif %}
 
 
 class RegisterSerializer(BaseRegisterSerializer):
+    {%- if cookiecutter.username_type == "email" %}
     username = None
+    {%- else %}
+    email = None
+    {%- endif %}

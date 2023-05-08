@@ -1,61 +1,42 @@
-from django.contrib.auth.models import (
-    AbstractBaseUser,
-    BaseUserManager,
-    PermissionsMixin,
-)
-from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.db.models import CharField{% if cookiecutter.username_type == "email" %}, EmailField{% endif %}
+from django.urls import reverse
+{%- if cookiecutter.username_type == "email" %}
+
+from .managers import UserManager
+{%- endif %}
 
 
-class UserManager(BaseUserManager):
-    def create_user(self, email, password=None, **extra_fields):
-        """Create and save new user"""
-        if not email:
-            raise ValueError("Users must have an email address")
+class User(AbstractUser):
+    """
+    Default custom user model for {{cookiecutter.project_name}}.
+    If adding fields that need to be filled at user signup,
+    check forms.SignupForm and forms.SocialSignupForms accordingly.
+    """
 
-        user = self.model(email=email.lower(), **extra_fields)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
+    # First and last name do not cover name patterns around the globe
+    name = CharField("Name of User", blank=True, max_length=255)
+    first_name = None  # type: ignore
+    last_name = None  # type: ignore
+    {%- if cookiecutter.username_type == "email" %}
+    email = EmailField("email address", unique=True)
+    username = None  # type: ignore
 
-    def create_superuser(self, email, password):
-        """Create and saves a superuser"""
-        user = self.create_user(email.lower(), password)
-        user.is_staff = True
-        user.is_superuser = True
-        user.save(using=self._db)
-        return user
-
-
-class User(AbstractBaseUser, PermissionsMixin):
-    """Custom User model that supports using email for login instead of username"""
-
-    # Modifiable fields
-    email = models.EmailField(max_length=255, unique=True)
-    is_active = models.BooleanField(
-        default=True, help_text="Only active users can authenticate."
-    )
-    is_staff = models.BooleanField(
-        default=False, help_text="Users with staff rights can access the admin page."
-    )
-
-    # Automatic fields
-    date_joined = models.DateTimeField(auto_now_add=True)
-
-    # Data cleanup
-    def clean(self):
-        super().clean()
-        self.email = self.email.lower()
-
-    # Read-only properties
-    @property
-    def is_admin(self):
-        # All staffs are admin
-        return self.is_staff
-
-    # Dunder methods
-    def __str__(self):
-        return self.email
-
-    # Extra variables
     USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+
     objects = UserManager()
+    {%- endif %}
+
+    def get_absolute_url(self) -> str:
+        """Get URL for user's detail view.
+
+        Returns:
+            str: URL for user detail.
+
+        """
+        {%- if cookiecutter.username_type == "email" %}
+        return reverse("users:detail", kwargs={"pk": self.id})
+        {%- else %}
+        return reverse("users:detail", kwargs={"username": self.username})
+        {%- endif %}

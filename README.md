@@ -13,37 +13,37 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 
 ## Features
 
--   For Django 4.1
--   Works with Python 3.10
--   Renders Django Rest Framework projects with 100% starting test coverage
--   [12-Factor](http://12factor.net/) based settings via [django-environ](https://github.com/joke2k/django-environ)
--   Secure by default. We believe in SSL.
--   Optimized development and production settings
--   Registration via [django-allauth](https://github.com/pennersr/django-allauth)
--   Comes with custom user model ready to go
--   Optional basic ASGI setup for Websockets
--   Send emails via [Anymail](https://github.com/anymail/django-anymail) (using [Mailgun](http://www.mailgun.com/) by default or Amazon SES if AWS is selected cloud provider, but switchable)
--   Media storage using Amazon S3, Google Cloud Storage or nginx
--   Docker support using [docker-compose](https://github.com/docker/compose) for development and production (using [Traefik](https://traefik.io/) with [LetsEncrypt](https://letsencrypt.org/) support)
--   Run tests with unittest or pytest
--   Customizable PostgreSQL version
--   Default integration with [pre-commit](https://github.com/pre-commit/pre-commit) for identifying simple issues before submission to code review
--   Serve static files from [Whitenoise](https://whitenoise.readthedocs.io/)
+- For Django 4.1
+- Works with Python 3.10
+- Renders Django Rest Framework projects with 100% starting test coverage
+- [12-Factor](http://12factor.net/) based settings via [django-environ](https://github.com/joke2k/django-environ)
+- Secure by default. We believe in SSL.
+- Optimized development and production settings
+- Registration via [django-allauth](https://github.com/pennersr/django-allauth)
+- Comes with custom user model ready to go
+- Optional basic ASGI setup for Websockets
+- Send emails via [Anymail](https://github.com/anymail/django-anymail) (using [Mailgun](http://www.mailgun.com/) by default or Amazon SES if AWS is selected cloud provider, but switchable)
+- Media storage using Amazon S3, Google Cloud Storage or nginx
+- Docker support using [docker-compose](https://github.com/docker/compose) for development and production (using [Traefik](https://traefik.io/) with [LetsEncrypt](https://letsencrypt.org/) support)
+- Run tests with unittest or pytest
+- Customizable PostgreSQL version
+- Default integration with [pre-commit](https://github.com/pre-commit/pre-commit) for identifying simple issues before submission to code review
+- Serve static files from [Whitenoise](https://whitenoise.readthedocs.io/)
 
 
 ## Optional Integrations
 
 *These features can be enabled during initial project setup.*
 
--   Configuration for [Celery](http://www.celeryproject.org/) and [Flower](https://github.com/mher/flower)
--   Integration with [MailHog](https://github.com/mailhog/MailHog) for local email testing
--   Integration with [Sentry](https://sentry.io/welcome/) for error logging
+- Configuration for [Celery](http://www.celeryproject.org/) and [Flower](https://github.com/mher/flower)
+- Integration with [MailHog](https://github.com/mailhog/MailHog) for local email testing
+- Integration with [Sentry](https://sentry.io/welcome/) for error logging
 
 ## Constraints
 
--   Only maintained 3rd party libraries are used.
--   Uses PostgreSQL everywhere (10.19 - 14.1)
--   Environment variables for configuration (This won't work with Apache/mod_wsgi).
+- Only maintained 3rd party libraries are used.
+- Uses PostgreSQL everywhere (10.19 - 14.1)
+- Environment variables for configuration (This won't work with Apache/mod_wsgi).
 
 
 ## Usage
@@ -67,15 +67,23 @@ Answer the prompts with your own desired [options](http://turbo-drf.readthedocs.
 
     project_name [Project Name]: Reddit Clone
     project_slug [reddit_clone]: reddit
-    author_name [Mark Hoffman]: Mark Hoffman
-    email [you@example.com]: 7urbo.marko@gmail.com
     description [Behold My Awesome Project!]: A reddit clone.
+    author_name [Mark Hoffman]: Mark Hoffman
     domain_name [example.com]: myreddit.com
+    email [you@example.com]: 7urbo.marko@gmail.com
     version [0.1.0]: 0.0.1
+    Select open_source_license:
+    1 - MIT
+    2 - BSD
+    3 - GPLv3
+    4 - Apache Software License 2.0
+    5 - Not open source
+    Choose from 1, 2, 3, 4, 5 [1]: 1
+    Select username_type:
+    1 - username
+    2 - email
+    Choose from 1, 2 [1]: 1
     timezone [UTC]: America/Los_Angeles
-    use_celery [n]: y
-    use_mailhog [n]: n
-    use_sentry [n]: y
     Select postgresql_version:
     1 - 14
     2 - 13
@@ -88,13 +96,28 @@ Answer the prompts with your own desired [options](http://turbo-drf.readthedocs.
     2 - GCP
     3 - None
     Choose from 1, 2, 3 [1]: 1
-    Select open_source_license:
-    1 - MIT
-    2 - BSD
-    3 - GPLv3
-    4 - Apache Software License 2.0
-    5 - Not open source
-    Choose from 1, 2, 3, 4, 5 [1]: 1
+    Select mail_service:
+    1 - Mailgun
+    2 - Amazon SES
+    3 - Mailjet
+    4 - Mandrill
+    5 - Postmark
+    6 - Sendgrid
+    7 - SendinBlue
+    8 - SparkPost
+    9 - Other SMTP
+    Choose from 1, 2, 3, 4, 5, 6, 7, 8, 9 [1]: 1
+    use_async [n]: n
+    use_celery [n]: y
+    use_mailhog [n]: n
+    use_sentry [n]: y
+    use_whitenoise [n]: n
+    Select ci_tool:
+    1 - None
+    2 - Travis
+    3 - Gitlab
+    4 - Github
+    Choose from 1, 2, 3, 4 [1]: 4
     keep_local_envs_in_vcs [y]: y
     debug[n]: n
 
@@ -115,7 +138,7 @@ Now take a look at your repo. Don't forget to carefully look at the generated RE
 
 For local development, see the following:
 
--   [Developing locally](http://turbo-drf.readthedocs.io/en/latest/developing-locally.html)
+- [Developing locally](http://turbo-drf.readthedocs.io/en/latest/developing-locally.html)
 
 ## Community
 
@@ -127,9 +150,9 @@ Scattered throughout the Python and HTML of this project are places marked with 
 
 ## Useful articles
 
--   [Cookiecutter Django With Amazon RDS](https://haseeburrehman.com/posts/cookiecutter-django-with-amazon-rds/) - Apr, 2, 2021
--   [Complete Walkthrough: Blue/Green Deployment to AWS ECS using GitHub actions](https://github.com/Andrew-Chen-Wang/cookiecutter-django-ecs-github) - June 10, 2020
--   [Using cookiecutter-django with Google Cloud Storage](https://ahhda.github.io/cloud/gce/django/2019/03/12/using-django-cookiecutter-cloud-storage.html) - Mar. 12, 2019
--   [cookiecutter-django with Nginx, Route 53 and ELB](https://msaizar.com/blog/cookiecutter-django-nginx-route-53-and-elb/) - Feb. 12, 2018
--   [Introduction to Cookiecutter-Django](http://krzysztofzuraw.com/blog/2016/django-cookiecutter.html) - Feb. 19, 2016
--   [Django and GitLab - Running Continuous Integration and tests with your FREE account](http://dezoito.github.io/2016/05/11/django-gitlab-continuous-integration-phantomjs.html) - May. 11, 2016
+- [Cookiecutter Django With Amazon RDS](https://haseeburrehman.com/posts/cookiecutter-django-with-amazon-rds/) - Apr, 2, 2021
+- [Complete Walkthrough: Blue/Green Deployment to AWS ECS using GitHub actions](https://github.com/Andrew-Chen-Wang/cookiecutter-django-ecs-github) - June 10, 2020
+- [Using cookiecutter-django with Google Cloud Storage](https://ahhda.github.io/cloud/gce/django/2019/03/12/using-django-cookiecutter-cloud-storage.html) - Mar. 12, 2019
+- [cookiecutter-django with Nginx, Route 53 and ELB](https://msaizar.com/blog/cookiecutter-django-nginx-route-53-and-elb/) - Feb. 12, 2018
+- [Introduction to Cookiecutter-Django](http://krzysztofzuraw.com/blog/2016/django-cookiecutter.html) - Feb. 19, 2016
+- [Django and GitLab - Running Continuous Integration and tests with your FREE account](http://dezoito.github.io/2016/05/11/django-gitlab-continuous-integration-phantomjs.html) - May. 11, 2016

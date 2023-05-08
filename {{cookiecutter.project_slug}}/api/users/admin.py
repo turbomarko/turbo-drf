@@ -15,9 +15,14 @@ class UserAdmin(BaseUserAdmin):
     readonly_fields = ("date_joined", "last_login")
 
     fieldsets = (
+        {%- if cookiecutter.username_type == "email" %}
         (None, {"fields": ("email", "password")}),
-        ("Account info", {"fields": ("last_login", "date_joined")}),
-        (
+        (_("Personal info"), {"fields": ("name",)}),
+        {%- else %}
+        (None, {"fields": ("username", "password")}),
+        (_("Personal info"), {"fields": ("name", "email")}),
+        {%- endif %}
+         (
             "Permissions",
             {
                 "fields": (
@@ -40,7 +45,17 @@ class UserAdmin(BaseUserAdmin):
         ),
     )
 
-    list_display = ("email", "date_joined", "is_staff")
-    list_filter = ("is_staff",)
+    list_display = ("{{cookiecutter.username_type}}", "date_joined", "is_staff")
     search_fields = ("email",)
-    ordering = ("date_joined",)
+    {%- if cookiecutter.username_type == "email" %}
+    ordering = ["id"]
+    add_fieldsets = (
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": ("email", "password1", "password2"),
+            },
+        ),
+    )
+    {%- endif %}

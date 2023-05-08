@@ -44,13 +44,30 @@ def remove_gplv3_files():
         os.remove(file_name)
 
 
+def remove_custom_user_manager_files():
+    os.remove(
+        os.path.join(
+            "api",
+            "users",
+            "managers.py",
+        )
+    )
+    os.remove(
+        os.path.join(
+            "api",
+            "users",
+            "tests",
+            "test_managers.py",
+        )
+    )
+
+
 def remove_celery_files():
     file_names = [
         os.path.join("config", "celery_app.py"),
         os.path.join("api", "users", "tasks.py"),
         os.path.join("api", "users", "tests", "test_tasks.py"),
         os.path.join("template_app", "tasks.py-tpl"),
-        # os.path.join("template_apps", "composite", "tasks.py-tpl"),
     ]
     for file_name in file_names:
         os.remove(file_name)
@@ -73,9 +90,7 @@ def remove_dotgithub_folder():
     shutil.rmtree(".github")
 
 
-def generate_random_string(
-    length, using_digits=False, using_ascii_letters=False, using_punctuation=False
-):
+def generate_random_string(length, using_digits=False, using_ascii_letters=False, using_punctuation=False):
     """
     Example:
         opting out for 50 symbol-long, [a-z][A-Z][0-9] string
@@ -169,9 +184,7 @@ def set_postgres_password(file_path, value=None):
 
 
 def set_celery_flower_user(file_path, value):
-    celery_flower_user = set_flag(
-        file_path, "!!!SET CELERY_FLOWER_USER!!!", value=value
-    )
+    celery_flower_user = set_flag(file_path, "!!!SET CELERY_FLOWER_USER!!!", value=value)
     return celery_flower_user
 
 
@@ -203,22 +216,14 @@ def set_flags_in_envs(postgres_user, celery_flower_user, debug=False):
     set_django_admin_url(production_django_envs_path)
 
     set_postgres_user(local_postgres_envs_path, value=postgres_user)
-    set_postgres_password(
-        local_postgres_envs_path, value=DEBUG_VALUE if debug else None
-    )
+    set_postgres_password(local_postgres_envs_path, value=DEBUG_VALUE if debug else None)
     set_postgres_user(production_postgres_envs_path, value=postgres_user)
-    set_postgres_password(
-        production_postgres_envs_path, value=DEBUG_VALUE if debug else None
-    )
+    set_postgres_password(production_postgres_envs_path, value=DEBUG_VALUE if debug else None)
 
     set_celery_flower_user(local_django_envs_path, value=celery_flower_user)
-    set_celery_flower_password(
-        local_django_envs_path, value=DEBUG_VALUE if debug else None
-    )
+    set_celery_flower_password(local_django_envs_path, value=DEBUG_VALUE if debug else None)
     set_celery_flower_user(production_django_envs_path, value=celery_flower_user)
-    set_celery_flower_password(
-        production_django_envs_path, value=DEBUG_VALUE if debug else None
-    )
+    set_celery_flower_password(production_django_envs_path, value=DEBUG_VALUE if debug else None)
 
 
 def set_flags_in_settings_files():
@@ -253,6 +258,9 @@ def main():
         remove_open_source_files()
     if "{{ cookiecutter.open_source_license}}" != "GPLv3":
         remove_gplv3_files()
+
+    if "{{ cookiecutter.username_type }}" == "username":
+        remove_custom_user_manager_files()
 
     if "{{ cookiecutter.cloud_provider}}" != "AWS":
         remove_aws_dockerfile()

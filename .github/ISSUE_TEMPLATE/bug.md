@@ -12,40 +12,43 @@ labels: bug
 
 <!-- To assist you best, please include commands that you've run, options you've selected and any relevant logs -->
 
-* Host system configuration:
-    * Version of cookiecutter CLI (get it with `cookiecutter --version`):
-    * OS name and version:
+- Host system configuration:
+  - Version of cookiecutter CLI (get it with `cookiecutter --version`):
+  - OS name and version:
 
-      On Linux, run
-      ```bash
-      lsb_release -a 2> /dev/null || cat /etc/redhat-release 2> /dev/null || cat /etc/*-release 2> /dev/null || cat /etc/issue 2> /dev/null
-      ```
+    On Linux, run
 
-      On MacOs, run
-      ```bash
-      sw_vers
-      ```
+    ```bash
+    lsb_release -a 2> /dev/null || cat /etc/redhat-release 2> /dev/null || cat /etc/*-release 2> /dev/null || cat /etc/issue 2> /dev/null
+    ```
 
-      On Windows, via CMD, run
-      ```
-      systeminfo | findstr /B /C:"OS Name" /C:"OS Version"
-      ```
+    On MacOs, run
+    ```bash
+    sw_vers
+    ```
 
+    On Windows, via CMD, run
+    ```
+    systeminfo | findstr /B /C:"OS Name" /C:"OS Version"
+    ```
 
-      ```bash
-      # Insert here the OS name and version
+    ```bash
+    # Insert here the OS name and version
 
-      ```
+    ```
 
-    * Docker version, run `docker --version`:
-    * docker-compose version, run `docker-compose --version`:
-    * ...
-* Options selected and/or [replay file](https://cookiecutter.readthedocs.io/en/latest/advanced/replay.html):
+  - Docker version, run `docker --version`:
+  - docker-compose version, run `docker-compose --version`:
+  - ...
+
+- Options selected and/or [replay file](https://cookiecutter.readthedocs.io/en/latest/advanced/replay.html):
   On Linux and MacOS: `cat ${HOME}/.cookiecutter_replay/turbo-drf.json`
   (Please, take care to remove sensitive information)
-    ```json
-    # Insert here the replay file content
-    ```
+
+```json
+
+```
+
 <summary>
 Logs:
 <details>
