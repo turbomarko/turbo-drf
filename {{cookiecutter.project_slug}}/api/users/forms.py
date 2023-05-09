@@ -7,7 +7,15 @@ from django.forms import EmailField
 User = get_user_model()
 
 
-class UserCreationForm(admin_forms.ModelForm):
+class UserChangeForm(admin_forms.UserChangeForm):
+    class Meta(admin_forms.UserChangeForm.Meta):
+        model = User
+        {%- if cookiecutter.username_type == "email" %}
+        field_classes = {"email": EmailField}
+        {%- endif %}
+
+
+class UserCreationForm(admin_forms.UserCreationForm):
     """
     Form for User Creation in the Admin Area.
     To change user signup, see UserSignupForm and UserSocialSignupForm.
@@ -25,12 +33,4 @@ class UserCreationForm(admin_forms.ModelForm):
         error_messages = {
             "username": {"unique": "This username has already been taken."},
         }
-        {%- endif %}
-
-
-class UserChangeForm(admin_forms.ModelForm):
-    class Meta(admin_forms.UserChangeForm.Meta):
-        model = User
-        {%- if cookiecutter.username_type == "email" %}
-        field_classes = {"email": EmailField}
         {%- endif %}
