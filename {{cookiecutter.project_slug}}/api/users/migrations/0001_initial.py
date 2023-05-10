@@ -127,6 +127,7 @@ class Migration(migrations.Migration):
                 "verbose_name": "user",
                 "verbose_name_plural": "users",
                 "abstract": False,
+                "db_table": "users",
             },
             managers=[
                 {%- if cookiecutter.username_type == "email" %}
