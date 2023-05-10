@@ -67,6 +67,7 @@ updates:
     # Ignore minor version updates (3.10 -> 3.11) but update patch versions
     ignore:
       - dependency-name: '*'
+        update-types:
           - 'version-update:semver-major'
           - 'version-update:semver-minor'
 

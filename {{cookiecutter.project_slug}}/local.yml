@@ -40,7 +40,7 @@ services:
     env_file:
       - ./.envs/.local/.postgres
     ports:
-      - "5432:5432"
+      - '5432:5432'
 
   docs:
     image: {{ cookiecutter.project_slug }}_local_docs
@@ -63,7 +63,7 @@ services:
     image: mailhog/mailhog:v1.0.0
     container_name: {{ cookiecutter.project_slug }}_local_mailhog
     ports:
-      - "8025:8025"
+      - '8025:8025'
 
   {%- endif %}
   {%- if cookiecutter.use_celery == 'y' %}
@@ -111,8 +111,8 @@ services:
     image: jwilder/nginx-proxy:alpine
     container_name: {{ cookiecutter.project_slug }}_local_nginx
     ports:
-      - "80:80"
-      - "443:443"
+      - '80:80'
+      - '443:443'
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./certs:/etc/nginx/certs
