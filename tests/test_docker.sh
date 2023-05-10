@@ -7,6 +7,7 @@ set -o errexit
 set -x
 
 # create a cache directory
+rm -rf .cache
 mkdir -p .cache/docker
 cd .cache/docker
 
