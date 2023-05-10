@@ -42,4 +42,7 @@ class User(AbstractUser):
         {%- endif %}
 
     class Meta:
+        verbose_name = "user"
+        verbose_name_plural = "users"
+        abstract = False
         db_table = "users"
