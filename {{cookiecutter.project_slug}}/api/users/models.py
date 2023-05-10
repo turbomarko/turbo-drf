@@ -40,3 +40,6 @@ class User(AbstractUser):
         {%- else %}
         return reverse("users:detail", kwargs={"username": self.username})
         {%- endif %}
+
+    class Meta:
+        db_table = "users"

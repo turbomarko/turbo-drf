@@ -9,3 +9,6 @@ class MyModel(models.Model):
 
     def __str__(self):
         return f"{self.id} - field1"
+
+    class Meta:
+        db_table = "my_models"
