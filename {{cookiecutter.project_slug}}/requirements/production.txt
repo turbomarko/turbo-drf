@@ -2,7 +2,9 @@
 
 -r base.txt
 
-gunicorn==20.1.0  # https://github.com/benoitc/gunicorn
+gunicorn[gevent]==20.1.0  # https://github.com/benoitc/gunicorn
+django-db-geventpool==4.0.1  # https://github.com/jneight/django-db-geventpool
+psycogreen==1.0.2  # https://github.com/psycopg/psycogreen/
 {%- if cookiecutter.use_sentry == "y" %}
 sentry-sdk==1.22.2  # https://github.com/getsentry/sentry-python
 {%- endif %}

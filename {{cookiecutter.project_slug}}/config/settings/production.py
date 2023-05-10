@@ -1,18 +1,20 @@
-{% if cookiecutter.use_sentry == 'y' -%}
-import logging
+import psycogreen.gevent
+psycogreen.gevent.patch_psycopg()
 
-import sentry_sdk
+{% if cookiecutter.use_sentry == 'y' -%}
+import logging  # noqa
+import sentry_sdk  # noqa
 
 {%- if cookiecutter.use_celery == 'y' %}
-from sentry_sdk.integrations.celery import CeleryIntegration
+from sentry_sdk.integrations.celery import CeleryIntegration  # noqa
 {%- endif %}
-from sentry_sdk.integrations.django import DjangoIntegration
-from sentry_sdk.integrations.logging import LoggingIntegration
-from sentry_sdk.integrations.redis import RedisIntegration
+from sentry_sdk.integrations.django import DjangoIntegration  # noqa
+from sentry_sdk.integrations.logging import LoggingIntegration  # noqa
+from sentry_sdk.integrations.redis import RedisIntegration  # noqa
 
 {% endif -%}
 from .base import *  # noqa
-from .base import env
+from .base import env  # noqa
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -23,7 +25,12 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["{{ cookiecutter.domai
 
 # DATABASES
 # ------------------------------------------------------------------------------
-DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # noqa: F405
+DATABASES["default"]["CONN_MAX_AGE"] = 0  # noqa: F405
+DATABASES["default"]["ENGINE"] = "django_db_geventpool.backends.postgresql_psycopg2"  # noqa: F405
+DATABASES["default"]["OPTIONS"] = {  # noqa: F405
+    "MAX_CONNS": env.int("DJANGO_MAX_CONNS", default=20),
+    "REUSE_CONNS": env.int("DJANGO_REUSE_CONNS", default=10),
+}
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -218,7 +225,7 @@ LOGGING = {
         },
         "console": {
             "level": "DEBUG",
-            "class": "logging.StreamHandler",
+            "class": "api.utils.logging_handler.CustomLogger",
             "formatter": "verbose",
         },
     },
@@ -248,7 +255,7 @@ LOGGING = {
     "handlers": {
         "console": {
             "level": "DEBUG",
-            "class": "logging.StreamHandler",
+            "class": "api.utils.logging_handler.CustomLogger",
             "formatter": "verbose",
         }
     },

@@ -56,6 +56,7 @@ DJANGO_APPS = [
     "django.contrib.humanize",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
+    "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_admin_env_notice",
