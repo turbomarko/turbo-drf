@@ -312,6 +312,7 @@ REST_FRAMEWORK = {
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
 CORS_URLS_REGEX = r"^/.*$"
+CORS_ALLOW_CREDENTIALS = True
 
 # django-allauth - https://django-allauth.readthedocs.io/en/latest/advanced.html
 ACCOUNT_AUTHENTICATION_METHOD = "{{cookiecutter.username_type}}"
@@ -354,12 +355,13 @@ FRONTEND_URL = "http://localhost:3000/"
 # Authentication
 REST_AUTH = {
     "OLD_PASSWORD_FIELD_ENABLED": True,
+    "PASSWORD_RESET_USE_SITES_DOMAIN": True,
     "SESSION_LOGIN": False,
     "TOKEN_MODEL": None,
     "USE_JWT": True,
     "JWT_AUTH_COOKIE": "access-token",
     "JWT_AUTH_REFRESH_COOKIE": "refresh-token",
-    "JWT_AUTH_REFRESH_COOKIE_PATH": "/",
+    "JWT_AUTH_REFRESH_COOKIE_PATH": "/auth/token/refresh/",
     "LOGIN_SERIALIZER": "api.users.serializers.LoginSerializer",
     "REGISTER_SERIALIZER": "api.users.serializers.RegisterSerializer",
     "USER_DETAILS_SERIALIZER": "api.users.serializers.UserSerializer",
