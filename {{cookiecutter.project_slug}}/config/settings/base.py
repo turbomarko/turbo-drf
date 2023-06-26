@@ -212,9 +212,7 @@ EMAIL_BACKEND = env(
 EMAIL_TIMEOUT = 5
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
-DEFAULT_FROM_EMAIL = env(
-    "DJANGO_DEFAULT_FROM_EMAIL", default="{{cookiecutter.project_name}} <noreply@{{cookiecutter.domain_name}}>"
-)
+DEFAULT_FROM_EMAIL = env("DJANGO_DEFAULT_FROM_EMAIL", default="{{cookiecutter.project_name}} <noreply@{{cookiecutter.domain_name}}>")
 
 # ADMIN
 # ------------------------------------------------------------------------------
