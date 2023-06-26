@@ -14,9 +14,9 @@ help() {
   echo "* production"
   echo ""
   echo "command:"
-  echo "* generate_certificates -- generate local https certificate to test functionality that requires it"
+  echo "* generate_ssl_certificates -- generate local https certificate to test functionality that requires it"
   echo "* build -- build the docker image"
-  echo "* init -- build, generate_certificates, git init, pre-commit install"
+  echo "* init -- build, generate_ssl_certificates, git init, pre-commit install"
   echo "* up -- start the docker container"
   echo "* down -- stop the docker container"
   echo "* shell -- open Django shell"
@@ -41,7 +41,7 @@ help() {
 
 
 # App commands
-generate_certificates() {
+generate_ssl_certificates() {
   if [ "$c1" = "local" ]
   then
     mkdir certs && docker-compose -f "$c1".yml run django openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 -nodes -out certs/my-dev-env.local.crt -keyout certs/my-dev-env.local.key -subj "/CN=my-dev-env.local" && echo "Certificates generated successfully."
