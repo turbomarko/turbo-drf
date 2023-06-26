@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: ['master', 'main']
+    branches: ["master", "main"]
   pull_request:
 
 concurrency:
@@ -19,13 +19,13 @@ jobs:
           - windows-latest
           - macOS-latest
 
-    name: 'pytest ${{ matrix.os }}'
+    name: "pytest ${{ matrix.os }}"
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: "3.11"
           cache: pip
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -38,11 +38,11 @@ jobs:
       matrix:
         script:
           - name: Basic
-            args: 'ci_tool=Gitlab'
+            args: "ci_tool=Gitlab"
           - name: Extended
-            args: 'use_celery=y'
+            args: "use_celery=y"
 
-    name: 'Docker ${{ matrix.script.name }}'
+    name: "Docker ${{ matrix.script.name }}"
     runs-on: ubuntu-latest
     env:
       DOCKER_BUILDKIT: 1
@@ -52,7 +52,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: "3.11"
           cache: pip
       - name: Install dependencies
         run: pip install -r requirements.txt
