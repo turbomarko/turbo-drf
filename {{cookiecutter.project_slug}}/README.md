@@ -75,7 +75,7 @@ celery -A config.celery_app worker -B -l info
 ```
 
 {%- endif %}
-{%- if cookiecutter.use_mailhog == "y" %}
+{%- if cookiecutter.use_mailpit == "y" %}
 
 ### Email Server
 
