@@ -13,10 +13,10 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 
 ## Features
 
-- For Django 4.1
+- For Django 4.2
 - Works with Python 3.10
 - Renders Django Rest Framework projects with 100% starting test coverage
-- [12-Factor](http://12factor.net/) based settings via [django-environ](https://github.com/joke2k/django-environ)
+- [12-Factor](https://12factor.net) based settings via [django-environ](https://github.com/joke2k/django-environ)
 - Secure by default. We believe in SSL.
 - Optimized development and production settings
 - Registration via [django-allauth](https://github.com/pennersr/django-allauth)
@@ -36,13 +36,13 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 *These features can be enabled during initial project setup.*
 
 - Configuration for [Celery](http://www.celeryproject.org/) and [Flower](https://github.com/mher/flower)
-- Integration with [MailHog](https://github.com/mailhog/MailHog) for local email testing
+- Integration with [Mailpit](https://github.com/axllent/mailpit/) for local email testing
 - Integration with [Sentry](https://sentry.io/welcome/) for error logging
 
 ## Constraints
 
 - Only maintained 3rd party libraries are used.
-- Uses PostgreSQL everywhere (10.19 - 14.1)
+- Uses PostgreSQL everywhere: 10 - 15.
 - Environment variables for configuration (This won't work with Apache/mod_wsgi).
 
 
@@ -85,11 +85,12 @@ Answer the prompts with your own desired [options](http://turbo-drf.readthedocs.
     Choose from 1, 2 [1]: 1
     timezone [UTC]: America/Los_Angeles
     Select postgresql_version:
-    1 - 14
-    2 - 13
-    3 - 12
-    4 - 11
-    5 - 10
+    1 - 15
+    2 - 14
+    3 - 13
+    4 - 12
+    5 - 11
+    6 - 10
     Choose from 1, 2, 3, 4, 5 [1]: 1
     Select cloud_provider:
     1 - AWS
@@ -109,7 +110,7 @@ Answer the prompts with your own desired [options](http://turbo-drf.readthedocs.
     Choose from 1, 2, 3, 4, 5, 6, 7, 8, 9 [1]: 1
     use_async [n]: n
     use_celery [n]: y
-    use_mailhog [n]: n
+    use_mailpit [n]: n
     use_sentry [n]: y
     use_whitenoise [n]: n
     Select ci_tool:
@@ -150,6 +151,7 @@ Scattered throughout the Python and HTML of this project are places marked with 
 
 ## Useful articles
 
+- [How to Make Your Own Django Cookiecutter Template!](https://medium.com/@FatemeFouladkar/how-to-make-your-own-django-cookiecutter-template-a753d4cbb8c2) - Aug. 10, 2023
 - [Cookiecutter Django With Amazon RDS](https://haseeburrehman.com/posts/cookiecutter-django-with-amazon-rds/) - Apr, 2, 2021
 - [Complete Walkthrough: Blue/Green Deployment to AWS ECS using GitHub actions](https://github.com/Andrew-Chen-Wang/cookiecutter-django-ecs-github) - June 10, 2020
 - [Using cookiecutter-django with Google Cloud Storage](https://ahhda.github.io/cloud/gce/django/2019/03/12/using-django-cookiecutter-cloud-storage.html) - Mar. 12, 2019

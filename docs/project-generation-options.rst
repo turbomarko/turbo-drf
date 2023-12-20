@@ -53,11 +53,12 @@ timezone:
 postgresql_version:
     Select a PostgreSQL_ version to use. The choices are:
 
-    1. 14
-    2. 13
-    3. 12
-    4. 11
-    5. 10
+    1. 15
+    2. 14
+    3. 13
+    4. 12
+    5. 11
+    6. 10
 
 cloud_provider:
     Select a cloud provider for static & media files. The choices are:
@@ -87,8 +88,8 @@ use_async:
 use_celery:
     Indicates whether the project should be configured to use Celery_.
 
-use_mailhog:
-    Indicates whether the project should be configured to use MailHog_.
+use_mailpit:
+    Indicates whether the project should be configured to use Mailpit_.
 
 use_sentry:
     Indicates whether the project should be configured to use Sentry_.
@@ -97,8 +98,9 @@ ci_tool:
     Select a CI tool for running tests. The choices are:
 
     1. None
-    3. `Gitlab CI`_
-    4. `Github Actions`_
+    2. `Gitlab CI`_
+    3. `Github Actions`_
+    4. `Drone CI`_
 
 keep_local_envs_in_vcs:
     Indicates whether the project's ``.envs/.local/`` should be kept in VCS
@@ -137,10 +139,12 @@ debug:
 
 .. _Celery: https://github.com/celery/celery
 
-.. _MailHog: https://github.com/mailhog/MailHog
+.. _Mailpit: https://github.com/axllent/mailpit
 
 .. _Sentry: https://github.com/getsentry/sentry
 
 .. _GitLab CI: https://docs.gitlab.com/ee/ci/
+
+.. _Drone CI: https://docs.drone.io/pipeline/overview/
 
 .. _Github Actions: https://docs.github.com/en/actions

@@ -7,7 +7,7 @@ PostgreSQL Backups with Docker
 Prerequisites
 -------------
 
-#. the stack is up and running: ``docker-compose -f local.yml up -d postgres``.
+#. the stack is up and running: ``docker compose -f local.yml up -d postgres``.
 
 
 Creating a Backup
@@ -15,7 +15,7 @@ Creating a Backup
 
 To create a backup, run::
 
-    $ docker-compose -f local.yml exec postgres backup
+    $ docker compose -f local.yml exec postgres backup
 
 Assuming your project's database is named ``my_project`` here is what you will see: ::
 
@@ -30,7 +30,7 @@ Viewing the Existing Backups
 
 To list existing backups, ::
 
-    $ docker-compose -f local.yml exec postgres backups
+    $ docker compose -f local.yml exec postgres backups
 
 These are the sample contents of ``/backups``: ::
 
@@ -54,9 +54,9 @@ With a single backup file copied to ``.`` that would be ::
 
     $ docker cp 9c5c3f055843:/backups/backup_2018_03_13T09_05_07.sql.gz .
 
-You can also get the container ID using ``docker-compose -f local.yml ps -q postgres`` so if you want to automate your backups, you don't have to check the container ID manually every time. Here is the full command ::
+You can also get the container ID using ``docker compose -f local.yml ps -q postgres`` so if you want to automate your backups, you don't have to check the container ID manually every time. Here is the full command ::
 
-    $ docker cp $(docker-compose -f local.yml ps -q postgres):/backups ./backups
+    $ docker cp $(docker compose -f local.yml ps -q postgres):/backups ./backups
 
 .. _`command`: https://docs.docker.com/engine/reference/commandline/cp/
 
@@ -65,7 +65,7 @@ Restoring from the Existing Backup
 
 To restore from one of the backups you have already got (take the ``backup_2018_03_13T09_05_07.sql.gz`` for example), ::
 
-    $ docker-compose -f local.yml exec postgres restore backup_2018_03_13T09_05_07.sql.gz
+    $ docker compose -f local.yml exec postgres restore backup_2018_03_13T09_05_07.sql.gz
 
 You will see something like ::
 
@@ -91,7 +91,15 @@ You will see something like ::
 
 Backup to Amazon S3
 ----------------------------------
+
 For uploading your backups to Amazon S3 you can use the aws cli container. There is an upload command for uploading the postgres /backups directory recursively and there is a download command for downloading a specific backup. The default S3 environment variables are used. ::
 
-    $ docker-compose -f production.yml run --rm awscli upload
-    $ docker-compose -f production.yml run --rm awscli download backup_2018_03_13T09_05_07.sql.gz
+    $ docker compose -f production.yml run --rm awscli upload
+    $ docker compose -f production.yml run --rm awscli download backup_2018_03_13T09_05_07.sql.gz
+
+Remove Backup
+----------------------------------
+
+To remove backup you can use the ``rmbackup`` command. This will remove the backup from the ``/backups`` directory. ::
+
+    $ docker compose -f local.yml exec postgres rmbackup backup_2018_03_13T09_05_07.sql.gz

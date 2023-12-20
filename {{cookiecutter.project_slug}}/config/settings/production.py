@@ -1,7 +1,3 @@
-import psycogreen.gevent
-
-psycogreen.gevent.patch_psycopg()
-
 {% if cookiecutter.use_sentry == 'y' -%}
 import logging  # noqa
 import sentry_sdk  # noqa
@@ -27,11 +23,6 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["{{ cookiecutter.domai
 # DATABASES
 # ------------------------------------------------------------------------------
 DATABASES["default"]["CONN_MAX_AGE"] = 0  # noqa: F405
-DATABASES["default"]["ENGINE"] = "django_db_geventpool.backends.postgresql_psycopg2"  # noqa: F405
-DATABASES["default"]["OPTIONS"] = {  # noqa: F405
-    "MAX_CONNS": env.int("DJANGO_MAX_CONNS", default=20),
-    "REUSE_CONNS": env.int("DJANGO_REUSE_CONNS", default=10),
-}
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -110,10 +101,10 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # MEDIA
 # ------------------------------------------------------------------------------
 {%- if cookiecutter.cloud_provider == 'AWS' %}
-DEFAULT_FILE_STORAGE = "api.utils.storages.MediaRootS3Boto3Storage"
+DEFAULT_FILE_STORAGE = "api.utils.storages.MediaS3Storage"
 MEDIA_URL = f"https://{aws_s3_domain}/media/"
 {%- elif cookiecutter.cloud_provider == 'GCP' %}
-DEFAULT_FILE_STORAGE = "api.utils.storages.MediaRootGoogleCloudStorage"
+DEFAULT_FILE_STORAGE = "api.utils.storages.MediaGoogleCloudStorage"
 MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
 {%- endif %}
 

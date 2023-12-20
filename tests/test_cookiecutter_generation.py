@@ -45,11 +45,12 @@ def context():
 SUPPORTED_COMBINATIONS = [
     {"username_type": "username"},
     {"username_type": "email"},
-     {"open_source_license": "MIT"},
+    {"open_source_license": "MIT"},
     {"open_source_license": "BSD"},
     {"open_source_license": "GPLv3"},
     {"open_source_license": "Apache Software License 2.0"},
     {"open_source_license": "Not open source"},
+    {"postgresql_version": "15"},
     {"postgresql_version": "14"},
     {"postgresql_version": "13"},
     {"postgresql_version": "12"},
@@ -77,13 +78,14 @@ SUPPORTED_COMBINATIONS = [
     {"use_async": "n"},
     {"use_celery": "y"},
     {"use_celery": "n"},
-    {"use_mailhog": "y"},
-    {"use_mailhog": "n"},
+    {"use_mailpit": "y"},
+    {"use_mailpit": "n"},
     {"use_sentry": "y"},
     {"use_sentry": "n"},
     {"ci_tool": "None"},
     {"ci_tool": "Gitlab"},
     {"ci_tool": "Github"},
+    {"ci_tool": "Drone"},
     {"keep_local_envs_in_vcs": "y"},
     {"keep_local_envs_in_vcs": "n"},
     {"debug": "y"},
@@ -188,10 +190,36 @@ def test_django_upgrade_passes(cookies, context_override):
     try:
         sh.django_upgrade(
             "--target-version",
-            "4.1",
+            "4.2",
             *python_files,
             _cwd=str(result.project_path),
         )
+    except sh.ErrorReturnCode as e:
+        pytest.fail(e.stdout.decode())
+
+
+@pytest.mark.parametrize("context_override", SUPPORTED_COMBINATIONS, ids=_fixture_id)
+def test_djlint_lint_passes(cookies, context_override):
+    """Check whether generated project passes djLint --lint."""
+    result = cookies.bake(extra_context=context_override)
+
+    autofixable_rules = "H014,T001"
+    # TODO: remove T002 when fixed https://github.com/Riverside-Healthcare/djLint/issues/687
+    ignored_rules = "H006,H030,H031,T002"
+    try:
+        sh.djlint("--lint", "--ignore", f"{autofixable_rules},{ignored_rules}", ".", _cwd=str(result.project_path))
+    except sh.ErrorReturnCode as e:
+        pytest.fail(e.stdout.decode())
+
+
+@auto_fixable
+@pytest.mark.parametrize("context_override", SUPPORTED_COMBINATIONS, ids=_fixture_id)
+def test_djlint_check_passes(cookies, context_override):
+    """Check whether generated project passes djLint --check."""
+    result = cookies.bake(extra_context=context_override)
+
+    try:
+        sh.djlint("--check", ".", _cwd=str(result.project_path))
     except sh.ErrorReturnCode as e:
         pytest.fail(e.stdout.decode())
 
@@ -212,7 +240,7 @@ def test_gitlab_invokes_precommit_and_pytest(cookies, context):
                 "pre-commit run --show-diff-on-failure --color=always --all-files"
             ]
             assert gitlab_config["pytest"]["script"] == [
-                "docker-compose -f local.yml run django pytest"
+                "docker compose -f local.yml run django pytest"
             ]
         except yaml.YAMLError as e:
             pytest.fail(e)
@@ -240,7 +268,7 @@ def test_github_invokes_linter_and_pytest(cookies, context):
             for action_step in github_config["jobs"]["pytest"]["steps"]:
                 if (
                     action_step.get("run")
-                    == "docker-compose -f local.yml run django pytest"
+                    == "docker compose -f local.yml run django pytest"
                 ):
                     expected_test_script_present = True
             assert expected_test_script_present
@@ -267,6 +295,7 @@ def test_error_if_incompatible(cookies, context, invalid_context):
 
     assert result.exit_code != 0
     assert isinstance(result.exception, FailedHookException)
+
 
 def test_trim_domain_email(cookies, context):
     """Check that leading and trailing spaces are trimmed in domain and email."""

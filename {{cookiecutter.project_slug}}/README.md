@@ -16,7 +16,7 @@ License: {{cookiecutter.open_source_license}}
 
 To create a **new app**, run the following command from inside the project root::
 
-    $ docker-compose -f local.yml run --rm django python manage.py startapp --template=./template_app myappname
+    $ docker compose -f local.yml run --rm django python manage.py startapp --template=./template_app myappname
 
 After creating the app, move it to the **api** folder.
 You can add the new app to the project by extending the LOCAL_APPS list in the base settings file with the value **api.myappname**.
@@ -27,29 +27,29 @@ These templates can be customized to suit the project needs. (see [startapp](htt
 
 To create a **superuser account**, use this command:
 
-    $ docker-compose -f local.yml run --rm django python manage.py createsuperuser
+    $ docker compose -f local.yml run --rm django python manage.py createsuperuser
 
 ### Type checks
 
 Running type checks with mypy:
 
-    $ docker-compose -f local.yml run --rm django mypy api
+    $ docker compose -f local.yml run --rm django mypy api
 
 ### Test coverage
 
 To run the tests, check your test coverage, and generate an HTML coverage report:
 
-    $ docker-compose -f local.yml run --rm django coverage run -m pytest
-    $ docker-compose -f local.yml run --rm django coverage html
+    $ docker compose -f local.yml run --rm django coverage run -m pytest
+    $ docker compose -f local.yml run --rm django coverage html
 
 #### Running tests with pytest
 
-    $ docker-compose -f local.yml run --rm django pytest
+    $ docker compose -f local.yml run --rm django pytest
 {%- if cookiecutter.use_celery == "y" %}
 
 ### Celery
 
-This app comes with Celery. The docker-compose command will automatically run a celery worker for you.
+This app comes with Celery. The docker compose command will automatically run a celery worker for you.
 
 To run a celery worker:
 
@@ -79,11 +79,12 @@ celery -A config.celery_app worker -B -l info
 
 ### Email Server
 
-In development, it is often nice to be able to see emails that are being sent from your application. For that reason local SMTP server [MailHog](https://github.com/mailhog/MailHog) with a web interface is available as docker container.
+In development, it is often nice to be able to see emails that are being sent from your application. For that reason local SMTP server [Mailpit](https://github.com/axllent/mailpit) with a web interface is available as docker container.
 
-Container mailhog will start automatically when you will run all docker containers.
+Container mailpit will start automatically when you will run all docker containers.
+Please check [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html) for more details how to start all containers.
 
-With MailHog running, to view messages that are sent by your application, open your browser and go to `http://127.0.0.1:8025`
+With Mailpit running, to view messages that are sent by your application, open your browser and go to `http://127.0.0.1:8025`
 {%- endif %}
 {%- if cookiecutter.use_sentry == "y" %}
 

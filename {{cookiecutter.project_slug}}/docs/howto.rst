@@ -8,7 +8,7 @@ Documentation can be written as rst files in `{{cookiecutter.project_slug}}/docs
 
 To build and serve docs, use the commands::
     
-    docker-compose -f local.yml up docs
+    docker compose -f local.yml up docs
 
 
 Changes to files in `docs/_source` will be picked up and reloaded automatically.

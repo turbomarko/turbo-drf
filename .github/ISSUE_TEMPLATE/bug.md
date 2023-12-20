@@ -38,7 +38,7 @@ labels: bug
     ```
 
   - Docker version, run `docker --version`:
-  - docker-compose version, run `docker-compose --version`:
+  - docker compose version (if using Docker), run `docker compose --version`:
   - ...
 
 - Options selected and/or [replay file](https://cookiecutter.readthedocs.io/en/latest/advanced/replay.html):

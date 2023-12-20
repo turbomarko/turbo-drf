@@ -122,6 +122,9 @@ coverage
 !.vscode/extensions.json
 *.code-workspace
 
+# Local History for devcontainer
+.devcontainer/bash_history
+
 # Local History for Visual Studio Code
 .history/
 
