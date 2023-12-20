@@ -301,7 +301,6 @@ def test_trim_domain_email(cookies, context):
     """Check that leading and trailing spaces are trimmed in domain and email."""
     context.update(
         {
-            "use_docker": "y",
             "domain_name": "   example.com   ",
             "email": "  me@example.com  ",
         }
