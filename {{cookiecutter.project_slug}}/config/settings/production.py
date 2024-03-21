@@ -140,7 +140,6 @@ STORAGES = {
     },
 {%- endif %}
 }
-{%- endif %}
 
 {%- if cookiecutter.cloud_provider == 'AWS' %}
 MEDIA_URL = f"https://{aws_s3_domain}/media/"
