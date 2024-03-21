@@ -1,5 +1,6 @@
 from rest_framework.exceptions import APIException
-from rest_framework.status import HTTP_400_BAD_REQUEST, is_success
+from rest_framework.status import HTTP_400_BAD_REQUEST
+from rest_framework.status import is_success
 from rest_framework.views import exception_handler
 
 

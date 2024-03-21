@@ -22,5 +22,5 @@ class CustomLogger(logging.StreamHandler):
             stream.write(self.terminator)
             self.flush()
 
-        except Exception:
+        except Exception:  # noqa: BLE001
             self.handleError(record)

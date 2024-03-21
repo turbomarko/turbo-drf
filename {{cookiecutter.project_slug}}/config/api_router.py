@@ -21,8 +21,9 @@ urlpatterns = [
     ),
     # Authentication urls
     path("auth/", include("api.users.urls")),
-] + urlpatterns
+    *urlpatterns,
+]
 
 # App urls
 # ------------------------------------------------------------------------------
-urlpatterns = [] + urlpatterns
+urlpatterns = [*urlpatterns]

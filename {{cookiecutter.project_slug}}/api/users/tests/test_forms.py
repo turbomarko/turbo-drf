@@ -7,7 +7,7 @@ from ..models import User
 from .factories import UserFactory
 
 
-@pytest.mark.django_db
+@pytest.mark.django_db()
 class TestUserAdminCreationForm:
     """
     Test class for all tests related to the UserCreationForm
@@ -70,7 +70,7 @@ class TestUserAdminCreationForm:
         assert not form.is_valid()
         assert len(form.errors) == 1
         assert "password2" in form.errors
-        assert form.errors["password2"][0] == "The two password fields didn’t match."
+        assert form.errors["password2"][0] == "The two password fields didn't match."
 
     def test_user_creation_with_commit(self):
         """
@@ -91,7 +91,7 @@ class TestUserAdminCreationForm:
                 {%- endif %}
                 "password1": user.password,
                 "password2": user.password,
-            }
+            },
         )
 
         assert form.is_valid()
