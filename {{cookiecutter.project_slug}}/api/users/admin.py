@@ -1,9 +1,11 @@
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth import admin as auth_admin
-from django.contrib.auth import decorators, get_user_model
+from django.contrib.auth import decorators
+from django.contrib.auth import get_user_model
 
-from .forms import UserChangeForm, UserCreationForm
+from .forms import UserChangeForm
+from .forms import UserCreationForm
 
 User = get_user_model()
 
