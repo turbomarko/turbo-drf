@@ -1,6 +1,5 @@
-"""
-Module for all Form Tests.
-"""
+"""Module for all Form Tests."""
+
 import pytest
 
 from ..forms import UserCreationForm
@@ -33,7 +32,7 @@ class TestUserAdminCreationForm:
                 {%- endif %}
                 "password1": user.password,
                 "password2": user.password,
-            }
+            },
         )
 
         assert not form.is_valid()
@@ -65,7 +64,7 @@ class TestUserAdminCreationForm:
                 {%- endif %}
                 "password1": user.password,
                 "password2": user.password + "2",
-            }
+            },
         )
 
         assert not form.is_valid()

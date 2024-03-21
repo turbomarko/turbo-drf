@@ -1,5 +1,5 @@
 # define an alias for the specfic python version used in this file.
-FROM python:3.11.7-slim-bookworm as python
+FROM docker.io/python:3.12.2-slim-bookworm as python
 
 # Python build stage
 FROM python as python-build-stage
@@ -87,7 +87,7 @@ RUN chmod +x /start-flower
 COPY --chown=django:django . ${APP_HOME}
 
 # make django owner of the WORKDIR directory as well.
-RUN chown django:django ${APP_HOME}
+RUN chown -R django:django ${APP_HOME}
 
 USER django
 

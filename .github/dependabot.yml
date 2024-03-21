@@ -3,13 +3,29 @@
 
 version: 2
 updates:
+  # Update Python deps for the template (not the generated project)
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "project infrastructure"
+
+  # Update Python deps for the documentation
+  - package-ecosystem: "pip"
+    directory: "docs/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "project infrastructure"
+
   # Update GitHub actions in workflows
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
     labels:
-      - "update"
+      - "project infrastructure"
 
   # Enable version updates for Docker
   # We need to specify each Dockerfile in a separate entry because Dependabot doesn't
@@ -54,7 +70,8 @@ updates:
       - dependency-name: "*"
         update-types:
           - "version-update:semver-major"
-          - "version-update:semver-minor"    labels:
+          - "version-update:semver-minor"
+    labels:
       - "update"
 
   - package-ecosystem: "docker"

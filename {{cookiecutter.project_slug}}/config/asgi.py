@@ -1,3 +1,4 @@
+# ruff: noqa
 """
 ASGI config for {{ cookiecutter.project_name }} project.
 
@@ -7,6 +8,7 @@ For more information on this file, see
 https://docs.djangoproject.com/en/dev/howto/deployment/asgi/
 
 """
+
 import os
 import sys
 from pathlib import Path
@@ -36,4 +38,5 @@ async def application(scope, receive, send):
     elif scope["type"] == "websocket":
         await websocket_application(scope, receive, send)
     else:
-        raise NotImplementedError(f"Unknown scope type {scope['type']}")
+        msg = f"Unknown scope type {scope['type']}"
+        raise NotImplementedError(msg)

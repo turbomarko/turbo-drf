@@ -1,10 +1,9 @@
 from django.contrib.auth import forms as admin_forms
-from django.contrib.auth import get_user_model
 {%- if cookiecutter.username_type == "email" %}
 from django.forms import EmailField
 {%- endif %}
 
-User = get_user_model()
+from .models import User
 
 
 class UserChangeForm(admin_forms.UserChangeForm):

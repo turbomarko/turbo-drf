@@ -50,12 +50,11 @@ SUPPORTED_COMBINATIONS = [
     {"open_source_license": "GPLv3"},
     {"open_source_license": "Apache Software License 2.0"},
     {"open_source_license": "Not open source"},
+    {"postgresql_version": "16"},
     {"postgresql_version": "15"},
     {"postgresql_version": "14"},
     {"postgresql_version": "13"},
     {"postgresql_version": "12"},
-    {"postgresql_version": "11"},
-    {"postgresql_version": "10"},
     {"cloud_provider": "AWS", "mail_service": "Mailgun"},
     {"cloud_provider": "AWS", "mail_service": "Amazon SES"},
     {"cloud_provider": "AWS", "mail_service": "Mailjet"},
@@ -136,28 +135,25 @@ def test_project_generation(cookies, context, context_override):
 
 
 @pytest.mark.parametrize("context_override", SUPPORTED_COMBINATIONS, ids=_fixture_id)
-def test_flake8_passes(cookies, context_override):
-    """Generated project should pass flake8."""
+def test_ruff_check_passes(cookies, context_override):
+    """Generated project should pass ruff check."""
     result = cookies.bake(extra_context=context_override)
 
     try:
-        sh.flake8(_cwd=str(result.project_path))
+        sh.ruff("check", ".", _cwd=str(result.project_path))
     except sh.ErrorReturnCode as e:
         pytest.fail(e.stdout.decode())
 
 
 @auto_fixable
 @pytest.mark.parametrize("context_override", SUPPORTED_COMBINATIONS, ids=_fixture_id)
-def test_black_passes(cookies, context_override):
-    """Check whether generated project passes black style."""
+def test_ruff_format_passes(cookies, context_override):
+    """Check whether generated project passes ruff format."""
     result = cookies.bake(extra_context=context_override)
 
     try:
-        sh.black(
-            "--check",
-            "--diff",
-            "--exclude",
-            "migrations",
+        sh.ruff(
+            "format",
             ".",
             _cwd=str(result.project_path),
         )

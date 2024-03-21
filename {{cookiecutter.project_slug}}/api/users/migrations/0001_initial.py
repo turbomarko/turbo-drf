@@ -1,6 +1,7 @@
 import django.contrib.auth.models
 import django.contrib.auth.validators
-from django.db import migrations, models
+from django.db import migrations
+from django.db import models
 import django.utils.timezone
 
 import api.users.models
@@ -31,7 +32,7 @@ class Migration(migrations.Migration):
                 (
                     "last_login",
                     models.DateTimeField(
-                        blank=True, null=True, verbose_name="last login"
+                        blank=True, null=True, verbose_name="last login",
                     ),
                 ),
                 (
@@ -61,14 +62,14 @@ class Migration(migrations.Migration):
                 (
                     "email",
                     models.EmailField(
-                        blank=True, max_length=254, verbose_name="email address"
+                        blank=True, max_length=254, verbose_name="email address",
                     ),
                 ),
                 {%- else %}
                 (
                     "email",
                     models.EmailField(
-                        unique=True, max_length=254, verbose_name="email address"
+                        unique=True, max_length=254, verbose_name="email address",
                     ),
                 ),
                 {%- endif %}
@@ -97,7 +98,7 @@ class Migration(migrations.Migration):
                 (
                     "name",
                     models.CharField(
-                        blank=True, max_length=255, verbose_name="Name of User"
+                        blank=True, max_length=255, verbose_name="Name of User",
                     ),
                 ),
                 (

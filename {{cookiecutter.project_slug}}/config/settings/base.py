@@ -1,6 +1,6 @@
-"""
-Base settings to build other settings files upon.
-"""
+# ruff: noqa: ERA001, E501
+"""Base settings to build other settings files upon."""
+
 from datetime import timedelta
 from pathlib import Path
 
@@ -181,7 +181,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
             ],
         },
-    }
+    },
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#form-renderer
@@ -241,7 +241,7 @@ LOGGING = {
             "level": "DEBUG",
             "class": "logging.StreamHandler",
             "formatter": "verbose",
-        }
+        },
     },
     "root": {"level": "INFO", "handlers": ["console"]},
 }
@@ -316,9 +316,11 @@ REST_FRAMEWORK = {
 CORS_URLS_REGEX = r"^/.*$"
 CORS_ALLOW_CREDENTIALS = True
 
-# django-allauth - https://django-allauth.readthedocs.io/en/latest/advanced.html
+# django-allauth
+# ------------------------------------------------------------------------------
+# https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_AUTHENTICATION_METHOD = "{{cookiecutter.username_type}}"
-# https://django-allauth.readthedocs.io/en/latest/configuration.html
+# https://docs.allauth.org/en/latest/account/configuration.html
 ACCOUNT_EMAIL_REQUIRED = True
 {%- if cookiecutter.username_type == "email" %}
 ACCOUNT_USERNAME_REQUIRED = False

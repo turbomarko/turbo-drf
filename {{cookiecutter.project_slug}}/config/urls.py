@@ -1,7 +1,9 @@
 from baton.autodiscover import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import include, path, re_path
+from django.urls import include
+from django.urls import path
+from django.urls import re_path
 from django.views.generic import TemplateView
 
 urlpatterns = [
@@ -18,7 +20,9 @@ urlpatterns = [
         TemplateView.as_view(template_name="password_reset_confirm.html"),
         name="password_reset_confirm",
     ),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # Media files
+    *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
+]
 
 handler500 = "api.utils.error_views.server_error"
 handler400 = "api.utils.error_views.bad_request"

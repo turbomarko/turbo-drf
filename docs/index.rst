@@ -24,6 +24,7 @@ Contents
    websocket
    troubleshooting
    contributing
+   maintainer-guide
 
 Indices and tables
 ------------------

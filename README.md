@@ -14,7 +14,7 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 ## Features
 
 - For Django 4.2
-- Works with Python 3.10
+- Works with Python 3.12
 - Renders Django Rest Framework projects with 100% starting test coverage
 - [12-Factor](https://12factor.net) based settings via [django-environ](https://github.com/joke2k/django-environ)
 - Secure by default. We believe in SSL.
@@ -42,7 +42,7 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 ## Constraints
 
 - Only maintained 3rd party libraries are used.
-- Uses PostgreSQL everywhere: 10 - 15.
+- Uses PostgreSQL everywhere: 10 - 16.
 - Environment variables for configuration (This won't work with Apache/mod_wsgi).
 
 
@@ -85,12 +85,11 @@ Answer the prompts with your own desired [options](http://turbo-drf.readthedocs.
     Choose from 1, 2 [1]: 1
     timezone [UTC]: America/Los_Angeles
     Select postgresql_version:
-    1 - 15
-    2 - 14
-    3 - 13
-    4 - 12
-    5 - 11
-    6 - 10
+    1 - 16
+    2 - 15
+    3 - 14
+    4 - 13
+    5 - 12
     Choose from 1, 2, 3, 4, 5 [1]: 1
     Select cloud_provider:
     1 - AWS

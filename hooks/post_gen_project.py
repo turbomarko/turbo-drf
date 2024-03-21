@@ -8,6 +8,7 @@ NOTE:
 TODO: restrict Turbo DRF project initialization to
       Python 3.x environments only
 """
+
 from __future__ import print_function
 
 import os
@@ -242,10 +243,6 @@ def remove_celery_compose_dirs():
 
 def remove_aws_dockerfile():
     shutil.rmtree(os.path.join("compose", "production", "aws"))
-
-
-def remove_storages_module():
-    os.remove(os.path.join("api", "utils", "storages.py"))
 
 
 def main():

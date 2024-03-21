@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from django.urls import reverse
 
 from ..models import User
@@ -12,7 +14,7 @@ class TestUserAdmin:
 
         url = reverse("admin:users_user_changelist")
         response = admin_client.get(url)
-        assert response.status_code == 200
+        assert response.status_code == HTTPStatus.OK
 
     def test_search(self, admin_client):
         """
@@ -21,7 +23,7 @@ class TestUserAdmin:
 
         url = reverse("admin:users_user_changelist")
         response = admin_client.get(url, data={"q": "test"})
-        assert response.status_code == 200
+        assert response.status_code == HTTPStatus.OK
 
     def test_add(self, admin_client):
         """
@@ -30,7 +32,7 @@ class TestUserAdmin:
 
         url = reverse("admin:users_user_add")
         response = admin_client.get(url)
-        assert response.status_code == 200
+        assert response.status_code == HTTPStatus.OK
 
         user = UserFactory.build()
         response = admin_client.post(
@@ -45,7 +47,7 @@ class TestUserAdmin:
                 "password2": user.password,
             },
         )
-        assert response.status_code == 302
+        assert response.status_code == HTTPStatus.FOUND
         {%- if cookiecutter.username_type == "email" %}
         assert User.objects.filter(email=user.email).exists()
         {%- else %}
@@ -60,4 +62,4 @@ class TestUserAdmin:
         user = UserFactory()
         url = reverse("admin:users_user_change", kwargs={"object_id": user.pk})
         response = admin_client.get(url)
-        assert response.status_code == 200
+        assert response.status_code == HTTPStatus.OK
