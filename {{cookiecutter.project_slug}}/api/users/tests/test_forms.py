@@ -70,7 +70,7 @@ class TestUserAdminCreationForm:
         assert not form.is_valid()
         assert len(form.errors) == 1
         assert "password2" in form.errors
-        assert form.errors["password2"][0] == "The two password fields didn't match."
+        assert form.errors["password2"][0] == "The two password fields didn’t match."
 
     def test_user_creation_with_commit(self):
         """
