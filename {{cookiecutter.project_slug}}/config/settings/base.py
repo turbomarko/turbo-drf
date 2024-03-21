@@ -81,7 +81,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "api.users",
+    "mokoko.users",
 ]
 
 FINAL_APPS = ["baton.autodiscover"]
