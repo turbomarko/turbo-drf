@@ -7,7 +7,7 @@ This project uses Sphinx_ documentation generator.
 
 After you set up your project to `develop locally with docker`_, run the following command: ::
 
-    $ docker compose -f local.yml up docs
+    $ docker compose -f docs.yml up
 
 Navigate to port 9000 on your host to see the documentation.
 
