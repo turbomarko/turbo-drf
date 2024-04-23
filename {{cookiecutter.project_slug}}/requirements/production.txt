@@ -5,6 +5,8 @@
 gunicorn[gevent]==22.0.0 # https://github.com/benoitc/gunicorn
 {%- if cookiecutter.use_sentry == "y" %}
 sentry-sdk==1.45.0  # https://github.com/getsentry/sentry-python
+{%- else %}
+slack_sdk==3.24.0  # https://github.com/slackapi/python-slack-sdk
 {%- endif %}
 
 # Django

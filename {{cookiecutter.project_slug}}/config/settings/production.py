@@ -25,6 +25,9 @@ from .base import env
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["{{ cookiecutter.domain_name }}"])
+CORS_ALLOWED_ORIGINS = env.list(
+    "DJANGO_ALLOWED_ORIGINS", default=[]
+)
 
 # DATABASES
 # ------------------------------------------------------------------------------
@@ -162,7 +165,7 @@ EMAIL_SUBJECT_PREFIX = env(
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL regex.
-ADMIN_URL = env("DJANGO_ADMIN_URL")
+ADMIN_URL = env("DJANGO_ADMIN_URL", default="management/")
 
 # Anymail
 # ------------------------------------------------------------------------------
@@ -176,7 +179,7 @@ EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 ANYMAIL = {
     "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
     "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
-    "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
+    "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.eu.mailgun.net/v3"),
 }
 {%- elif cookiecutter.mail_service == 'Amazon SES' %}
 # https://anymail.readthedocs.io/en/stable/esps/amazon_ses/
@@ -257,21 +260,29 @@ LOGGING = {
             "class": "api.utils.logging_handler.CustomLogger",
             "formatter": "verbose",
         },
+        "slack": {
+            "level": "ERROR",
+            "class": "api.utils.logging_handler.SlackLogger",
+            "formatter": "verbose",
+        },
     },
-    "root": {"level": "INFO", "handlers": ["console"]},
+    "root": {"level": "INFO", "handlers": ["console", "slack"]},
     "loggers": {
         "django.request": {
-            "handlers": ["mail_admins"],
+            "handlers": ["mail_admins", "slack"],
             "level": "ERROR",
             "propagate": True,
         },
         "django.security.DisallowedHost": {
             "level": "ERROR",
-            "handlers": ["console", "mail_admins"],
+            "handlers": ["console", "mail_admins", "slack"],
             "propagate": True,
         },
     },
 }
+
+SLACK_BOT_TOKEN = env("SLACK_BOT_TOKEN")
+SLACK_BOT_CHANNEL = env("SLACK_BOT_CHANNEL")
 {% else %}
 LOGGING = {
     "version": 1,
@@ -348,6 +359,7 @@ REST_FRAMEWORK["DEFAULT_THROTTLE_CLASSES"] = [  # noqa: F405
     "rest_framework.throttling.ScopedRateThrottle",
 ]
 REST_FRAMEWORK["DEFAULT_THROTTLE_RATES"] = {  # noqa: F405
+    "dj_rest_auth": "5/minute",
     "auth": "5/minute",
 }
 

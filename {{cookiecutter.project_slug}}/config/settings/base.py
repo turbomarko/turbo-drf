@@ -5,6 +5,7 @@ from datetime import timedelta
 from pathlib import Path
 
 import environ
+from corsheaders.defaults import default_headers
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # {{ cookiecutter.project_slug }}/
@@ -84,7 +85,10 @@ LOCAL_APPS = [
     "api.users",
 ]
 
-FINAL_APPS = ["baton.autodiscover"]
+FINAL_APPS = [
+    "baton.autodiscover",
+    "django_cleanup.apps.CleanupConfig",
+]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + FINAL_APPS
@@ -155,7 +159,7 @@ STATICFILES_FINDERS = [
 # MEDIA
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = str(APPS_DIR / "media")
+MEDIA_ROOT = str(BASE_DIR / "media")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = "/media/"
 
@@ -218,7 +222,7 @@ DEFAULT_FROM_EMAIL = env("DJANGO_DEFAULT_FROM_EMAIL", default="{{cookiecutter.pr
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL.
-ADMIN_URL = "admin"
+ADMIN_URL = "management/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [("""{{cookiecutter.author_name}}""", "{{cookiecutter.email}}")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
@@ -313,8 +317,8 @@ REST_FRAMEWORK = {
 }
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
-CORS_URLS_REGEX = r"^/.*$"
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = (*default_headers,)
 
 # django-allauth
 # ------------------------------------------------------------------------------
@@ -352,6 +356,14 @@ SPECTACULAR_SETTINGS = {
     # "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
 }
 
+# Image processing
+DJANGORESIZED_DEFAULT_SIZE = [1080, 1080]
+# DJANGORESIZED_DEFAULT_SCALE = 0.5
+# DJANGORESIZED_DEFAULT_QUALITY = 75
+DJANGORESIZED_DEFAULT_FORCE_FORMAT = "JPEG"
+DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {"JPEG": ".jpg"}
+DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = False
+
 # Custom config
 # ------------------------------------------------------------------------------
 FRONTEND_URL = "http://localhost:3000/"
@@ -366,6 +378,7 @@ REST_AUTH = {
     "JWT_AUTH_COOKIE": "access-token",
     "JWT_AUTH_REFRESH_COOKIE": "refresh-token",
     "JWT_AUTH_REFRESH_COOKIE_PATH": "/auth/token/refresh/",
+    "JWT_AUTH_RETURN_EXPIRATION": True,
     "LOGIN_SERIALIZER": "api.users.serializers.LoginSerializer",
     "REGISTER_SERIALIZER": "api.users.serializers.RegisterSerializer",
     "USER_DETAILS_SERIALIZER": "api.users.serializers.UserSerializer",
