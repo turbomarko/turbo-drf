@@ -40,6 +40,8 @@ docker compose -f local.yml run \
   -e DJANGO_ADMIN_URL=x \
   -e MAILGUN_API_KEY=x \
   -e MAILGUN_DOMAIN=x \
+  -e SLACK_BOT_TOKEN=x \
+  -e SLACK_BOT_CHANNEL=x \
   django python manage.py check --settings=config.settings.production --deploy --database default --fail-level WARNING
 
 # Generate the HTML for the documentation

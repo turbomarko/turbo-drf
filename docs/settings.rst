@@ -51,6 +51,8 @@ GOOGLE_APPLICATION_CREDENTIALS          n/a                         n/a         
 SENTRY_DSN                              SENTRY_DSN                  n/a                                            raises error
 SENTRY_ENVIRONMENT                      n/a                         n/a                                            production
 SENTRY_TRACES_SAMPLE_RATE               n/a                         n/a                                            0.0
+SLACK_BOT_TOKEN                         SLACK_BOT_TOKEN             n/a                                            raises error
+SLACK_BOT_CHANNEL                       SLACK_BOT_CHANNEL           n/a                                            raises error
 DJANGO_SENTRY_LOG_LEVEL                 SENTRY_LOG_LEVEL            n/a                                            logging.INFO
 MAILGUN_API_KEY                         MAILGUN_API_KEY             n/a                                            raises error
 MAILGUN_DOMAIN                          MAILGUN_SENDER_DOMAIN       n/a                                            raises error
