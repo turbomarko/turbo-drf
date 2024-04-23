@@ -1,3 +1,5 @@
+import contextlib
+
 from django.apps import AppConfig
 
 
@@ -5,7 +7,5 @@ class {{ '{{' }} camel_case_app_name {{ '}}' }}Config(AppConfig):
     name = "api.{{ '{{' }} app_name {{ '}}' }}"
 
     def ready(self):
-        try:
-            from . import signals  # type: ignore # noqa F401
-        except ImportError:
-            pass
+        with contextlib.suppress(ImportError):
+            import api.{{ '{{' }} app_name {{ '}}' }}.signals  # noqa: F401

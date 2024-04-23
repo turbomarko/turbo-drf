@@ -3,10 +3,9 @@ from django.contrib import admin
 from .models import MyModel
 
 
+@admin.register(MyModel)
 class MyModelAdmin(admin.ModelAdmin):
     list_display = ("id", "field1", "field2",)
     list_filter = ("field1",)
     search_fields = ("field2",)
     ordering = ("-created_at",)
-
-admin.site.register(MyModel, MyModelAdmin)

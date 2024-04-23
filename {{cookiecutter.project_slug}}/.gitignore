@@ -238,6 +238,7 @@ dump.rdb
 
 ### Project template
 api/media/
+media/
 certs/
 
 .pytest_cache/
