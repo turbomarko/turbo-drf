@@ -6,7 +6,7 @@ whitenoise==6.6.0  # https://github.com/evansd/whitenoise
 redis==5.0.3  # https://github.com/redis/redis-py
 hiredis==2.3.2  # https://github.com/redis/hiredis-py
 {%- if cookiecutter.use_celery == "y" %}
-celery==5.3.6  # pyup: < 6.0  # https://github.com/celery/celery
+celery==5.4.0  # pyup: < 6.0  # https://github.com/celery/celery
 django-celery-beat==2.6.0  # https://github.com/celery/django-celery-beat
 flower==2.0.1  # https://github.com/mher/flower
 {%- endif %}
@@ -21,11 +21,11 @@ django-environ==0.11.2  # https://github.com/joke2k/django-environ
 django-model-utils==4.5.0  # https://github.com/jazzband/django-model-utils
 django-redis==5.4.0  # https://github.com/jazzband/django-redis
 django-admin-env-notice==1.0  # https://github.com/dizballanze/django-admin-env-notice
-django-baton==2.8.0  # https://github.com/otto-torino/django-baton
+django-baton==3.1.0  # https://github.com/otto-torino/django-baton
 # Django REST Framework
 djangorestframework==3.15.1  # https://github.com/encode/django-rest-framework
 django-cors-headers==4.3.1  # https://github.com/adamchainz/django-cors-headers
 djangorestframework-camel-case==1.4.2  # https://github.com/vbabiy/djangorestframework-camel-case
 djangorestframework-simplejwt==5.3.1  # https://github.com/jazzband/djangorestframework-simplejwt
-dj-rest-auth[with_social]==5.0.2  # https://github.com/iMerica/dj-rest-auth
+dj-rest-auth[with_social]==6.0.0  # https://github.com/iMerica/dj-rest-auth
 drf-spectacular[sidecar]==0.27.2  # https://github.com/tfranzel/drf-spectacular

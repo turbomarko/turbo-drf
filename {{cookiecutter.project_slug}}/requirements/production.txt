@@ -2,9 +2,9 @@
 
 -r base.txt
 
-gunicorn[gevent]==21.2.0 # https://github.com/benoitc/gunicorn
+gunicorn[gevent]==22.0.0 # https://github.com/benoitc/gunicorn
 {%- if cookiecutter.use_sentry == "y" %}
-sentry-sdk==1.44.1  # https://github.com/getsentry/sentry-python
+sentry-sdk==1.45.0  # https://github.com/getsentry/sentry-python
 {%- endif %}
 
 # Django
