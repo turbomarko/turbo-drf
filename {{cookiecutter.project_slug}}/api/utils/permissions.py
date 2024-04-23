@@ -1,3 +1,4 @@
+from allauth.account.utils import has_verified_email
 from rest_framework.permissions import SAFE_METHODS
 from rest_framework.permissions import BasePermission
 
@@ -15,3 +16,12 @@ class IsOwnerOrReadOnly(BasePermission):
 
         # Instance must have an attribute named `owner`.
         return obj.owner == request.user
+
+
+class IsEmailVerified(BasePermission):
+    """
+    Object-level permission to only allow users with verified emails to access the view.
+    """
+
+    def has_object_permission(self, request, view, obj):
+        return has_verified_email(request.user)
