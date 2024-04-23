@@ -26,7 +26,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["{{ cookiecutter.domain_name }}"])
 CORS_ALLOWED_ORIGINS = env.list(
-    "DJANGO_ALLOWED_ORIGINS", default=[]
+    "DJANGO_ALLOWED_ORIGINS", default=[],
 )
 
 # DATABASES

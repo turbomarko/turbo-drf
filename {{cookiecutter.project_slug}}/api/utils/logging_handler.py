@@ -1,6 +1,6 @@
 """Custom logging handler"""
+import datetime
 import logging
-from datetime import datetime
 
 from django.conf import settings
 from slack_sdk import WebClient
@@ -33,7 +33,7 @@ class CustomLogger(logging.StreamHandler):
 
 def format_message(message):
     """Format log message"""
-    d = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    d = datetime.datetime.now(tz=datetime.UTC).strftime("%Y-%m-%d %H:%M:%S")
     return f"*{d}*: {message}"
 
 
