@@ -11,11 +11,11 @@ Pytest
 This project uses the Pytest_, a framework for easily building simple and scalable tests.
 After you set up your project to `develop locally`_, run the following command: ::
 
-   $ docker compose -f local.yml run --rm django pytest
+   $ docker compose -f docker-compose.local.yml run --rm django pytest
 
 You will get a readout of the `users` app that has already been set up with tests. If you do not want to run the `pytest` on the entire project, you can target a particular app by typing in its location: ::
 
-   $ docker compose -f local.yml run --rm django <path-to-app-in-project/app>
+   $ docker compose -f docker-compose.local.yml run --rm django <path-to-app-in-project/app>
 
 
 Coverage
@@ -23,11 +23,11 @@ Coverage
 
 You should build your tests to provide the highest level of **code coverage**. You can run the ``pytest`` with code ``coverage`` by typing in the following command: ::
 
-   $ docker compose -f local.yml run --rm django coverage run -m pytest
+   $ docker compose -f docker-compose.local.yml run --rm django coverage run -m pytest
 
 Once the tests are complete, in order to see the code coverage, run the following command: ::
 
-   $ docker compose -f local.yml run --rm django coverage report
+   $ docker compose -f docker-compose.local.yml run --rm django coverage report
 
 .. note::
 

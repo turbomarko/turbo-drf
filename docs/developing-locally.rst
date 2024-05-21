@@ -32,9 +32,9 @@ Build the Stack
 
 This can take a while, especially the first time you run this particular command on your development system::
 
-    $ docker compose -f local.yml build
+    $ docker compose -f docker-compose.local.yml build
 
-Generally, if you want to emulate production environment use ``production.yml`` instead. And this is true for any other actions you might need to perform: whenever a switch is required, just do it!
+Generally, if you want to emulate production environment use ``docker-compose.production.yml`` instead. And this is true for any other actions you might need to perform: whenever a switch is required, just do it!
 
 Before doing any git commit, `pre-commit`_ should be installed globally on your local machine, and then::
 
@@ -51,11 +51,11 @@ This brings up both Django and PostgreSQL. The first time it is run it might tak
 
 Open a terminal at the project root and run the following for local development::
 
-    $ docker compose -f local.yml up
+    $ docker compose -f docker-compose.local.yml up
 
-You can also set the environment variable ``COMPOSE_FILE`` pointing to ``local.yml`` like this::
+You can also set the environment variable ``COMPOSE_FILE`` pointing to ``docker-compose.local.yml`` like this::
 
-    $ export COMPOSE_FILE=local.yml
+    $ export COMPOSE_FILE=docker-compose.local.yml
 
 And then run::
 
@@ -67,19 +67,19 @@ To run in a detached (background) mode, just::
 
 These commands don't run the docs service. In order to run docs service you can run::
 
-    $ docker compose -f docs.yml up
+    $ docker compose -f docker-compose.docs.yml up
 
 To run the docs with local services just use::
 
-    $ docker compose -f local.yml -f docs.yml up
+    $ docker compose -f docker-compose.local.yml -f docker-compose.docs.yml up
 
 Execute Management Commands
 ---------------------------
 
-As with any shell command that we wish to run in our container, this is done using the ``docker compose -f local.yml run --rm`` command: ::
+As with any shell command that we wish to run in our container, this is done using the ``docker compose -f docker-compose.local.yml run --rm`` command: ::
 
-    $ docker compose -f local.yml run --rm django python manage.py migrate
-    $ docker compose -f local.yml run --rm django python manage.py createsuperuser
+    $ docker compose -f docker-compose.local.yml run --rm django python manage.py migrate
+    $ docker compose -f docker-compose.local.yml run --rm django python manage.py createsuperuser
 
 Here, ``django`` is the target service we are executing the commands against.
 Also, please note that the ``docker exec`` does not work for running management commands.
@@ -96,7 +96,7 @@ When ``DEBUG`` is set to ``True``, the host is validated against ``['localhost',
 Configuring the Environment
 ---------------------------
 
-This is the excerpt from your project's ``local.yml``: ::
+This is the excerpt from your project's ``docker-compose.local.yml``: ::
 
   # ...
 
@@ -162,8 +162,8 @@ You have to modify the relevant requirement file: base, local or production by a
 
 To get this change picked up, you'll need to rebuild the image(s) and restart the running container: ::
 
-    docker compose -f local.yml build
-    docker compose -f local.yml up
+    docker compose -f docker-compose.local.yml build
+    docker compose -f docker-compose.local.yml up
 
 Debugging
 ~~~~~~~~~
@@ -177,7 +177,7 @@ If you are using the following within your code to debug: ::
 
 Then you may need to run the following for it to work as desired: ::
 
-    $ docker compose -f local.yml run --rm --service-ports django
+    $ docker compose -f docker-compose.local.yml run --rm --service-ports django
 
 
 django-debug-toolbar
@@ -229,7 +229,7 @@ Prerequisites:
 
 * ``use_celery`` was set to ``y`` on project initialization.
 
-By default, it's enabled both in local and production environments (``local.yml`` and ``production.yml`` Docker Compose configs, respectively) through a ``flower`` service. For added security, ``flower`` requires its clients to provide authentication credentials specified as the corresponding environments' ``.envs/.local/.django`` and ``.envs/.production/.django`` ``CELERY_FLOWER_USER`` and ``CELERY_FLOWER_PASSWORD`` environment variables. Check out ``localhost:5555`` and see for yourself.
+By default, it's enabled both in local and production environments (``docker-compose.local.yml`` and ``docker-compose.production.yml`` Docker Compose configs, respectively) through a ``flower`` service. For added security, ``flower`` requires its clients to provide authentication credentials specified as the corresponding environments' ``.envs/.local/.django`` and ``.envs/.production/.django`` ``CELERY_FLOWER_USER`` and ``CELERY_FLOWER_PASSWORD`` environment variables. Check out ``localhost:5555`` and see for yourself.
 
 .. _`Flower`: https://github.com/mher/flower
 
@@ -267,7 +267,7 @@ certs
 
 Take the certificates that you generated and place them in a folder called ``certs`` in the project's root folder. Assuming that you registered your local hostname as ``my-dev-env.local``, the certificates you will put in the folder should have the names ``my-dev-env.local.crt`` and ``my-dev-env.local.key``.
 
-local.yml
+docker-compose.local.yml
 ~~~~~~~~~
 
 #. Add the ``nginx-proxy`` service. ::
@@ -311,7 +311,7 @@ You should allow the new hostname. ::
 
 Rebuild your ``docker`` application. ::
 
-  $ docker compose -f local.yml up -d --build
+  $ docker compose -f docker-compose.local.yml up -d --build
 
 Go to your browser and type in your URL bar ``https://my-dev-env.local``
 

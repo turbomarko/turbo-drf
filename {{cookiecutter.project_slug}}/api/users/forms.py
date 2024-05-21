@@ -7,7 +7,7 @@ from .models import User
 
 
 class UserChangeForm(admin_forms.UserChangeForm):
-    class Meta(admin_forms.UserChangeForm.Meta):
+    class Meta(admin_forms.UserChangeForm.Meta):  # type: ignore[name-defined]
         model = User
         {%- if cookiecutter.username_type == "email" %}
         field_classes = {"email": EmailField}
@@ -20,7 +20,7 @@ class UserCreationForm(admin_forms.UserCreationForm):
     To change user signup, see UserSignupForm and UserSocialSignupForm.
     """
 
-    class Meta(admin_forms.UserCreationForm.Meta):
+    class Meta(admin_forms.UserCreationForm.Meta):  # type: ignore[name-defined]
         model = User
         {%- if cookiecutter.username_type == "email" %}
         fields = ("email",)
