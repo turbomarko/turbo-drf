@@ -30,9 +30,8 @@ help() {
   echo "* restore_db [BACKUP_FILE] -- restore the local database from a backup"
   echo "* upload_backup_db_s3 -- upload a database backup file to S3"
   echo "* download_backup_db_s3 [BACKUP_FILE] -- download a specific database backup from S3"
-  echo "* flake8 -- test flake8 formatting"
-  echo "* black -- test black formatting"
-  echo "* pylint -- test pylint formatting"
+  echo "* ruff -- test ruff formatting"
+  echo "* format -- format code with ruff"
   echo "* pytest -- run all tests"
   echo "* coverage -- run all tests and print coverage information"
   echo "* mypy -- check python typings"
@@ -128,20 +127,12 @@ download_backup_db_s3() {
 
 
 # Code check commands
-flake8() {
-  echo "FLAKE8" && docker compose -f "$c1".yml run --rm django flake8
-}
-
-black() {
-  echo "BLACK" && docker compose -f "$c1".yml run --rm django black . --diff --color --exclude "^docs/|/migrations/"
+ruff() {
+  echo "RUFF" && docker compose -f "$c1".yml run --rm django ruff check
 }
 
 format() {
-  echo "BLACK" && docker compose -f "$c1".yml run --rm django black . --exclude "^docs/|/migrations/"
-}
-
-pylint() {
-  echo "PYLINT" && docker compose -f "$c1".yml run --rm django pylint --load-plugins pylint_django --django-settings-module=config.settings.local ./api
+  echo "RUFF" && docker compose -f "$c1".yml run --rm django ruff format
 }
 
 mypy() {
@@ -158,9 +149,7 @@ coverage() {
 }
 
 check_all() {
-  pycodestyle && echo "pycodestyle - No issue found"
-  flake8 && echo "flake8 - No issue found"
-  black && echo "black - No issue found"
+  ruff && echo "ruff - No issue found"
   # mypy && echo "mypy - No issue found"
   coverage && echo "coverage - No issue found"
   # unittest && echo "unittest - No issue found"
