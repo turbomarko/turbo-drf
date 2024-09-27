@@ -28,8 +28,6 @@ precommit:
 pytest:
   stage: test
   image: docker:25.0
-  tags:
-    - docker
   services:
     - docker:dind
   before_script:

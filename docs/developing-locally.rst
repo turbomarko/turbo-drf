@@ -43,7 +43,6 @@ Before doing any git commit, `pre-commit`_ should be installed globally on your 
 
 Failing to do so will result with a bunch of CI and Linter errors that can be avoided with pre-commit.
 
-
 Run the Stack
 -------------
 
@@ -90,7 +89,6 @@ Also, please note that the ``docker exec`` does not work for running management 
 
 When ``DEBUG`` is set to ``True``, the host is validated against ``['localhost', '127.0.0.1', '[::1]']``. This is adequate when running a ``virtualenv``. For Docker, in the ``config.settings.local``, add your host development server IP to ``INTERNAL_IPS`` or ``ALLOWED_HOSTS`` if the variable exists.
 
-
 .. _envs:
 
 Configuring the Environment
@@ -116,8 +114,8 @@ The most important thing for us here now is ``env_file`` section enlisting ``./.
 
     .envs
     ├── .local
-    │   ├── .django
-    │   └── .postgres
+    │   ├── .django
+    │   └── .postgres
     └── .production
         ├── .django
         └── .postgres
@@ -194,7 +192,6 @@ The ``container_name`` from the yml file can be used to check on containers with
     $ docker logs <project_slug>_local_celeryworker
     $ docker top <project_slug>_local_celeryworker
 
-
 Notice that the ``container_name`` is generated dynamically using your project slug as a prefix
 
 Mailpit
@@ -233,95 +230,14 @@ By default, it's enabled both in local and production environments (``docker-com
 
 .. _`Flower`: https://github.com/mher/flower
 
-Developing locally with HTTPS
------------------------------
+(Optionally) Developing locally with HTTPS
+------------------------------------------
 
-Increasingly it is becoming necessary to develop software in a secure environment in order that there are very few changes when deploying to production. Recently Facebook changed their policies for apps/sites that use Facebook login which requires the use of an HTTPS URL for the OAuth redirect URL. So if you want to use the ``users`` application with a OAuth provider such as Facebook, securing your communication to the local development environment will be necessary.
-
-In order to create a secure environment, we need to have a trusted SSL certificate installed in our Docker application.
-
-#.  **Let's Encrypt**
-
-    The official line from Let’s Encrypt is:
-
-    [For local development section] ... The best option: Generate your own certificate, either self-signed or signed by a local root, and trust it in your operating system’s trust store. Then use that certificate in your local web server. See below for details.
-
-    See `letsencrypt.org - certificates-for-localhost`_
-
-    .. _`letsencrypt.org - certificates-for-localhost`: https://letsencrypt.org/docs/certificates-for-localhost/
-
-#.  **mkcert: Valid Https Certificates For Localhost**
-
-    `mkcert`_ is a simple by design tool that hides all the arcane knowledge required to generate valid TLS certificates. It works for any hostname or IP, including localhost. It supports macOS, Linux, and Windows, and Firefox, Chrome and Java. It even works on mobile devices with a couple manual steps.
-
-    See https://blog.filippo.io/mkcert-valid-https-certificates-for-localhost/
-
-    .. _`mkcert`:  https://github.com/FiloSottile/mkcert/blob/master/README.md#supported-root-stores
-
-After installing a trusted TLS certificate, configure your docker installation. We are going to configure an ``nginx`` reverse-proxy server. This makes sure that it does not interfere with our ``traefik`` configuration that is reserved for production environments.
-
-These are the places that you should configure to secure your local environment.
-
-certs
+Nginx
 ~~~~~
 
-Take the certificates that you generated and place them in a folder called ``certs`` in the project's root folder. Assuming that you registered your local hostname as ``my-dev-env.local``, the certificates you will put in the folder should have the names ``my-dev-env.local.crt`` and ``my-dev-env.local.key``.
+If you want to add some sort of social authentication with a OAuth provider such as Facebook, securing your communication to the local development environment will be necessary. These providers usually require that you use an HTTPS URL for the OAuth redirect URL for the Facebook login to work appropriately.
 
-docker-compose.local.yml
-~~~~~~~~~
+Here is a link to an article on `how to add HTTPS using Nginx`_ to your local docker installation. This also includes how to serve files from the ``media`` location, in the event that you are want to serve user-uploaded content.
 
-#. Add the ``nginx-proxy`` service. ::
-
-    ...
-
-    nginx-proxy:
-      image: jwilder/nginx-proxy:alpine
-      container_name: {{ cookiecutter.project_slug }}_nginx
-      ports:
-        - "80:80"
-        - "443:443"
-      volumes:
-        - /var/run/docker.sock:/tmp/docker.sock:ro
-        - ./certs:/etc/nginx/certs
-      restart: always
-      depends_on:
-        - django
-
-    ...
-
-#. Link the ``nginx-proxy`` to ``django`` through environment variables.
-
-   ``django`` already has an ``.env`` file connected to it. Add the following variables. You should do this especially if you are working with a team and you want to keep your local environment details to yourself.
-
-   ::
-
-      # HTTPS
-      # ------------------------------------------------------------------------------
-      VIRTUAL_HOST=my-dev-env.local
-      VIRTUAL_PORT=8000
-
-   The services run behind the reverse proxy.
-
-config/settings/local.py
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-You should allow the new hostname. ::
-
-  ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "my-dev-env.local"]
-
-Rebuild your ``docker`` application. ::
-
-  $ docker compose -f docker-compose.local.yml up -d --build
-
-Go to your browser and type in your URL bar ``https://my-dev-env.local``
-
-See `https with nginx`_ for more information on this configuration.
-
-  .. _`https with nginx`: https://codewithhugo.com/docker-compose-local-https/
-
-.gitignore
-~~~~~~~~~~
-
-Add ``certs/*`` to the ``.gitignore`` file. This allows the folder to be included in the repo but its contents to be ignored.
-
-*This configuration is for local development environments only. Do not use this for production since you might expose your local* ``rootCA-key.pem``.
+.. _`how to add HTTPS using Nginx`: https://afroshok.com/cookiecutter-https

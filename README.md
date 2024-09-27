@@ -13,7 +13,7 @@ Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo D
 
 ## Features
 
-- For Django 4.2
+- For Django 5.0
 - Works with Python 3.12
 - Renders Django Rest Framework projects with 100% starting test coverage
 - [12-Factor](https://12factor.net) based settings via [django-environ](https://github.com/joke2k/django-environ)
@@ -103,7 +103,7 @@ Answer the prompts with your own desired [options](http://turbo-drf.readthedocs.
     4 - Mandrill
     5 - Postmark
     6 - Sendgrid
-    7 - SendinBlue
+    7 - Brevo (formerly SendinBlue)
     8 - SparkPost
     9 - Other SMTP
     Choose from 1, 2, 3, 4, 5, 6, 7, 8, 9 [1]: 1
@@ -150,6 +150,7 @@ Scattered throughout the Python and HTML of this project are places marked with 
 
 ## Useful articles
 
+- [Why cookiecutter-django is Essential for Your Next Django Project](https://medium.com/@millsks/why-cookiecutter-django-is-essential-for-your-next-django-project-7d3c00cdce51) - Aug. 4, 2024
 - [How to Make Your Own Django Cookiecutter Template!](https://medium.com/@FatemeFouladkar/how-to-make-your-own-django-cookiecutter-template-a753d4cbb8c2) - Aug. 10, 2023
 - [Cookiecutter Django With Amazon RDS](https://haseeburrehman.com/posts/cookiecutter-django-with-amazon-rds/) - Apr, 2, 2021
 - [Complete Walkthrough: Blue/Green Deployment to AWS ECS using GitHub actions](https://github.com/Andrew-Chen-Wang/cookiecutter-django-ecs-github) - June 10, 2020
