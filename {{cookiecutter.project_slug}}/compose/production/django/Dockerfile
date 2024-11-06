@@ -1,5 +1,5 @@
 # define an alias for the specfic python version used in this file.
-FROM docker.io/python:3.12.6-slim-bookworm AS python
+FROM docker.io/python:3.12.7-slim-bookworm AS python
 
 # Python build stage
 FROM python AS python-build-stage
@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   build-essential \
   # psycopg dependencies
   libpq-dev
+
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements .
@@ -43,6 +44,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   libpq-dev \
   # Translations dependencies
   gettext \
+  # entrypoint
+  wait-for-it \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
@@ -90,5 +93,9 @@ COPY --chown=django:django . ${APP_HOME}
 RUN chown -R django:django ${APP_HOME}
 
 USER django
+
+RUN DATABASE_URL="" \
+  DJANGO_SETTINGS_MODULE="config.settings.test" \
+  python manage.py compilemessages
 
 ENTRYPOINT ["/entrypoint"]

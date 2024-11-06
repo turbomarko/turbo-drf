@@ -1,9 +1,9 @@
-psycopg[c]==3.1.19  # https://github.com/psycopg/psycopg
+psycopg[c]==3.2.3  # https://github.com/psycopg/psycopg
 python-slugify==8.0.4  # https://github.com/un33k/python-slugify
-Pillow==10.4.0  # https://github.com/python-pillow/Pillow
+Pillow==11.0.0  # https://github.com/python-pillow/Pillow
 argon2-cffi==23.1.0  # https://github.com/hynek/argon2_cffi
-whitenoise==6.7.0  # https://github.com/evansd/whitenoise
-redis==5.0.8  # https://github.com/redis/redis-py
+whitenoise==6.8.2  # https://github.com/evansd/whitenoise
+redis==5.2.0  # https://github.com/redis/redis-py
 hiredis==3.0.0  # https://github.com/redis/hiredis-py
 {%- if cookiecutter.use_celery == "y" %}
 celery==5.4.0  # pyup: < 6.0  # https://github.com/celery/celery
@@ -11,7 +11,7 @@ django-celery-beat==2.7.0  # https://github.com/celery/django-celery-beat
 flower==2.0.1  # https://github.com/mher/flower
 {%- endif %}
 {%- if cookiecutter.use_async == 'y' %}
-uvicorn[standard]==0.30.6  # https://github.com/encode/uvicorn
+uvicorn[standard]==0.32.0  # https://github.com/encode/uvicorn
 uvicorn-worker==0.2.0  # https://github.com/Kludex/uvicorn-worker
 {%- endif %}
 
@@ -27,8 +27,8 @@ django-admin-env-notice==1.0  # https://github.com/dizballanze/django-admin-env-
 django-baton==4.1.0  # https://github.com/otto-torino/django-baton
 # Django REST Framework
 djangorestframework==3.15.2  # https://github.com/encode/django-rest-framework
-django-cors-headers==4.4.0  # https://github.com/adamchainz/django-cors-headers
+django-cors-headers==4.6.0  # https://github.com/adamchainz/django-cors-headers
 djangorestframework-camel-case==1.4.2  # https://github.com/vbabiy/djangorestframework-camel-case
 djangorestframework-simplejwt==5.3.1  # https://github.com/jazzband/djangorestframework-simplejwt
-dj-rest-auth[with_social]==6.0.0  # https://github.com/iMerica/dj-rest-auth
+dj-rest-auth[with-social]==7.0.0  # https://github.com/iMerica/dj-rest-auth
 drf-spectacular[sidecar]==0.27.2  # https://github.com/tfranzel/drf-spectacular

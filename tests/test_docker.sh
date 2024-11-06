@@ -11,7 +11,7 @@ mkdir -p .cache/docker
 cd .cache/docker
 
 # create the project using the default settings in cookiecutter.json
-cookiecutter ../../ --no-input --overwrite-if-exists "$@"
+uv run cookiecutter ../../ --no-input --overwrite-if-exists "$@"
 cd my_awesome_project
 
 # make sure all images build
@@ -33,7 +33,6 @@ docker compose -f docker-compose.local.yml run django python manage.py makemessa
 docker compose -f docker-compose.local.yml run \
   -e DJANGO_SECRET_KEY="$(openssl rand -base64 64)" \
   -e REDIS_URL=redis://redis:6379/0 \
-  -e CELERY_BROKER_URL=redis://redis:6379/0 \
   -e DJANGO_AWS_ACCESS_KEY_ID=x \
   -e DJANGO_AWS_SECRET_ACCESS_KEY=x \
   -e DJANGO_AWS_STORAGE_BUCKET_NAME=x \

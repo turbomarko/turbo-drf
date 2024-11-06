@@ -63,6 +63,10 @@ def remove_custom_user_manager_files():
     )
 
 
+def remove_nginx_docker_files():
+    shutil.rmtree(os.path.join("compose", "production", "nginx"))
+
+
 def remove_celery_files():
     file_names = [
         os.path.join("config", "celery_app.py"),
@@ -262,6 +266,9 @@ def main():
 
     if "{{ cookiecutter.username_type }}" == "username":
         remove_custom_user_manager_files()
+
+    if "{{ cookiecutter.cloud_provider }}".lower() != "none":
+        remove_nginx_docker_files()
 
     if "{{ cookiecutter.cloud_provider}}" != "AWS":
         remove_aws_dockerfile()
