@@ -16,7 +16,7 @@ class TestUserAdminCreationForm:
 
     def test_email_duplication_error_msg(self, user: User):
         """
-        Tests UserAdminCreation Form's unique validator functions correctly by testing:
+        Tests UserAdminCreation Form's unique validator functions by testing:
             1) A new user with an existing email cannot be added.
             2) Only 1 error is raised by the UserCreation Form
             3) The desired error message is raised
@@ -48,7 +48,7 @@ class TestUserAdminCreationForm:
 
     def test_password_validation_error_msg(self):
         """
-        Tests UserAdminCreation Form's password validator functions correctly by testing:
+        Tests UserAdminCreation Form's password validator functions by testing:
             1) The passwords have to match.
             2) Only 1 error is raised by the UserCreation Form
             3) The desired error message is raised

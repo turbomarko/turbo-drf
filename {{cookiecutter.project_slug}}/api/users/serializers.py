@@ -1,5 +1,5 @@
 from dj_rest_auth.registration.serializers import (
-    RegisterSerializer as BaseRegisterSerializer
+    RegisterSerializer as BaseRegisterSerializer,
 )
 from dj_rest_auth.serializers import LoginSerializer as BaseLoginSerializer
 from django.contrib.auth import get_user_model
