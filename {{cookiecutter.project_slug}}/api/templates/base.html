@@ -15,12 +15,12 @@
     <meta name="author" content="{% endraw %}{{ cookiecutter.author_name }}{% raw %}" />
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
     {% block css %}
-    <!-- Latest compiled and minified Bootstrap CSS -->
-    <link rel="stylesheet"
-          ref="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
-          integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer" />
+      <!-- Latest compiled and minified Bootstrap CSS -->
+      <link rel="stylesheet"
+            ref="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+            integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer" />
     {% endblock css %}
     <!-- Le javascript
     ================================================== -->
@@ -35,7 +35,7 @@
     <!-- Your stuff: Third-party javascript libraries go here -->
     <!-- place project specific Javascript in this file -->
     <script defer src="{% static 'js/project.js' %}"></script>
-    {% endblock javascript %}
-  </head>
+  {% endblock javascript %}
+</head>
 </html>
 {%- endraw %}
