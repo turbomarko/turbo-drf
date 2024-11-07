@@ -1,5 +1,4 @@
-{%- if cookiecutter.username_type == "email" %}
-from typing import ClassVar
+{%- if cookiecutter.username_type == "email" %}from typing import ClassVar
 
 {% endif -%}
 from django.contrib.auth.models import AbstractUser

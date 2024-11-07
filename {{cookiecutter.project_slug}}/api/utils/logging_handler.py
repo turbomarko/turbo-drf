@@ -1,4 +1,5 @@
 """Custom logging handler"""
+
 import datetime
 import logging
 
@@ -55,7 +56,10 @@ class SlackLogger(logging.Handler):
         try:
             # Try sending the error log directly to Slack
             slack_client = WebClient(token=settings.SLACK_BOT_TOKEN)
-            slack_client.chat_postMessage(channel=settings.SLACK_BOT_CHANNEL, text=message)
+            slack_client.chat_postMessage(
+                channel=settings.SLACK_BOT_CHANNEL,
+                text=message,
+            )
 
         except SlackApiError:
             # Send the error log via e-mail if sending to slack fails

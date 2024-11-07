@@ -46,7 +46,7 @@ services:
     image: docker.io/axllent/mailpit:latest
     container_name: {{ cookiecutter.project_slug }}_local_mailpit
     ports:
-      - "8025:8025"
+      - '8025:8025'
 
   {%- endif %}
   {%- if cookiecutter.use_celery == 'y' %}

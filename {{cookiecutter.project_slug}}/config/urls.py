@@ -13,8 +13,16 @@ urlpatterns = [
     # API base url
     path("", include("config.api_router")),
     # Django allauth dummy endpoints to avoid exception
-    re_path(r"^account-confirm-email/(?P<key>[-:\w]+)/$", TemplateView.as_view(), name="account_confirm_email"),
-    path("account-email-verification-sent/", TemplateView.as_view(), name="account_email_verification_sent"),
+    re_path(
+        r"^account-confirm-email/(?P<key>[-:\w]+)/$",
+        TemplateView.as_view(),
+        name="account_confirm_email",
+    ),
+    path(
+        "account-email-verification-sent/",
+        TemplateView.as_view(),
+        name="account_email_verification_sent",
+    ),
     re_path(
         r"^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/$",
         TemplateView.as_view(template_name="password_reset_confirm.html"),

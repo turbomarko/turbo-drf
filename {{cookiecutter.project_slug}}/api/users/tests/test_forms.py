@@ -2,12 +2,13 @@
 
 import pytest
 
-from ..forms import UserCreationForm
-from ..models import User
+from api.users.forms import UserCreationForm
+from api.users.models import User
+
 from .factories import UserFactory
 
 
-@pytest.mark.django_db()
+@pytest.mark.django_db
 class TestUserAdminCreationForm:
     """
     Test class for all tests related to the UserCreationForm

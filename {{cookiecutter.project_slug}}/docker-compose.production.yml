@@ -9,7 +9,6 @@ volumes:
   {{ cookiecutter.project_slug }}_production_redis_data: {}
   {% endif %}
 
-
 services:
   django:{% if cookiecutter.use_celery == 'y' %} &django{% endif %}
     build:
@@ -61,7 +60,6 @@ services:
     volumes:
       - {{ cookiecutter.project_slug }}_production_redis_data:/data
     {% endif %}
-
 
   {%- if cookiecutter.use_celery == 'y' %}
 
