@@ -63,6 +63,10 @@ def remove_custom_user_manager_files():
     )
 
 
+def remove_user_serliazer_tests():
+    os.remove(os.path.join("api", "users", "tests", "test_serializers.py"))
+
+
 def remove_nginx_docker_files():
     shutil.rmtree(os.path.join("compose", "production", "nginx"))
 
@@ -266,6 +270,7 @@ def main():
 
     if "{{ cookiecutter.username_type }}" == "username":
         remove_custom_user_manager_files()
+        remove_user_serliazer_tests()
 
     if "{{ cookiecutter.cloud_provider }}".lower() != "none":
         remove_nginx_docker_files()

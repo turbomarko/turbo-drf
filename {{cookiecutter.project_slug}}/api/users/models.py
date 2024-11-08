@@ -34,19 +34,6 @@ class User(AbstractUser):
     objects: ClassVar[UserManager] = UserManager()
     {%- endif %}
 
-    def get_absolute_url(self) -> str:
-        """Get URL for user's detail view.
-
-        Returns:
-            str: URL for user detail.
-
-        """
-        {%- if cookiecutter.username_type == "email" %}
-        return reverse("users:detail", kwargs={"pk": self.id})
-        {%- else %}
-        return reverse("users:detail", kwargs={"username": self.username})
-        {%- endif %}
-
     class Meta:
         verbose_name = "user"
         verbose_name_plural = "users"

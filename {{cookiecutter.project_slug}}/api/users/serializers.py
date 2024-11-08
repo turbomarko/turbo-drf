@@ -18,9 +18,11 @@ class UserSerializer(serializers.ModelSerializer):
         {%- endif %}
         read_only_fields = ("is_staff",)
 
+    {%- if cookiecutter.username_type == "email" %}
     def validate_email(self, value):
         """Make the email lowercase"""
         return value.lower()
+    {%- endif %}
 
 
 class LoginSerializer(BaseLoginSerializer):
