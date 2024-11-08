@@ -55,9 +55,9 @@ class SlackLogger(logging.Handler):
         # Send a slack message only if it comes from an app
         try:
             # Try sending the error log directly to Slack
-            slack_client = WebClient(token=settings.SLACK_BOT_TOKEN)
+            slack_client = WebClient(token=settings.SLACK_BOT_TOKEN)  # type: ignore[misc]
             slack_client.chat_postMessage(
-                channel=settings.SLACK_BOT_CHANNEL,
+                channel=settings.SLACK_BOT_CHANNEL,  # type: ignore[misc]
                 text=message,
             )
 

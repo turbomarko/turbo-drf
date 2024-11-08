@@ -61,7 +61,6 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_admin_env_notice",
-    "baton",
     "django.contrib.admin",
     "django.forms",
 ]
@@ -86,7 +85,6 @@ LOCAL_APPS = [
 ]
 
 FINAL_APPS = [
-    "baton.autodiscover",
     "django_cleanup.apps.CleanupConfig",
 ]
 
@@ -399,24 +397,3 @@ REST_AUTH = {
 
 # Admin
 ENVIRONMENT_FLOAT = True
-
-BATON = {
-    "SITE_HEADER": "{{ cookiecutter.project_name }} admin",
-    "SITE_TITLE": "{{ cookiecutter.project_name }} admin",
-    "INDEX_TITLE": "Site administration",
-    "SUPPORT_HREF": "{{ cookiecutter.domain_name }}",
-    "COPYRIGHT": 'copyright © 2023 <a href="{{ cookiecutter.domain_name }}">{{ cookiecutter.domain_name }}</a>',
-    "POWERED_BY": '<a href="{{ cookiecutter.domain_name }}">{{ cookiecutter.domain_name }}</a>',
-    "CONFIRM_UNSAVED_CHANGES": True,
-    "SHOW_MULTIPART_UPLOADING": True,
-    "ENABLE_IMAGES_PREVIEW": True,
-    "CHANGELIST_FILTERS_IN_MODAL": False,
-    "CHANGELIST_FILTERS_ALWAYS_OPEN": True,
-    "CHANGELIST_FILTERS_FORM": True,
-    "COLLAPSABLE_USER_AREA": False,
-    "MENU_ALWAYS_COLLAPSED": False,
-    "MENU_TITLE": "Menu",
-    "MESSAGES_TOASTS": False,
-    "GRAVATAR_DEFAULT_IMG": "retro",
-    "LOGIN_SPLASH": "/static/core/img/login-splash.png",
-}

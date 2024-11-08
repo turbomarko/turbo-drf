@@ -43,14 +43,14 @@ help() {
 generate_ssl_certificates() {
   if [ "$c1" = "local" ]
   then
-    mkdir certs && docker compose -f "$c1".yml run django openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 -nodes -out certs/my-dev-env.local.crt -keyout certs/my-dev-env.local.key -subj "/CN=my-dev-env.local" && echo "Certificates generated successfully."
+    mkdir certs && docker compose -f docker-compose."$c1".yml run django openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 -nodes -out certs/my-dev-env.local.crt -keyout certs/my-dev-env.local.key -subj "/CN=my-dev-env.local" && echo "Certificates generated successfully."
   else
     echo "Operation aborted. Certificates can only be generated for 'local' environment."
   fi
 }
 
 build() {
-  docker compose -f "$c1".yml build
+  docker compose -f docker-compose."$c1".yml build
 }
 
 init() {
@@ -68,89 +68,89 @@ init() {
 }
 
 up() {
-  docker compose -f "$c1".yml up
+  docker compose -f docker-compose."$c1".yml up
 }
 
 down() {
-  docker compose -f "$c1".yml down
+  docker compose -f docker-compose."$c1".yml down
 }
 
 
 # Django commands
 shell() {
-  docker compose -f "$c1".yml run --rm django python manage.py shell
+  docker compose -f docker-compose."$c1".yml run --rm django python manage.py shell
 }
 
 showmigrations() {
-  docker compose -f "$c1".yml run --rm django python manage.py showmigrations
+  docker compose -f docker-compose."$c1".yml run --rm django python manage.py showmigrations
 }
 
 makemigrations() {
-  docker compose -f "$c1".yml run --rm django python manage.py makemigrations
+  docker compose -f docker-compose."$c1".yml run --rm django python manage.py makemigrations
 }
 
 migrate() {
-  docker compose -f "$c1".yml run --rm django python manage.py migrate
+  docker compose -f docker-compose."$c1".yml run --rm django python manage.py migrate
 }
 
 createsuperuser() {
-  docker compose -f "$c1".yml run --rm django python manage.py createsuperuser
+  docker compose -f docker-compose."$c1".yml run --rm django python manage.py createsuperuser
 }
 
 startapp() {
-  docker compose -f local.yml run --rm django python manage.py startapp --template=./template_app "$c3"
+  docker compose -f docker-compose.local.yml run --rm django python manage.py startapp --template=./template_app "$c3"
   mv ./"$c3" ./api/"$c3"
 }
 
 
 # Postgres commands
 backup_db() {
-  docker compose -f local.yml exec postgres backup
-  docker cp "$(docker compose -f local.yml ps -q postgres)":/backups ./backups
+  docker compose -f docker-compose.local.yml exec postgres backup
+  docker cp "$(docker compose -f docker-compose.local.yml ps -q postgres)":/backups ./backups
 }
 
 list_backup_db() {
-  docker compose -f local.yml exec postgres backups
+  docker compose -f docker-compose.local.yml exec postgres backups
 }
 
 restore_db() {
-  docker compose -f local.yml exec postgres restore "$c3"
+  docker compose -f docker-compose.local.yml exec postgres restore "$c3"
 }
 
 upload_backup_db_s3() {
-  docker compose -f production.yml run --rm awscli upload
+  docker compose -f docker-compose.production.yml run --rm awscli upload
 }
 
 download_backup_db_s3() {
-  docker compose -f production.yml run --rm awscli download "$c3"
+  docker compose -f docker-compose.production.yml run --rm awscli download "$c3"
 }
 
 
 # Code check commands
 ruff() {
-  echo "RUFF" && docker compose -f "$c1".yml run --rm django ruff check
+  echo "RUFF" && docker compose -f docker-compose."$c1".yml run --rm django ruff check
 }
 
 format() {
-  echo "RUFF" && docker compose -f "$c1".yml run --rm django ruff format
+  echo "RUFF" && docker compose -f docker-compose."$c1".yml run --rm django ruff format
 }
 
 mypy() {
-  echo "MYPY" && docker compose -f local.yml run --rm django mypy api
+  echo "MYPY" && docker compose -f docker-compose.local.yml run --rm django mypy api
 }
 
 pytest() {
-  echo "PYTEST" && docker compose -f "$c1".yml run --rm django pytest
+  echo "PYTEST" && docker compose -f docker-compose."$c1".yml run --rm django pytest
 }
 
 coverage() {
-  docker compose -f local.yml run --rm django coverage run -m pytest
-  docker compose -f local.yml run --rm django coverage report
+  docker compose -f docker-compose.local.yml run --rm django coverage run -m pytest
+  docker compose -f docker-compose.local.yml run --rm django coverage report
 }
 
 check_all() {
   ruff && echo "ruff - No issue found"
-  # mypy && echo "mypy - No issue found"
+  mypy && echo "mypy - No issue found"
   coverage && echo "coverage - No issue found"
   # unittest && echo "unittest - No issue found"
 }
