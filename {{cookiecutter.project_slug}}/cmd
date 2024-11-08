@@ -146,13 +146,13 @@ pytest() {
 coverage() {
   docker compose -f docker-compose.local.yml run --rm django coverage run -m pytest
   docker compose -f docker-compose.local.yml run --rm django coverage report
+  docker compose -f docker-compose.local.yml run --rm django coverage html
 }
 
 check_all() {
   ruff && echo "ruff - No issue found"
   mypy && echo "mypy - No issue found"
-  coverage && echo "coverage - No issue found"
-  # unittest && echo "unittest - No issue found"
+  pytest && echo "pytest - No issue found"
 }
 
 case "$c1" in
