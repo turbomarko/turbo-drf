@@ -6,7 +6,6 @@ from django.db.models import CharField
 {%- if cookiecutter.username_type == "email" %}
 from django.db.models import EmailField
 {%- endif %}
-from django.urls import reverse
 {%- if cookiecutter.username_type == "email" %}
 
 from .managers import UserManager
