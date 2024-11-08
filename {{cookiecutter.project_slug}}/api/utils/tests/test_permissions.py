@@ -1,10 +1,11 @@
-import pytest
-from rest_framework.permissions import SAFE_METHODS
-from rest_framework.test import APIRequestFactory
-from django.contrib.auth import get_user_model
 from unittest.mock import patch
 
-from api.utils.permissions import IsOwnerOrReadOnly, IsEmailVerified
+import pytest
+from django.contrib.auth import get_user_model
+from rest_framework.test import APIRequestFactory
+
+from api.utils.permissions import IsEmailVerified
+from api.utils.permissions import IsOwnerOrReadOnly
 
 User = get_user_model()
 factory = APIRequestFactory()
@@ -15,7 +16,7 @@ factory = APIRequestFactory()
 class TestIsOwnerOrReadOnly:
     def test_allows_safe_methods(self):
         """
-        Tests that safe methods (GET, HEAD, OPTIONS) are allowed regardless of ownership.
+        Tests that safe methods are allowed regardless of ownership.
         """
         permission = IsOwnerOrReadOnly()
         owner = User.objects.create(email="owner@test.com")
@@ -34,7 +35,7 @@ class TestIsOwnerOrReadOnly:
 
     def test_denies_non_safe_methods_for_non_owner(self):
         """
-        Tests that non-safe methods (POST, PUT, DELETE) are denied for non-owners.
+        Tests that non-safe methods are denied for non-owners.
         """
         permission = IsOwnerOrReadOnly()
         owner = User.objects.create(email="owner@test.com")
@@ -49,7 +50,7 @@ class TestIsOwnerOrReadOnly:
 
     def test_allows_non_safe_methods_for_owner(self):
         """
-        Tests that non-safe methods (POST, PUT, DELETE) are allowed for the owner.
+        Tests that non-safe methods are allowed for the owner.
         """
         permission = IsOwnerOrReadOnly()
         owner = User.objects.create(email="owner@test.com")
