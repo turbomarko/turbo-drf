@@ -117,6 +117,7 @@ restore_db() {
   docker compose -f docker-compose.local.yml exec postgres restore "$c3"
 }
 
+{%- if cookiecutter.cloud_provider == 'AWS' %}
 upload_backup_db_s3() {
   docker compose -f docker-compose.production.yml run --rm awscli upload
 }
@@ -124,7 +125,7 @@ upload_backup_db_s3() {
 download_backup_db_s3() {
   docker compose -f docker-compose.production.yml run --rm awscli download "$c3"
 }
-
+{%- endif %}
 
 # Code check commands
 ruff() {
