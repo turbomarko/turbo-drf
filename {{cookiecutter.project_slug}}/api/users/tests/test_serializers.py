@@ -10,9 +10,9 @@ def test_user_serializer_email_lowercase():
     """
     data = {"email": "TESTUSER@EXAMPLE.COM"}
     serializer = UserSerializer(data=data)
-    
+
     # Validate the data
     assert serializer.is_valid()
-    
+
     # Check that email is in lowercase after validation
     assert serializer.validated_data["email"] == "testuser@example.com"
