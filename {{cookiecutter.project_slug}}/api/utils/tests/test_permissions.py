@@ -19,8 +19,13 @@ class TestIsOwnerOrReadOnly:
         Tests that safe methods are allowed regardless of ownership.
         """
         permission = IsOwnerOrReadOnly()
+        {%- if cookiecutter.username_type == "email" %}
         owner = User.objects.create(email="owner@test.com")
         other_user = User.objects.create(email="other_user@test.com")
+        {%- else %}
+        owner = User.objects.create(username="owner")
+        other_user = User.objects.create(username="other_user")
+        {%- endif %}
         request = factory.get("/")  # Safe method
 
         # Create a mock object with an `owner` attribute
@@ -38,8 +43,13 @@ class TestIsOwnerOrReadOnly:
         Tests that non-safe methods are denied for non-owners.
         """
         permission = IsOwnerOrReadOnly()
+        {%- if cookiecutter.username_type == "email" %}
         owner = User.objects.create(email="owner@test.com")
         other_user = User.objects.create(email="other_user@test.com")
+        {%- else %}
+        owner = User.objects.create(username="owner")
+        other_user = User.objects.create(username="other_user")
+        {%- endif %}
         request = factory.post("/")  # Non-safe method
 
         # Create a mock object with an `owner` attribute
@@ -53,7 +63,11 @@ class TestIsOwnerOrReadOnly:
         Tests that non-safe methods are allowed for the owner.
         """
         permission = IsOwnerOrReadOnly()
+        {%- if cookiecutter.username_type == "email" %}
         owner = User.objects.create(email="owner@test.com")
+        {%- else %}
+        owner = User.objects.create(username="owner")
+        {%- endif %}
         request = factory.post("/")  # Non-safe method
 
         # Create a mock object with an `owner` attribute
@@ -73,7 +87,11 @@ class TestIsEmailVerified:
         """
         mock_has_verified_email.return_value = False
         permission = IsEmailVerified()
+        {%- if cookiecutter.username_type == "email" %}
         user = User.objects.create(email="unverified_user@test.com")
+        {%- else %}
+        user = User.objects.create(username="unverified_user")
+        {%- endif %}
         request = factory.get("/")
         request.user = user
 
