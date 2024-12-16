@@ -8,7 +8,7 @@
 Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Turbo DRF is a framework for jumpstarting production-ready Django Rest Framework projects quickly.
 
 * Documentation: <https://turbo-drf.readthedocs.io/en/latest/>
-* See [Troubleshooting](https://turbo-drf.readthedocs.io/en/latest/troubleshooting.html) for common errors and obstacles
+* See [Troubleshooting](https://turbo-drf.readthedocs.io/en/latest/5-help/troubleshooting.html) for common errors and obstacles
 * If you have problems with Turbo DRF, please open [issues](https://github.com/turbomarko/turbo-drf/issues/new), don't send emails to the maintainers.
 
 ## Features
@@ -63,7 +63,7 @@ You'll be prompted for some values. Provide them, then a Django project will be 
 
 **Warning**: After this point, change 'Mark Hoffman', 'turbomarko', etc to your own information.
 
-Answer the prompts with your own desired [options](http://turbo-drf.readthedocs.io/en/latest/project-generation-options.html). For example::
+Answer the prompts with your own desired [options](http://turbo-drf.readthedocs.io/en/latest/1-getting-started/project-generation-options.html). For example::
 
     project_name [Project Name]: Reddit Clone
     project_slug [reddit_clone]: reddit
