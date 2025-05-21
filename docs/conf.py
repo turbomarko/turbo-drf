@@ -188,7 +188,7 @@ latex_documents = [
         "turbo-drf Documentation",
         "turbo-drf",
         "manual",
-    )
+    ),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -223,7 +223,7 @@ man_pages = [
         "Turbo DRF documentation",
         ["Mark Hoffman"],
         1,
-    )
+    ),
 ]
 
 # If true, show URL addresses after external links.
@@ -244,7 +244,7 @@ texinfo_documents = [
         "Turbo DRF",
         "A Cookiecutter template for creating production-ready Django REST framework projects quickly.",
         "Miscellaneous",
-    )
+    ),
 ]
 
 # Documents to append as an appendix to all manuals.

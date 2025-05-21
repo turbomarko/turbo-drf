@@ -15,7 +15,7 @@
   ],
   "username_type": ["username", "email"],
   "timezone": "UTC",
-  "postgresql_version": ["16", "15", "14", "13", "12", "11", "10"],
+  "postgresql_version": ["17", "16", "15", "14", "13"],
   "cloud_provider": ["AWS", "GCP", "Azure", "None"],
   "mail_service": [
     "Mailgun",

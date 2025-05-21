@@ -2,6 +2,8 @@ import glob
 import os
 import re
 import sys
+from collections.abc import Iterable
+from pathlib import Path
 
 import pytest
 
@@ -50,11 +52,11 @@ SUPPORTED_COMBINATIONS = [
     {"open_source_license": "GPLv3"},
     {"open_source_license": "Apache Software License 2.0"},
     {"open_source_license": "Not open source"},
+    {"postgresql_version": "17"},
     {"postgresql_version": "16"},
     {"postgresql_version": "15"},
     {"postgresql_version": "14"},
     {"postgresql_version": "13"},
-    {"postgresql_version": "12"},
     {"cloud_provider": "AWS", "mail_service": "Mailgun"},
     {"cloud_provider": "AWS", "mail_service": "Amazon SES"},
     {"cloud_provider": "AWS", "mail_service": "Mailjet"},
@@ -102,19 +104,19 @@ def _fixture_id(ctx):
     return "-".join(f"{key}:{value}" for key, value in ctx.items())
 
 
-def build_files_list(base_dir):
+def build_files_list(base_path: Path):
     """Build a list containing absolute paths to the generated files."""
-    return [os.path.join(dirpath, file_path) for dirpath, subdirs, files in os.walk(base_dir) for file_path in files]
+    return [dirpath / file_path for dirpath, subdirs, files in base_path.walk() for file_path in files]
 
 
-def check_paths(paths):
+def check_paths(paths: Iterable[Path]):
     """Method to check all paths have correct substitutions."""
     # Assert that no match is found in any of the files
     for path in paths:
-        if is_binary(path):
+        if is_binary(str(path)):
             continue
 
-        for line in open(path):
+        for line in path.open():
             match = RE_OBJ.search(line)
             assert match is None, f"cookiecutter variable not replaced in {path}"
 
@@ -129,7 +131,7 @@ def test_project_generation(cookies, context, context_override):
     assert result.project_path.name == context["project_slug"]
     assert result.project_path.is_dir()
 
-    paths = build_files_list(str(result.project_path))
+    paths = build_files_list(result.project_path)
     assert paths
     check_paths(paths)
 
@@ -235,7 +237,7 @@ def test_gitlab_invokes_precommit_and_pytest(cookies, context):
     assert result.project_path.name == context["project_slug"]
     assert result.project_path.is_dir()
 
-    with open(f"{result.project_path}/.gitlab-ci.yml") as gitlab_yml:
+    with (result.project_path / ".gitlab-ci.yml").open() as gitlab_yml:
         try:
             gitlab_config = yaml.safe_load(gitlab_yml)
             assert gitlab_config["precommit"]["script"] == [
@@ -257,7 +259,7 @@ def test_github_invokes_linter_and_pytest(cookies, context):
     assert result.project_path.name == context["project_slug"]
     assert result.project_path.is_dir()
 
-    with open(f"{result.project_path}/.github/workflows/ci.yml") as github_yml:
+    with (result.project_path / ".github" / "workflows" / "ci.yml").open() as github_yml:
         try:
             github_config = yaml.safe_load(github_yml)
             linter_present = False
@@ -305,7 +307,7 @@ def test_trim_domain_email(cookies, context):
         {
             "domain_name": "   example.com   ",
             "email": "  me@example.com  ",
-        }
+        },
     )
     result = cookies.bake(extra_context=context)
 

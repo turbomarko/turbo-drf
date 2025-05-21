@@ -9,14 +9,18 @@ updates:
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: 'daily'
+    groups:
+      github-actions:
+        patterns:
+          - '*'
 
   # Enable version updates for Docker
-  # We need to specify each Dockerfile in a separate entry because Dependabot doesn't
-  # support wildcards or recursively checking subdirectories. Check this issue for updates:
-  # https://github.com/dependabot/dependabot-core/issues/2178
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the `compose/local/django` directory
-    directory: 'compose/local/django/'
+    directories:
+      - 'compose/local/django/'
+      - 'compose/local/docs/'
+      - 'compose/production/django/'
     # Check for updates to GitHub Actions every weekday
     schedule:
       interval: 'daily'
@@ -26,74 +30,35 @@ updates:
         update-types:
           - 'version-update:semver-major'
           - 'version-update:semver-minor'
+    groups:
+      docker-python:
+        patterns:
+          - '*'
 
-  # Enable version updates for Docker
+
   - package-ecosystem: 'docker'
-    # Look for a `Dockerfile` in the `compose/local/docs` directory
-    directory: 'compose/local/docs/'
-    # Check for updates to GitHub Actions every weekday
-    schedule:
-      interval: 'daily'
-    # Ignore minor version updates (3.11 -> 3.12) but update patch versions
-    ignore:
-      - dependency-name: '*'
-        update-types:
-          - 'version-update:semver-major'
-          - 'version-update:semver-minor'
-
-  # Enable version updates for Docker
-  - package-ecosystem: 'docker'
-    # Look for a `Dockerfile` in the `compose/production/aws` directory
-    directory: 'compose/production/aws/'
-    # Check for updates to GitHub Actions every weekday
-    schedule:
-      interval: 'daily'
-
-  # Enable version updates for Docker
-  - package-ecosystem: 'docker'
-    # Look for a `Dockerfile` in the `compose/production/django` directory
-    directory: 'compose/production/django/'
-    # Check for updates to GitHub Actions every weekday
-    schedule:
-      interval: 'daily'
-    # Ignore minor version updates (3.10 -> 3.11) but update patch versions
-    ignore:
-      - dependency-name: '*'
-        update-types:
-          - 'version-update:semver-major'
-          - 'version-update:semver-minor'
-
-  # Enable version updates for Docker
-  - package-ecosystem: 'docker'
-    # Look for a `Dockerfile` in the `compose/production/postgres` directory
-    directory: 'compose/production/postgres/'
-    # Check for updates to GitHub Actions every weekday
-    schedule:
-      interval: 'daily'
-
-  # Enable version updates for Docker
-  - package-ecosystem: 'docker'
-    # Look for a `Dockerfile` in the `compose/production/traefik` directory
-    directory: 'compose/production/traefik/'
-    # Check for updates to GitHub Actions every weekday
-    schedule:
-      interval: 'daily'
-
+    # Look for a `Dockerfile` in the listed directories
+    directories:
+      - 'compose/production/aws/'
+      - 'compose/production/postgres/'
+      - 'compose/production/traefik/'
 {%- if cookiecutter.cloud_provider == 'None' %}
-
-  - package-ecosystem: 'docker'
-    # Look for a `Dockerfile` in the `compose/production/nginx` directory
-    directory: 'compose/production/nginx/'
+      - 'compose/production/nginx/'
+{%- endif %}
     # Every weekday
     schedule:
       interval: 'daily'
-{%- endif %}
 
   # Enable version updates for Python/Pip - Production
   - package-ecosystem: 'pip'
     # Look for a `requirements.txt` in the `root` directory
-    # also 'setup.cfg', 'runtime.txt' and 'requirements/*.txt'
+    # also 'setup.cfg', '.python-version' and 'requirements/*.txt'
     directory: '/'
-    # Check for updates to GitHub Actions every weekday
+    # Every weekday
     schedule:
       interval: 'daily'
+    groups:
+      python:
+        update-types:
+          - 'minor'
+          - 'patch'

@@ -24,9 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install uv
-        uses: astral-sh/setup-uv@v4
-        with:
-          enable-cache: "true"
+        uses: astral-sh/setup-uv@v6
       - name: Install dependencies
         run: uv sync
       - name: Run tests
@@ -51,9 +49,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install uv
-        uses: astral-sh/setup-uv@v4
-        with:
-          enable-cache: "true"
+        uses: astral-sh/setup-uv@v6
       - name: Install dependencies
         run: uv sync
       - name: Docker ${{ matrix.script.name }}

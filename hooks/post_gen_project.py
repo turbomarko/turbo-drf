@@ -1,20 +1,7 @@
-"""
-NOTE:
-    the below code is to be maintained Python 2.x-compatible
-    as the whole Turbo DRF project initialization
-    can potentially be run in Python 2.x environment
-    (at least so we presume in `pre_gen_project.py`).
-
-TODO: restrict Turbo DRF project initialization to
-      Python 3.x environments only
-"""
-
-from __future__ import print_function
-
-import os
 import random
 import shutil
 import string
+from pathlib import Path
 
 try:
     # Inspired by
@@ -36,63 +23,50 @@ DEBUG_VALUE = "debug"
 def remove_open_source_files():
     file_names = ["CONTRIBUTORS.txt", "LICENSE"]
     for file_name in file_names:
-        os.remove(file_name)
+        Path(file_name).unlink()
 
 
 def remove_gplv3_files():
     file_names = ["COPYING"]
     for file_name in file_names:
-        os.remove(file_name)
+        Path(file_name).unlink()
 
 
 def remove_custom_user_manager_files():
-    os.remove(
-        os.path.join(
-            "api",
-            "users",
-            "managers.py",
-        )
-    )
-    os.remove(
-        os.path.join(
-            "api",
-            "users",
-            "tests",
-            "test_managers.py",
-        )
-    )
+    users_path = Path("{{cookiecutter.project_slug}}", "users")
+    (users_path / "managers.py").unlink()
+    (users_path / "tests" / "test_managers.py").unlink()
 
 
 def remove_user_serliazer_tests():
-    os.remove(os.path.join("api", "users", "tests", "test_serializers.py"))
+    (Path("api", "users", "tests", "test_serializers.py")).unlink()
 
 
 def remove_nginx_docker_files():
-    shutil.rmtree(os.path.join("compose", "production", "nginx"))
+    shutil.rmtree(Path("compose", "production", "nginx"))
 
 
 def remove_celery_files():
-    file_names = [
-        os.path.join("config", "celery_app.py"),
-        os.path.join("api", "users", "tasks.py"),
-        os.path.join("api", "users", "tests", "test_tasks.py"),
-        os.path.join("template_app", "tasks.py-tpl"),
+    file_paths = [
+        Path("config", "celery_app.py"),
+        Path("{{ cookiecutter.project_slug }}", "users", "tasks.py"),
+        Path("{{ cookiecutter.project_slug }}", "users", "tests", "test_tasks.py"),
     ]
-    for file_name in file_names:
-        os.remove(file_name)
+    for file_path in file_paths:
+        file_path.unlink()
 
 
 def remove_async_files():
-    file_names = [
-        os.path.join("config", "asgi.py"),
-        os.path.join("config", "websocket.py"),
+    file_paths = [
+        Path("config", "asgi.py"),
+        Path("config", "websocket.py"),
     ]
-    for file_name in file_names:
-        os.remove(file_name)
+    for file_path in file_paths:
+        file_path.unlink()
 
 
 def remove_dotgitlabciyml_file():
-    os.remove(".gitlab-ci.yml")
+    Path(".gitlab-ci.yml").unlink()
 
 
 def remove_dotgithub_folder():
@@ -100,7 +74,7 @@ def remove_dotgithub_folder():
 
 
 def remove_dotdrone_file():
-    os.remove(".drone.yml")
+    Path(".drone.yml").unlink()
 
 
 def generate_random_string(length, using_digits=False, using_ascii_letters=False, using_punctuation=False):
@@ -126,7 +100,7 @@ def generate_random_string(length, using_digits=False, using_ascii_letters=False
     return "".join([random.choice(symbols) for _ in range(length)])
 
 
-def set_flag(file_path, flag, value=None, formatted=None, *args, **kwargs):
+def set_flag(file_path: Path, flag, value=None, formatted=None, *args, **kwargs):
     if value is None:
         random_string = generate_random_string(*args, **kwargs)
         if random_string is None:
@@ -139,7 +113,7 @@ def set_flag(file_path, flag, value=None, formatted=None, *args, **kwargs):
             random_string = formatted.format(random_string)
         value = random_string
 
-    with open(file_path, "r+") as f:
+    with file_path.open("r+") as f:
         file_contents = f.read().replace(flag, value)
         f.seek(0)
         f.write(file_contents)
@@ -148,7 +122,7 @@ def set_flag(file_path, flag, value=None, formatted=None, *args, **kwargs):
     return value
 
 
-def set_django_secret_key(file_path):
+def set_django_secret_key(file_path: Path):
     django_secret_key = set_flag(
         file_path,
         "!!!SET DJANGO_SECRET_KEY!!!",
@@ -159,7 +133,7 @@ def set_django_secret_key(file_path):
     return django_secret_key
 
 
-def set_django_admin_url(file_path):
+def set_django_admin_url(file_path: Path):
     django_admin_url = set_flag(
         file_path,
         "!!!SET DJANGO_ADMIN_URL!!!",
@@ -214,16 +188,16 @@ def set_celery_flower_password(file_path, value=None):
 
 
 def append_to_gitignore_file(ignored_line):
-    with open(".gitignore", "a") as gitignore_file:
+    with Path(".gitignore").open("a") as gitignore_file:
         gitignore_file.write(ignored_line)
         gitignore_file.write("\n")
 
 
 def set_flags_in_envs(postgres_user, celery_flower_user, debug=False):
-    local_django_envs_path = os.path.join(".envs", ".local", ".django")
-    production_django_envs_path = os.path.join(".envs", ".production", ".django")
-    local_postgres_envs_path = os.path.join(".envs", ".local", ".postgres")
-    production_postgres_envs_path = os.path.join(".envs", ".production", ".postgres")
+    local_django_envs_path = Path(".envs", ".local", ".django")
+    production_django_envs_path = Path(".envs", ".production", ".django")
+    local_postgres_envs_path = Path(".envs", ".local", ".postgres")
+    production_postgres_envs_path = Path(".envs", ".production", ".postgres")
 
     set_django_secret_key(production_django_envs_path)
     set_django_admin_url(production_django_envs_path)
@@ -240,17 +214,17 @@ def set_flags_in_envs(postgres_user, celery_flower_user, debug=False):
 
 
 def set_flags_in_settings_files():
-    set_django_secret_key(os.path.join("config", "settings", "local.py"))
-    set_django_secret_key(os.path.join("config", "settings", "test.py"))
+    set_django_secret_key(Path("config", "settings", "local.py"))
+    set_django_secret_key(Path("config", "settings", "test.py"))
 
 
 def remove_celery_compose_dirs():
-    shutil.rmtree(os.path.join("compose", "local", "django", "celery"))
-    shutil.rmtree(os.path.join("compose", "production", "django", "celery"))
+    shutil.rmtree(Path("compose", "local", "django", "celery"))
+    shutil.rmtree(Path("compose", "production", "django", "celery"))
 
 
 def remove_aws_dockerfile():
-    shutil.rmtree(os.path.join("compose", "production", "aws"))
+    shutil.rmtree(Path("compose", "production", "aws"))
 
 
 def main():

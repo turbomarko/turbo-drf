@@ -1,33 +1,49 @@
-name: uv
+name: align versions
 
 on:
   pull_request:
     paths:
-      - "pyproject.toml"
+      - "{{cookiecutter.project_slug}}/requirements/local.txt"
+  # Manual trigger
+  workflow_dispatch:
 
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
-  lock:
-    if: ${{ github.actor == 'dependabot[bot]' }}
+  run:
+    if: ${{ github.actor == 'pyup-bot' }}
     runs-on: ubuntu-latest
     env:
       GH_PAT: ${{ secrets.GH_PAT }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        job:
+          - script: scripts/ruff_version.py
+            name: Ruff
+
+    name: "${{ matrix.job.name }} versions"
     steps:
       - name: Checkout with token
         uses: actions/checkout@v4
         if: ${{ env.GH_PAT != '' }}
         with:
           token: ${{ env.GH_PAT }}
+          ref: ${{ github.head_ref }}
 
       - name: Checkout without token
         uses: actions/checkout@v4
         if: ${{ env.GH_PAT == '' }}
+        with:
+          ref: ${{ github.head_ref }}
 
       - uses: astral-sh/setup-uv@v6
-      - run: uv lock
+
+      - run: uv run ${{ matrix.job.script }}
+
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Regenerate uv.lock
+          commit_message: Align versions
