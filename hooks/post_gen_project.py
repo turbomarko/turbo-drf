@@ -33,7 +33,7 @@ def remove_gplv3_files():
 
 
 def remove_custom_user_manager_files():
-    users_path = Path("{{cookiecutter.project_slug}}", "users")
+    users_path = Path("api", "users")
     (users_path / "managers.py").unlink()
     (users_path / "tests" / "test_managers.py").unlink()
 
@@ -49,8 +49,8 @@ def remove_nginx_docker_files():
 def remove_celery_files():
     file_paths = [
         Path("config", "celery_app.py"),
-        Path("{{ cookiecutter.project_slug }}", "users", "tasks.py"),
-        Path("{{ cookiecutter.project_slug }}", "users", "tests", "test_tasks.py"),
+        Path("api", "users", "tasks.py"),
+        Path("api", "users", "tests", "test_tasks.py"),
     ]
     for file_path in file_paths:
         file_path.unlink()
